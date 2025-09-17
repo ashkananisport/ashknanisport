@@ -1,37 +1,142 @@
 import React from 'react';
-import { FaInstagram, FaTwitter, FaWhatsapp} from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
-// FIX: Added explicit types for component props to fix syntax errors and type issues.
-// The original code was syntactically invalid, with JSX outside a component definition,
-// which caused a cascade of errors including `Cannot find name 'div'` and `Type 'unknown' is not assignable`.
-// This also addresses the type error for `value` in `Object.entries` by typing `content.nav`.
 interface FooterProps {
     content: {
-        nav: { [key: string]: string };
         copyright: string;
+        quickLinks: string;
+        socialMedia: Array<{
+            platform: string;
+            icon: string;
+            url: string;
+        }>;
+        partners: Array<{
+            name: string;
+            logoUrl: string;
+            url: string;
+        }>;
+        nav: {
+            home: string;
+            about: string;
+            services: string;
+            achievements: string;
+            deals: string;
+            gallery: string;
+            documents: string;
+            contact: string;
+            playerSigning: string;
+            agentBenefits: string;
+            transferMarket: string;
+        };
     };
 }
 
+const Footer: React.FC<FooterProps> = ({ content }) => {
+    // إنشاء خريطة الأيقونات
+    const iconMap = {
+        FaFacebook: <FaFacebook />,
+        FaTwitter: <FaTwitter />,
+        FaInstagram: <FaInstagram />,
+        FaLinkedin: <FaLinkedin />
+    };
 
-const Footer: React.FC<FooterProps> = ({ content }) => (
-    <footer className="footer">
-        <div className="container">
-            <div className="footer-logo">
-                <img src="/images/logo.png" alt="Ashkanani Sport Marketing Logo" />
+    // تقسيم الروابط إلى عمودين
+    const navLinks = [
+        { href: '#hero', text: content.nav.home },
+        { href: '#about', text: content.nav.about },
+        { href: '#agent-benefits', text: content.nav.agentBenefits },
+        { href: '#services', text: content.nav.services },
+        { href: '#achievements', text: content.nav.achievements },
+        { href: '#deals', text: content.nav.deals },
+        { href: '#gallery', text: content.nav.gallery },
+        { href: '#player-signing', text: content.nav.playerSigning },
+        { href: '#transfer-market', text: content.nav.transferMarket },
+        { href: '#documents', text: content.nav.documents },
+        { href: '#contact', text: content.nav.contact }
+    ];
+
+    // تقسيم الروابط إلى نصفين
+    const half = Math.ceil(navLinks.length / 2);
+    const firstColumnLinks = navLinks.slice(0, half);
+    const secondColumnLinks = navLinks.slice(half);
+
+    return (
+        <footer className="footer">
+            <div className="container">
+                <div className="footer-logo">
+                    <img src="/images/logo.png" alt="Ashkanani Sport Marketing Logo" />
+                </div>
+                
+                <div className="footer-content">
+                    <div className="footer-section">
+                        <h3>{content.quickLinks}</h3>
+                        <div className="footer-columns">
+                            <div className="footer-column">
+                                <ul className="footer-links">
+                                    {firstColumnLinks.map((link, index) => (
+                                        <li key={index}>
+                                            <a href={link.href}>{link.text}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="footer-column">
+                                <ul className="footer-links">
+                                    {secondColumnLinks.map((link, index) => (
+                                        <li key={index}>
+                                            <a href={link.href}>{link.text}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="footer-section">
+                        <h3>تابعنا</h3>
+                        <div className="social-links">
+                            {content.socialMedia.map((social, index) => (
+                                <a 
+                                    key={index}
+                                    href={social.url} 
+                                    aria-label={social.platform}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    {iconMap[social.icon]}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                    
+                    {/* تعديل: نقل قسم الشركاء إلى هنا ليكون في نفس مستوى الأقسام الأخرى */}
+                    <div className="footer-section">
+                        <h3>شركاؤنا</h3>
+                        <div className="partners-logos">
+                            {content.partners.map((partner, index) => (
+                                <a 
+                                    key={index}
+                                    href={partner.url} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="partner-logo"
+                                    title={partner.name}
+                                >
+                                    <img src={partner.logoUrl} alt={partner.name} />
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                
+                {/* تم إزالة قسم الشركاء من هنا */}
+                
+                <div className="footer-bottom">
+                    <p>{content.copyright}</p>
+                </div>
             </div>
-             <ul className="footer-links">
-                {Object.entries(content.nav).map(([key, value]) => (
-                     <li key={key}><a href={`#${key}`}>{value}</a></li>
-                ))}
-            </ul>
-            <div className="social-links">
-                <a href="https://www.instagram.com/ashkanani.sport/" aria-label="Instagram"><FaInstagram /></a>
-                <a href="https://x.com/ashkanani_sport" aria-label="Twitter"><FaTwitter /></a>
-                <a href="#" aria-label="WhatsApp"><FaWhatsapp /></a>
-            </div>
-            <p className="copyright">{content.copyright}</p>
-        </div>
-    </footer>
-);
+        </footer>
+    );
+}
 
 export default Footer;

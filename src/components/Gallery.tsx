@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaPlay, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-const Gallery = ({ content }) => {
+const Gallery = ({ content, language }) => {
     const [activeTab, setActiveTab] = useState('photos');
     const [modalItem, setModalItem] = useState({ isOpen: false, type: null, index: -1 });
 
@@ -19,10 +19,14 @@ const Gallery = ({ content }) => {
     const currentItems = content[activeTab];
     const currentModalData = modalItem.isOpen ? content[modalItem.type][modalItem.index] : null;
 
+    // استخدام عناوين ثابتة بناءً على اللغة
+    const titlePart1 = language === 'en' ? 'Our' : 'معرض';
+    const titlePart2 = language === 'en' ? 'Gallery' : 'الصور والفيديو';
+
     return (
         <section id="gallery" className="section">
             <div className="container">
-                <h2 className="section-title">{content.title_part1} <span>{content.title_part2}</span></h2>
+                <h2 className="section-title">{titlePart1} <span>{titlePart2}</span></h2>
                 
                 <div className="gallery-tabs">
                     <button 
@@ -65,37 +69,35 @@ const Gallery = ({ content }) => {
                     <button className="modal-nav prev" onClick={(e) => {e.stopPropagation(); handleNav(-1)}}><FaChevronLeft /></button>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         {modalItem.type === 'photos' ? (
-                        <img src={currentModalData.src} alt={currentModalData.title} />
+                            <img src={currentModalData.src} alt={currentModalData.title} />
                         ) : (
-                        <div
-                        className="modal-video-container"
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: '100%',
-                            height: '80vh',  // ارتفاع المودال
-                            padding: '20px', // مسافة حول الفيديو
-                            boxSizing: 'border-box',
-                        }}
-                        >
-                        <video
-                            controls
-                            autoPlay
-                            style={{
-                            maxWidth: '100%',
-                            maxHeight: '100%',
-                            display: 'block',
-                            }}
-                        >
-                            <source src={currentModalData.src} type="video/mp4" />
-                            متصفحك لا يدعم عرض الفيديو
-                        </video>
-                        </div>
-
-
+                            <div
+                                className="modal-video-container"
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    width: '100%',
+                                    height: '80vh',  // ارتفاع المودال
+                                    padding: '20px', // مسافة حول الفيديو
+                                    boxSizing: 'border-box',
+                                }}
+                            >
+                                <video
+                                    controls
+                                    autoPlay
+                                    style={{
+                                        maxWidth: '100%',
+                                        maxHeight: '100%',
+                                        display: 'block',
+                                    }}
+                                >
+                                    <source src={currentModalData.src} type="video/mp4" />
+                                    متصفحك لا يدعم عرض الفيديو
+                                </video>
+                            </div>
                         )}
-                        </div>
+                    </div>
                     <button className="modal-nav next" onClick={(e) => {e.stopPropagation(); handleNav(1)}}><FaChevronRight /></button>
                 </div>
             )}

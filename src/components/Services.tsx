@@ -12,22 +12,27 @@ const iconMap = {
     FaDumbbell: <FaDumbbell />,
 };
 
+const Services = ({ content, language }) => {
+    // استخدام عناوين ثابتة بناءً على اللغة
+    const titlePart1 = language === 'en' ? 'Our' : 'خدمات';
+    const titlePart2 = language === 'en' ? 'Services' : 'الشركة';
 
-const Services = ({ content }) => (
-    <section id="services" className="section" style={{backgroundColor: 'var(--primary-color)'}}>
-        <div className="container">
-            <h2 className="section-title">{content.title_part1} <span>{content.title_part2}</span></h2>
-            <div className="grid-container">
-                {content.list.map((service, index) => (
-                    <div key={index} className="card">
-                        <div className="card-icon">{iconMap[service.icon]}</div>
-                        <h3>{service.title}</h3>
-                        <p>{service.description}</p>
-                    </div>
-                ))}
+    return (
+        <section id="services" className="section" style={{backgroundColor: 'var(--primary-color)'}}>
+            <div className="container">
+                <h2 className="section-title">{titlePart1} <span>{titlePart2}</span></h2>
+                <div className="grid-container">
+                    {content.list.map((service, index) => (
+                        <div key={index} className="card">
+                            <div className="card-icon">{iconMap[service.icon]}</div>
+                            <h3>{service.title}</h3>
+                            <p>{service.description}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
-    </section>
-);
+        </section>
+    );
+};
 
 export default Services;

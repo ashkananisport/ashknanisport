@@ -8,7 +8,9 @@
                 "deals": "Deals",
                 "gallery": "Gallery",
                 "documents": "Documents",
-                "contact": "Contact"
+                "contact": "Contact",
+                "playerSigning": "Player Signing" 
+
             },
             "lang_toggle": "العربية"
         },
@@ -37,6 +39,43 @@
                 ]
             }
         },
+            "agentBenefits": {
+            "title": "Why Choose a",
+            "highlight": "Player Agent?",
+            "description": "A professional player agent is crucial for maximizing your career potential and ensuring your rights are protected throughout your professional journey.",
+            "benefits": [
+                {
+                "icon": "FaHandshake",
+                "title": "Expert Negotiation",
+                "description": "We secure the best contracts and terms that match your talent and potential."
+                },
+                {
+                "icon": "FaShieldAlt",
+                "title": "Legal Protection",
+                "description": "Comprehensive legal support to protect your rights and interests in all contracts."
+                },
+                {
+                "icon": "FaChartLine",
+                "title": "Career Planning",
+                "description": "Strategic career development and planning for long-term success."
+                },
+                {
+                "icon": "FaGlobe",
+                "title": "Global Network",
+                "description": "Access to international clubs, scouts, and opportunities worldwide."
+                },
+                {
+                "icon": "FaMoneyBillWave",
+                "title": "Financial Management",
+                "description": "Expert financial advice and management for your earnings and investments."
+                },
+                {
+                "icon": "FaUserFriends",
+                "title": "Personal Support",
+                "description": "Dedicated support and guidance throughout your career journey."
+                }
+            ]
+            },
         "services": {
             "title_part1": "Our",
             "title_part2": "Services",
@@ -90,6 +129,98 @@
 
             ]
         },
+        "playerSigning": {
+            "title": "Player",
+            "highlight": "Signing Process",
+            "videoTitle": "Player Signing Guide",
+            "professional": {
+                "title": "Professional Player Signing",
+                "description": "Our professional player signing process ensures that talented athletes get the best contracts and opportunities to advance their careers.",
+                "steps": [
+                    "Initial talent assessment and evaluation",
+                    "Contract negotiation with clubs",
+                    "Legal review and contract finalization",
+                    "Official signing ceremony and media coverage",
+                    "Post-signing support and career management"
+                ],
+                "icon": "/images/professional-icon.png",
+                "videoUrl": "https://www.youtube.com/embed/professional-video-id",
+                "gallery": {
+                    "title": "Professional Players & Coaches",
+                    "images": [
+                        "/images/professional1.jpg",
+                        "/images/professional2.jpg",
+                        "/images/professional3.jpg",
+                        "/images/professional4.jpg",
+                        "/images/professional5.jpg",
+                        "/images/professional6.jpg"
+                    ]
+                }
+            },
+            "amateur": {
+                "title": "Amateur Player Signing",
+                "description": "We help amateur players transition to professional levels by connecting them with the right opportunities and providing necessary guidance.",
+                "steps": [
+                    "Player potential evaluation",
+                    "Training and development recommendations",
+                    "Connecting with academies and development programs",
+                    "Trial arrangements with clubs",
+                    "Contract facilitation for first professional contract"
+                ],
+                "icon": "/images/amateur-icon.png",
+                "videoUrl": "https://www.youtube.com/embed/amateur-video-id",
+                "gallery": {
+                    "title": "Amateur Players",
+                    "images": [
+                        "/images/amateur1.jpg",
+                        "/images/amateur2.jpg",
+                        "/images/amateur3.jpg",
+                        "/images/amateur4.jpg",
+                        "/images/amateur5.jpg",
+                        "/images/amateur6.jpg"
+                    ]
+                }
+            },
+            "individual": {
+                "title": "Individual Sports Players",
+                "description": "For athletes in individual sports, we provide specialized management services tailored to their unique needs and career paths.",
+                "steps": [
+                    "Career planning and goal setting",
+                    "Sponsorship acquisition and management",
+                    "Tournament scheduling and participation",
+                    "Brand development and promotion",
+                    "Financial planning and contract management"
+                ],
+                "icon": "/images/individual-icon.png",
+                "videoUrl": "https://www.youtube.com/embed/individual-video-id",
+                "gallery": {
+                    "title": "Individual Sports Athletes",
+                    "images": [
+                        "/images/individual1.jpg",
+                        "/images/individual2.jpg",
+                        "/images/individual3.jpg",
+                        "/images/individual4.jpg",
+                        "/images/individual5.jpg",
+                        "/images/individual6.jpg"
+                    ]
+                }
+            },
+            "cta": {
+                "title": "Ready to Join Us?",
+                "description": "If you agree to the terms and wish to join our team of professional athletes, get in touch with us now!",
+                "whatsappNumber": "96512345678",
+                "whatsappText": "Contact via WhatsApp",
+                "contactText": "Contact Form"
+            }
+        },
+        "transferMarket": {
+                    "title": "Find Us on",
+                    "highlight": "TransferMarket",
+                    "description": "Visit our official TransferMarket profile to stay updated with our latest player transfers, market values, and industry insights.",
+                    "logoUrl": "/images/transfermarket-logo.png",
+                    "profileUrl": "https://www.transfermarkt.com/ashkanani-sport/startseite/agent/384",
+                    "buttonText": "Visit Our Profile"
+                    },
         "documents": {
             "title_part1": "Official",
             "title_part2": "Documents",
@@ -128,34 +259,73 @@
                 "deals": "الصفقات",
                 "gallery": "المعرض",
                 "documents": "المستندات",
-                "contact": "اتصل بنا"
+                "contact": "اتصل بنا",
+                "playerSigning": "توقيع اللاعبين" 
+
             },
             "lang_toggle": "English"
         },
-        "hero": {
-            "title": "أشكناني سبورت",
-            "tagline": "الشركة الرائدة في إدارة الرياضيين في الكويت. نسعى لتطوير الرياضة بمختلف أشكالها!",
-            "cta1": "اتصل بنا",
-            "cta2": "اعرف المزيد"
-        },
-        "about": {
-            "title_part1": "نبذة عن",
-            "title_part2": "الشركة",
-            "p1": "تم تأسيس شركة أشكناني سبورت في سنة ٢٠١٩م من وزارة العدل والتجارة في دولة الكويت.",
-            "p2": "كأول شركة تقوم بإدارة أعمال الرياضيين من لاعبين ومدربين وإداريين بجميع الرياضات، كنا روادًا في الإدارة الرياضية الاحترافية في المنطقة.",
-            "p3": "اليوم، شركة أشكناني سبورت هي الشركة الرائدة في مجال التسويق والإدارة الرياضية في دولة الكويت، ونسعى دائمًا للأفضل.",
-            "founder": {
-                "name": "كابتن أحمد جابر أشكناني",
-                "role": "وكيل أعمال لاعبين ومدربين معتمد من FIFA",
-                "photo": "/images/myphoto.jpg",
-                "credentials": [
-                    "مدير سابق للمراحل السنية بمنتخب الكويت ونادي العربي الكويتي (7 سنوات).",
-                    "مدير الفرق الأولى للمنتخبات الكويتية.",
-                    "مدير الألعاب الرياضية بالاتحاد الكويتي المدرسي والتعليم العالي.",
-                    "محاضر دولي معتمد من البيتا الأوروبي والبورد الأمريكي.",
-                    "معتمد من الهيئة العامة للتعليم التطبيقي و FIFA."
-                ]
+            "hero": {
+                "title": "أشكناني سبورت",
+                "tagline": "الشركة الرائدة في إدارة الرياضيين في الكويت. نسعى لتطوير الرياضة بمختلف أشكالها!",
+                "cta1": "اتصل بنا",
+                "cta2": "اعرف المزيد"
+            },
+            "about": {
+                "title_part1": "نبذة عن",
+                "title_part2": "الشركة",
+                "p1": "تم تأسيس شركة أشكناني سبورت في سنة ٢٠١٩م من وزارة العدل والتجارة في دولة الكويت.",
+                "p2": "كأول شركة تقوم بإدارة أعمال الرياضيين من لاعبين ومدربين وإداريين بجميع الرياضات، كنا روادًا في الإدارة الرياضية الاحترافية في المنطقة.",
+                "p3": "اليوم، شركة أشكناني سبورت هي الشركة الرائدة في مجال التسويق والإدارة الرياضية في دولة الكويت، ونسعى دائمًا للأفضل.",
+                "founder": {
+                    "name": "كابتن أحمد جابر أشكناني",
+                    "role": "وكيل أعمال لاعبين ومدربين معتمد من FIFA",
+                    "photo": "/images/myphoto.jpg",
+                    "credentials": [
+                        "مدير سابق للمراحل السنية بمنتخب الكويت ونادي العربي الكويتي (7 سنوات).",
+                        "مدير الفرق الأولى للمنتخبات الكويتية.",
+                        "مدير الألعاب الرياضية بالاتحاد الكويتي المدرسي والتعليم العالي.",
+                        "محاضر دولي معتمد من البيتا الأوروبي والبورد الأمريكي.",
+                        "معتمد من الهيئة العامة للتعليم التطبيقي و FIFA."
+                    ]
+                }
+            },
+            "agentBenefits": {
+        "title": "لماذا تختار",
+        "highlight": "وكيل لاعبين؟",
+        "description": "وكيل اللاعبين المحترف ضروري لتعظيم إمكانياتك المهنية وضمان حماية حقوقك طوال رحلتك الاحترافية.",
+        "benefits": [
+            {
+            "icon": "FaHandshake",
+            "title": "تفاوض احترافي",
+            "description": "نؤمن أفضل العقود والشروط التي تتوافق مع موهبتك وإمكانياتك."
+            },
+            {
+            "icon": "FaShieldAlt",
+            "title": "الحماية القانونية",
+            "description": "دعم قانوني شامل لحماية حقوقك ومصالحك في جميع العقود."
+            },
+            {
+            "icon": "FaChartLine",
+            "title": "تخطيط المسيرة",
+            "description": "تطوير وتخطيط استراتيجي للمسيرة المهنية لضمان النجاح طويل الأمد."
+            },
+            {
+            "icon": "FaGlobe",
+            "title": "شبكة عالمية",
+            "description": "الوصول إلى الأندية الدولية والكشافين والفرص حول العالم."
+            },
+            {
+            "icon": "FaMoneyBillWave",
+            "title": "الإدارة المالية",
+            "description": "استشارات مالية وإدارة احترافية لأرباحك واستثماراتك."
+            },
+            {
+            "icon": "FaUserFriends",
+            "title": "دعم شخصي",
+            "description": "دعم وإرشاد مخصص طوال رحلتك المهنية."
             }
+        ]
         },
         "services": {
             "title_part1": "خدمات",
@@ -212,7 +382,99 @@
 
             ]
         },
-        "documents": {
+        "playerSigning": {
+            "title": "عملية",
+            "highlight": "توقيع اللاعبين",
+            "videoTitle": "دليل توقيع اللاعبين",
+            "professional": {
+                "title": "توقيع اللاعب المحترف",
+                "description": "عملية توقيع اللاعبين المحترفين لدينا تضمن حصول اللاعبين الموهوبين على أفضل العقود والفرص لتطوير مسيرتهم المهنية.",
+                "steps": [
+                    "التقييم المبدئي للموهبة والقدرات",
+                    "التفاوض على العقود مع الأندية",
+                    "المراجعة القانونية وإبرام العقد",
+                    "حفلة التوقيع الرسمية والتغطية الإعلامية",
+                    "الدعم بعد التوقيع وإدارة المسيرة المهنية"
+                ],
+                "icon": "/images/professional-icon.png",
+                "videoUrl": "https://www.youtube.com/embed/professional-video-id",
+                "gallery": {
+                    "title": "لاعبون ومدربون محترفون",
+                    "images": [
+                        "/images/professional1.jpg",
+                        "/images/professional2.jpg",
+                        "/images/professional3.jpg",
+                        "/images/professional4.jpg",
+                        "/images/professional5.jpg",
+                        "/images/professional6.jpg"
+                    ]
+                }
+            },
+            "amateur": {
+                "title": "توقيع اللاعب الهاوي",
+                "description": "نساعد اللاعبين الهواة في الانتقال إلى المستويات الاحترافية من خلال ربطهم بالفرص المناسبة وتقديم الإرشادات اللازمة.",
+                "steps": [
+                    "تقييم إمكانيات اللاعب",
+                    "توصيات التدريب والتطوير",
+                    "الربط بالأكاديميات وبرامج التطوير",
+                    "ترتيب التجارب مع الأندية",
+                    "تسهيل توقيع أول عقد احترافي"
+                ],
+                "icon": "/images/amateur-icon.png",
+                "videoUrl": "https://www.youtube.com/embed/amateur-video-id",
+                "gallery": {
+                    "title": "لاعبون هواة",
+                    "images": [
+                        "/images/amateur1.jpg",
+                        "/images/amateur2.jpg",
+                        "/images/amateur3.jpg",
+                        "/images/amateur4.jpg",
+                        "/images/amateur5.jpg",
+                        "/images/amateur6.jpg"
+                    ]
+                }
+            },
+            "individual": {
+                "title": "لاعبو الألعاب الفردية",
+                "description": "للرياضيين في الألعاب الفردية، نقدم خدمات إدارة متخصصة مصممة خصيصًا لاحتياجاتهم الفريدة ومساراتهم المهنية.",
+                "steps": [
+                    "تخطيط المسيرة المهنية وتحديد الأهداف",
+                    "الحصول على الرعايات وإدارتها",
+                    "جدولة البطولات والمشاركة",
+                    "تطوير العلامة التجارية والترويج",
+                    "التخطيط المالي وإدارة العقود"
+                ],
+                "icon": "/images/individual-icon.png",
+                "videoUrl": "https://www.youtube.com/embed/individual-video-id",
+                "gallery": {
+                    "title": "رياضيون في الألعاب الفردية",
+                    "images": [
+                        "/images/individual1.jpg",
+                        "/images/individual2.jpg",
+                        "/images/individual3.jpg",
+                        "/images/individual4.jpg",
+                        "/images/individual5.jpg",
+                        "/images/individual6.jpg"
+                    ]
+                }
+            },
+            "cta": {
+                "title": "هل أنت مستعد للانضمام إلينا؟",
+                "description": "إذا كنت موافقًا على الشروط وتود الانضمام إلى فريقنا من الرياضيين المحترفين، تواصل معنا الآن!",
+                "whatsappNumber": "96512345678",
+                "whatsappText": "تواصل عبر واتساب",
+                "contactText": "نموذج التواصل"
+            }
+        },
+        "transferMarket": {
+            "title": "جدنا على",
+            "highlight": "ترانسر ماركت",
+            "description": "زر ملفنا الرسمي على ترانسر ماركت لمتابعة أحدث انتقالات لاعبينا وقيمتهم السوقية وأخبار السوق.",
+            "logoUrl": "/images/transfermarket-logo.png",
+            "profileUrl": "https://www.transfermarkt.com/ashkanani-sport/startseite/agent/384",
+            "buttonText": "زر ملفنا الرسمي"
+            },
+            "documents": {
             "title_part1": "مستندات",
             "title_part2": "رسمية",
             "list": [
