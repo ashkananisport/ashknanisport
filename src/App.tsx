@@ -16,12 +16,11 @@ import TransferMarket from './components/TransferMarket';
 import AgentBenefits from './components/AgentBenefits'; 
 import FloatingVideo from './components/FloatingVideo'; 
 import ChatBot from './components/ChatBot';
-
 import { Language, AppContent, LanguageContent } from './types';
 
 // ثوابت للتخزين المؤقت
 const CACHE_KEY = 'ashkanani_data';
-const CACHE_DURATION = 30 * 60 * 1000; // 30 دقيقة
+const CACHE_DURATION = 0; // 30 دقيقة
 
 function App() {
     const [language, setLanguage] = useState<Language>('ar');
@@ -56,7 +55,7 @@ function App() {
             
             // جلب البيانات من الخادم
             console.log('Fetching fresh data');
-            const response = await fetch('https://script.google.com/macros/s/AKfycby0Vq4L82jvuP9DsVjH0fJdvQxqOyf9_AmM8s9I7Wx2yaaBAwUNyj1E9a1b9OVw0pI/exec');
+            const response = await fetch('https://script.google.com/macros/s/AKfycbw8ueAcnBds4qLUK1WBMOGJ73foaaac-mJAlit246rkHYeYGt03FJay70OAy6SISbxk/exec');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

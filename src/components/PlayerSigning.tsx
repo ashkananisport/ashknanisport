@@ -1,6 +1,6 @@
 // src/components/PlayerSigning.tsx
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { PlayerSigningContent } from '../types';
 
 interface PlayerSigningProps {
@@ -9,6 +9,27 @@ interface PlayerSigningProps {
 
 const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
   const [activeTab, setActiveTab] = useState<string>('professional');
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
+  // توقف الصوت عند تبديل التبويبات
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, [activeTab]);
+
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   return (
     <section className="section player-signing" id="player-signing">
@@ -53,16 +74,35 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                     </ul>
                   </div>
                   <div className="signing-media">
-                    <div className="signing-video">
-                      <h4>{content.videoTitle}</h4>
-                      <div className="video-container">
-                        <iframe 
-                          src={content.professional.videoUrl} 
-                          title={content.professional.title}
-                          frameBorder="0" 
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                          allowFullScreen>
-                        </iframe>
+                    <div className="signing-audio">
+                      <h4>{content.audioTitle}</h4>
+                      <div className="audio-container">
+                        <div className="audio-player">
+                          <div className="audio-controls">
+                            <button 
+                              className={`play-pause-btn ${isPlaying ? 'playing' : ''}`}
+                              onClick={togglePlayPause}
+                              aria-label={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+                            >
+                              {isPlaying ? (
+                                <span className="pause-icon">❚❚</span>
+                              ) : (
+                                <span className="play-icon">▶</span>
+                              )}
+                            </button>
+                            <div className="audio-info">
+                              <div className="audio-title">{content.professional.audiotitle}</div>
+                              <div className="audio-subtitle">{content.professional.title}</div>
+                            </div>
+                          </div>
+                          <audio 
+                            ref={audioRef}
+                            src={content.professional.vedioUrl}
+                            onPlay={() => setIsPlaying(true)}
+                            onPause={() => setIsPlaying(false)}
+                            onEnded={() => setIsPlaying(false)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -70,7 +110,6 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                 
                 {/* معرض الصور للاعبين المحترفين */}
                 <div className="player-gallery">
-                  <h3 className="gallery-title">{content.professional.gallery.title}</h3>
                   <div className="gallery-grid">
                     {content.professional.gallery.images.map((image, index) => (
                       <div key={index} className="gallery-item">
@@ -95,16 +134,35 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                     </ul>
                   </div>
                   <div className="signing-media">
-                    <div className="signing-video">
-                      <h4>{content.videoTitle}</h4>
-                      <div className="video-container">
-                        <iframe 
-                          src={content.amateur.videoUrl} 
-                          title={content.amateur.title}
-                          frameBorder="0" 
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                          allowFullScreen>
-                        </iframe>
+                    <div className="signing-audio">
+                      <h4>{content.audioTitle}</h4>
+                      <div className="audio-container">
+                        <div className="audio-player">
+                          <div className="audio-controls">
+                            <button 
+                              className={`play-pause-btn ${isPlaying ? 'playing' : ''}`}
+                              onClick={togglePlayPause}
+                              aria-label={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+                            >
+                              {isPlaying ? (
+                                <span className="pause-icon">❚❚</span>
+                              ) : (
+                                <span className="play-icon">▶</span>
+                              )}
+                            </button>
+                            <div className="audio-info">
+                              <div className="audio-title">{content.amateur.audiotitle}</div>
+                              <div className="audio-subtitle">{content.amateur.title}</div>
+                            </div>
+                          </div>
+                          <audio 
+                            ref={audioRef}
+                            src={content.amateur.vedioUrl}
+                            onPlay={() => setIsPlaying(true)}
+                            onPause={() => setIsPlaying(false)}
+                            onEnded={() => setIsPlaying(false)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -112,7 +170,6 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                 
                 {/* معرض الصور للاعبين الهواة */}
                 <div className="player-gallery">
-                  <h3 className="gallery-title">{content.amateur.gallery.title}</h3>
                   <div className="gallery-grid">
                     {content.amateur.gallery.images.map((image, index) => (
                       <div key={index} className="gallery-item">
@@ -137,16 +194,35 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                     </ul>
                   </div>
                   <div className="signing-media">
-                    <div className="signing-video">
-                      <h4>{content.videoTitle}</h4>
-                      <div className="video-container">
-                        <iframe 
-                          src={content.individual.videoUrl} 
-                          title={content.individual.title}
-                          frameBorder="0" 
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                          allowFullScreen>
-                        </iframe>
+                    <div className="signing-audio">
+                      <h4>{content.audioTitle}</h4>
+                      <div className="audio-container">
+                        <div className="audio-player">
+                          <div className="audio-controls">
+                            <button 
+                              className={`play-pause-btn ${isPlaying ? 'playing' : ''}`}
+                              onClick={togglePlayPause}
+                              aria-label={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+                            >
+                              {isPlaying ? (
+                                <span className="pause-icon">❚❚</span>
+                              ) : (
+                                <span className="play-icon">▶</span>
+                              )}
+                            </button>
+                            <div className="audio-info">
+                              <div className="audio-title">{content.individual.audiotitle}</div>
+                              <div className="audio-subtitle">{content.individual.title}</div>
+                            </div>
+                          </div>
+                          <audio 
+                            ref={audioRef}
+                            src={content.individual.vedioUrl}
+                            onPlay={() => setIsPlaying(true)}
+                            onPause={() => setIsPlaying(false)}
+                            onEnded={() => setIsPlaying(false)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -154,7 +230,6 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                 
                 {/* معرض الصور للاعبين الفرديين */}
                 <div className="player-gallery">
-                  <h3 className="gallery-title">{content.individual.gallery.title}</h3>
                   <div className="gallery-grid">
                     {content.individual.gallery.images.map((image, index) => (
                       <div key={index} className="gallery-item">
