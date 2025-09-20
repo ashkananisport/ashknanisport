@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPlay, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaPlay, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 
 const Gallery = ({ content, language }) => {
     const [activeTab, setActiveTab] = useState('photos');
@@ -65,7 +65,9 @@ const Gallery = ({ content, language }) => {
 
             {modalItem.isOpen && currentModalData && (
                 <div className="modal-backdrop" onClick={closeModal}>
-                    <button className="modal-close" onClick={closeModal}>&times;</button>
+                    <button className="modal-close-btn" onClick={closeModal}>
+                        <FaTimes />
+                    </button>
                     <button className="modal-nav prev" onClick={(e) => {e.stopPropagation(); handleNav(-1)}}><FaChevronLeft /></button>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         {modalItem.type === 'photos' ? (

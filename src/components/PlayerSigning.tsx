@@ -1,5 +1,3 @@
-// src/components/PlayerSigning.tsx
-
 import React, { useState, useRef, useEffect } from 'react';
 import { PlayerSigningContent } from '../types';
 
@@ -9,25 +7,97 @@ interface PlayerSigningProps {
 
 const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
   const [activeTab, setActiveTab] = useState<string>('professional');
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const professionalAudioRef = useRef<HTMLAudioElement>(null);
+  const amateurAudioRef = useRef<HTMLAudioElement>(null);
+  const individualAudioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [currentAudio, setCurrentAudio] = useState<string>('');
+
+  // تحديد المرجع المناسب بناءً على التبويب النشط
+  const getCurrentAudioRef = () => {
+    switch (activeTab) {
+      case 'professional':
+        return professionalAudioRef;
+      case 'amateur':
+        return amateurAudioRef;
+      case 'individual':
+        return individualAudioRef;
+      default:
+        return professionalAudioRef;
+    }
+  };
+
+  // تحديد مصدر الصوت بناءً على التبويب النشط
+  const getCurrentAudioSource = () => {
+    switch (activeTab) {
+      case 'professional':
+        return content.professional.videoUrl;
+      case 'amateur':
+        return  content.amateur.videoUrl;
+      case 'individual':
+        return content.individual.videoUrl;
+      default:
+        return  content.professional.videoUrl;
+    }
+  };
+
+  // تحديد عنوان الصوت بناءً على التبويب النشط
+  const getCurrentAudioTitle = () => {
+    switch (activeTab) {
+      case 'professional':
+        return content.professional.audiotitle;
+      case 'amateur':
+        return content.amateur.audiotitle;
+      case 'individual':
+        return content.individual.audiotitle;
+      default:
+        return content.audiotitle || "صوت";
+    }
+  };
 
   // توقف الصوت عند تبديل التبويبات
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
+    const currentRef = getCurrentAudioRef();
+    if (currentRef.current) {
+      currentRef.current.pause();
       setIsPlaying(false);
+      setCurrentAudio('');
     }
   }, [activeTab]);
 
   const togglePlayPause = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
+    const currentRef = getCurrentAudioRef();
+    const audioSource = getCurrentAudioSource();
+    
+    if (currentRef.current) {
+      if (isPlaying && currentAudio === activeTab) {
+        currentRef.current.pause();
+        setIsPlaying(false);
       } else {
-        audioRef.current.play();
+        // إذا كان هناك صوت قيد التشغيل من تبويب آخر، أوقفه
+        if (currentAudio !== activeTab && currentAudio !== '') {
+          const prevAudioRef = getCurrentAudioRef();
+          if (prevAudioRef.current) {
+            prevAudioRef.current.pause();
+          }
+        }
+        
+        // تحديث مصدر الصوت إذا تغير
+        if (currentRef.current.src !== audioSource) {
+          currentRef.current.src = audioSource;
+          currentRef.current.load();
+        }
+        
+        currentRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+            setCurrentAudio(activeTab);
+          })
+          .catch(error => {
+            console.error("Error playing audio:", error);
+            setIsPlaying(false);
+          });
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -80,25 +150,28 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                         <div className="audio-player">
                           <div className="audio-controls">
                             <button 
-                              className={`play-pause-btn ${isPlaying ? 'playing' : ''}`}
+                              className={`play-pause-btn ${isPlaying && currentAudio === 'professional' ? 'playing' : ''}`}
                               onClick={togglePlayPause}
-                              aria-label={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+                              aria-label={isPlaying && currentAudio === 'professional' ? "إيقاف الصوت" : "تشغيل الصوت"}
                             >
-                              {isPlaying ? (
+                              {isPlaying && currentAudio === 'professional' ? (
                                 <span className="pause-icon">❚❚</span>
                               ) : (
                                 <span className="play-icon">▶</span>
                               )}
                             </button>
                             <div className="audio-info">
-                              <div className="audio-title">{content.professional.audiotitle}</div>
+                              <div className="audio-title">{getCurrentAudioTitle()}</div>
                               <div className="audio-subtitle">{content.professional.title}</div>
                             </div>
                           </div>
                           <audio 
-                            ref={audioRef}
-                            src={content.professional.vedioUrl}
-                            onPlay={() => setIsPlaying(true)}
+                            ref={professionalAudioRef}
+                            src={ content.professional.videoUrl}
+                            onPlay={() => {
+                              setIsPlaying(true);
+                              setCurrentAudio('professional');
+                            }}
                             onPause={() => setIsPlaying(false)}
                             onEnded={() => setIsPlaying(false)}
                           />
@@ -140,25 +213,28 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                         <div className="audio-player">
                           <div className="audio-controls">
                             <button 
-                              className={`play-pause-btn ${isPlaying ? 'playing' : ''}`}
+                              className={`play-pause-btn ${isPlaying && currentAudio === 'amateur' ? 'playing' : ''}`}
                               onClick={togglePlayPause}
-                              aria-label={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+                              aria-label={isPlaying && currentAudio === 'amateur' ? "إيقاف الصوت" : "تشغيل الصوت"}
                             >
-                              {isPlaying ? (
+                              {isPlaying && currentAudio === 'amateur' ? (
                                 <span className="pause-icon">❚❚</span>
                               ) : (
                                 <span className="play-icon">▶</span>
                               )}
                             </button>
                             <div className="audio-info">
-                              <div className="audio-title">{content.amateur.audiotitle}</div>
+                              <div className="audio-title">{getCurrentAudioTitle()}</div>
                               <div className="audio-subtitle">{content.amateur.title}</div>
                             </div>
                           </div>
                           <audio 
-                            ref={audioRef}
-                            src={content.amateur.vedioUrl}
-                            onPlay={() => setIsPlaying(true)}
+                            ref={amateurAudioRef}
+                            src={content.amateur.videoUrl}
+                            onPlay={() => {
+                              setIsPlaying(true);
+                              setCurrentAudio('amateur');
+                            }}
                             onPause={() => setIsPlaying(false)}
                             onEnded={() => setIsPlaying(false)}
                           />
@@ -200,25 +276,28 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                         <div className="audio-player">
                           <div className="audio-controls">
                             <button 
-                              className={`play-pause-btn ${isPlaying ? 'playing' : ''}`}
+                              className={`play-pause-btn ${isPlaying && currentAudio === 'individual' ? 'playing' : ''}`}
                               onClick={togglePlayPause}
-                              aria-label={isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}
+                              aria-label={isPlaying && currentAudio === 'individual' ? "إيقاف الصوت" : "تشغيل الصوت"}
                             >
-                              {isPlaying ? (
+                              {isPlaying && currentAudio === 'individual' ? (
                                 <span className="pause-icon">❚❚</span>
                               ) : (
                                 <span className="play-icon">▶</span>
                               )}
                             </button>
                             <div className="audio-info">
-                              <div className="audio-title">{content.individual.audiotitle}</div>
+                              <div className="audio-title">{getCurrentAudioTitle()}</div>
                               <div className="audio-subtitle">{content.individual.title}</div>
                             </div>
                           </div>
                           <audio 
-                            ref={audioRef}
-                            src={content.individual.vedioUrl}
-                            onPlay={() => setIsPlaying(true)}
+                            ref={individualAudioRef}
+                            src={ content.individual.videoUrl}
+                            onPlay={() => {
+                              setIsPlaying(true);
+                              setCurrentAudio('individual');
+                            }}
                             onPause={() => setIsPlaying(false)}
                             onEnded={() => setIsPlaying(false)}
                           />
@@ -240,24 +319,6 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                 </div>
               </div>
             )}
-          </div>
-        </div>
-        
-        {/* قسم الدعوة للتواصل */}
-        <div className="cta-section">
-          <div className="cta-content">
-            <h3>{content.cta.title}</h3>
-            <p>{content.cta.description}</p>
-            <div className="cta-buttons">
-              <a 
-                href={`https://wa.me/${content.cta.whatsappNumber}`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-whatsapp"
-              >
-                <span className="whatsapp-icon">💬</span> {content.cta.whatsappText}
-              </a>
-            </div>
           </div>
         </div>
       </div>

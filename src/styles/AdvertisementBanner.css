@@ -1,0 +1,149 @@
+/* شريط الإعلانات في الأعلى */
+.advertisement-banner-top {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* شريط الإعلانات في الأسفل */
+.advertisement-banner-bottom {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+/* الإعلان العائم */
+.advertisement-floating {
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+  width: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 998;
+  max-width: 90%;
+}
+
+.advertisement-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.advertisement-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.advertisement-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.advertisement-text h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.advertisement-text p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.advertisement-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.advertisement-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.advertisement-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: inherit;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.advertisement-link:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.advertisement-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.advertisement-close:hover {
+  opacity: 1;
+}
+
+.advertisement-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.indicator.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .advertisement-floating {
+    bottom: 100px;
+    right: 10px;
+    width: 250px;
+  }
+  
+  .advertisement-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .advertisement-text {
+    min-width: auto;
+  }
+}

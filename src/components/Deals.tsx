@@ -1,25 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Deals = ({ content, language }) => {
+    const [isEnlarged, setIsEnlarged] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
     // استخدام عناوين ثابتة بناءً على اللغة
     const titlePart1 = language === 'en' ? 'Contracts &' : 'العقود';
     const titlePart2 = language === 'en' ? 'Deals' : 'والصفقات';
 
+    const handleImageClick = (index) => {
+        setCurrentImageIndex(index);
+        setIsEnlarged(true);
+        // منع التمرير عند فتح التكبير
+        document.body.style.overflow = 'hidden';
+    };
+
+    const handleCloseEnlarged = () => {
+        setIsEnlarged(false);
+        // استعادة التمرير عند الإغلاق
+        document.body.style.overflow = 'auto';
+    };
+
+    const handlePrevImage = () => {
+        setCurrentImageIndex((prev) => (prev - 1 + content.list.length) % content.list.length);
+    };
+
+    const handleNextImage = () => {
+        setCurrentImageIndex((prev) => (prev + 1) % content.list.length);
+    };
+
     return (
-        <section id="deals" className="section">
-            <div className="container">
-                <h2 className="section-title">{titlePart1} <span>{titlePart2}</span></h2>
-                <div className="grid-container">
-                    {content.list.map((deal, index) => (
-                        <div key={index} className="card">
-                            <img src={deal.img} alt={deal.title} />
-                            <h3>{deal.title}</h3>
-                            <p>{deal.description}</p>
-                        </div>
-                    ))}
+        <>
+            <section id="deals" className="section">
+                <div className="container">
+                    <h2 className="section-title">{titlePart1} <span>{titlePart2}</span></h2>
+                    <div className="grid-container">
+                        {content.list.map((deal, index) => (
+                            <div key={index} className="card">
+                                <div className="card-image-container">
+                                    <img 
+                                        src={deal.img} 
+                                        alt={deal.title} 
+                                        onClick={() => handleImageClick(index)}
+                                        className="card-image"
+                                    />
+                                </div>
+                                <h3>{deal.title}</h3>
+                                <p>{deal.description}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            {/* طبقة التكبير */}
+            {isEnlarged && (
+                <div className="deals-enlarged-overlay" onClick={handleCloseEnlarged}>
+                    <div className="deals-enlarged-container" onClick={(e) => e.stopPropagation()}>
+                        <button 
+                            className="deals-enlarged-close"
+                            onClick={handleCloseEnlarged}
+                            aria-label="إغلاق"
+                        >
+                            <FaTimes />
+                        </button>
+                        
+                        <img 
+                            src={content.list[currentImageIndex].img} 
+                            alt={content.list[currentImageIndex].title}
+                            className="deals-enlarged-image"
+                        />
+                        
+                        <div className="deals-enlarged-info">
+                            <h3>{content.list[currentImageIndex].title}</h3>
+                            <p>{content.list[currentImageIndex].description}</p>
+                        </div>
+                        
+                        {content.list.length > 1 && (
+                            <div className="deals-enlarged-controls">
+                                 <button 
+                                    className="deals-enlarged-nav deals-enlarged-next"
+                                    onClick={handleNextImage}
+                                    aria-label="التالي"
+                                >
+                                    <FaChevronRight />
+                                </button>
+                                
+                                <div className="deals-enlarged-counter">
+                                    {currentImageIndex + 1} / {content.list.length}
+                                </div>
+                                  <button 
+                                    className="deals-enlarged-nav deals-enlarged-prev"
+                                    onClick={handlePrevImage}
+                                    aria-label="السابق"
+                                >
+                                    <FaChevronLeft />
+                                </button>
+                               
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 

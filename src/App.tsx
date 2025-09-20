@@ -1,5 +1,3 @@
-// src/App.tsx
-
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -16,7 +14,11 @@ import TransferMarket from './components/TransferMarket';
 import AgentBenefits from './components/AgentBenefits'; 
 import FloatingVideo from './components/FloatingVideo'; 
 import ChatBot from './components/ChatBot';
+import ConsultationBooking from './components/ConsultationBooking'; 
+import WhatsAppButton from './components/WhatsAppButton';
+import AdvertisementImage from './components/AdvertisementImage'; 
 import { Language, AppContent, LanguageContent } from './types';
+import './styles/index.css'; 
 
 // ثوابت للتخزين المؤقت
 const CACHE_KEY = 'ashkanani_data';
@@ -55,7 +57,7 @@ function App() {
             
             // جلب البيانات من الخادم
             console.log('Fetching fresh data');
-            const response = await fetch('https://script.google.com/macros/s/AKfycbw8ueAcnBds4qLUK1WBMOGJ73foaaac-mJAlit246rkHYeYGt03FJay70OAy6SISbxk/exec');
+            const response = await fetch('https://script.google.com/macros/s/AKfycbyINI51cMulDW7jWPHpMNOriAlGP9lVFz-04B2pJFU9TojJSxXz-2VGkQ0UU799AgeN/exec');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -89,7 +91,7 @@ function App() {
     // تحديث البيانات في الخلفية كل 5 دقائق
     useEffect(() => {
         const interval = setInterval(() => {
-            fetch('https://script.google.com/macros/s/AKfycby0Vq4L82jvuP9DsVjH0fJdvQxqOyf9_AmM8s9I7Wx2yaaBAwUNyj1E9a1b9OVw0pI/exec')
+            fetch('https://script.google.com/macros/s/AKfycbwBOglUo6_OoahLXIKQXu2YTnQB-Qn4jjufHepLfl7mu1e-XjPy66JCarKsNXezOGDK/exec')
                 .then(response => response.json())
                 .then(data => {
                     localStorage.setItem(CACHE_KEY, JSON.stringify({
@@ -173,11 +175,23 @@ function App() {
                 <Deals content={currentContent.deals} language={language} />
                 <Gallery content={currentContent.gallery}  language={language}/>
                 <PlayerSigning content={currentContent.playerSigning} />
-                <TransferMarket content={currentContent.transferMarket} />
-                <Documents content={currentContent.documents} />
-                <Contact content={currentContent.contact} />
+                <ConsultationBooking content={currentContent.consultationBooking} language={language} />
             </main>
-            <Footer content={{...currentContent.footer, nav: currentContent.header.nav}} />
+            <Footer 
+                content={{
+                    ...currentContent.footer, 
+                    nav: currentContent.header.nav,
+                    transferMarket: currentContent.transferMarket 
+                }} 
+            />
+            
+            {/* إضافة زر الواتساب الثابت */}
+            <WhatsAppButton 
+                phoneNumber="96597131223"
+                defaultMessage="مرحباً، أود حجز استشارة مع الكابتن أحمد جابر أشكناني"
+                iconSize={36}
+                iconColor="#FFFFFF"
+            />
             
             <FloatingVideo 
                 videoUrl="videos/video2.mp4" 
@@ -189,7 +203,16 @@ function App() {
                 height={160}
             />
             
-            <ChatBot />
+            {/* إضافة صورة الإعلان من جوجل شيت */}
+            {currentContent.advertisements && (
+                <AdvertisementImage 
+                    advertisements={currentContent.advertisements}
+                    position="middle-left"
+                    size="large"
+                    autoPlay={true}
+                    interval={4000}
+                />
+            )}
         </>
     );
 }

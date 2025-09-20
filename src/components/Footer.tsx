@@ -1,3 +1,5 @@
+// src/components/Footer.tsx
+
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
@@ -15,6 +17,14 @@ interface FooterProps {
             logoUrl: string;
             url: string;
         }>;
+        transferMarket: { // إضافة واجهة TransferMarket
+            title: string;
+            highlight: string;
+            description: string;
+            logoUrl: string;
+            profileUrl: string;
+            buttonText: string;
+        };
         nav: {
             home: string;
             about: string;
@@ -50,9 +60,8 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
         { href: '#deals', text: content.nav.deals },
         { href: '#gallery', text: content.nav.gallery },
         { href: '#player-signing', text: content.nav.playerSigning },
-        { href: '#transfer-market', text: content.nav.transferMarket },
         { href: '#documents', text: content.nav.documents },
-        { href: '#contact', text: content.nav.contact }
+        { href: '#consultation-booking', text: content.nav.contact }
     ];
 
     // تقسيم الروابط إلى نصفين
@@ -109,7 +118,7 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
                         </div>
                     </div>
                     
-                    {/* تعديل: نقل قسم الشركاء إلى هنا ليكون في نفس مستوى الأقسام الأخرى */}
+                    {/* قسم شركاؤنا */}
                     <div className="footer-section">
                         <h3>شركاؤنا</h3>
                         <div className="partners-logos">
@@ -127,9 +136,27 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
                             ))}
                         </div>
                     </div>
+
+                    {/* قسم ترانسفير ماركت منفصل */}
+                    <div className="footer-section transfermarket-section">
+                        <h3>TransferMarket</h3>
+                        <div className="transfermarket-container">
+                            <a 
+                                href={content.transferMarket.profileUrl} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="transfermarket-logo-link"
+                                title={content.transferMarket.title}
+                            >
+                                <img 
+                                    src={content.transferMarket.logoUrl} 
+                                    alt={content.transferMarket.title} 
+                                    className="transfermarket-logo"
+                                />
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                
-                {/* تم إزالة قسم الشركاء من هنا */}
                 
                 <div className="footer-bottom">
                     <p>{content.copyright}</p>
@@ -137,6 +164,6 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
             </div>
         </footer>
     );
-}
+};
 
 export default Footer;
