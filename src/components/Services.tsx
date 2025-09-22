@@ -143,29 +143,29 @@ const Services = ({ content, language }) => {
 
             {/* النافذة المنبثقة بدون Portal */}
             {isModalOpen && selectedService && (
-                <div className="video-overlay" onClick={handleCloseVideo}>
-                    <div className="video-container" onClick={(e) => e.stopPropagation()}>
+                <div className="services-modal-overlay" onClick={handleCloseVideo}>
+                    <div className="services-modal-container" onClick={(e) => e.stopPropagation()}>
                         <button 
-                            className="video-close"
+                            className="services-modal-close"
                             onClick={handleCloseVideo}
                             aria-label="إغلاق"
                         >
                             <FaTimes />
                         </button>
                         
-                        <div className="video-header">
+                        <div className="services-modal-header">
                             <h3>{selectedService.title}</h3>
                             <p>{selectedService.description}</p>
                         </div>
                         
-                        <div className="video-wrapper">
+                        <div className="services-modal-wrapper">
                             {selectedService.videoUrl ? (
                                 videoError ? (
-                                    <div className="video-error">
-                                        <div className="error-icon">⚠️</div>
+                                    <div className="services-modal-error">
+                                        <div className="services-modal-error-icon">⚠️</div>
                                         <h3>عذراً، لا يمكن تشغيل الفيديو</h3>
                                         <p>قد يكون الفيديو غير متوفر أو بصيغة غير مدعومة</p>
-                                        <button className="retry-button" onClick={() => setVideoError(false)}>
+                                        <button className="services-modal-retry-button" onClick={() => setVideoError(false)}>
                                             إعادة المحاولة
                                         </button>
                                     </div>
@@ -173,7 +173,7 @@ const Services = ({ content, language }) => {
                                     <>
                                         <video
                                             ref={videoRef}
-                                            className="video-player"
+                                            className="services-modal-player"
                                             onEnded={handleVideoEnded}
                                             onError={handleVideoError}
                                             playsInline
@@ -186,7 +186,7 @@ const Services = ({ content, language }) => {
                                         </video>
                                         
                                         {!isPlaying && (
-                                            <div className="video-play-overlay" onClick={handlePlayVideo}>
+                                            <div className="services-modal-play-overlay" onClick={handlePlayVideo}>
                                                 <div className="play-button">
                                                     <FaPlay />
                                                 </div>
@@ -195,9 +195,9 @@ const Services = ({ content, language }) => {
                                         )}
                                         
                                         {isPlaying && (
-                                            <div className="video-controls">
+                                            <div className="services-modal-controls">
                                                 <button 
-                                                    className="video-control-button play-pause-button"
+                                                    className="services-modal-control-button services-modal-play-pause-button"
                                                     onClick={handlePauseVideo}
                                                     aria-label="إيقاف مؤقت"
                                                 >
@@ -205,7 +205,7 @@ const Services = ({ content, language }) => {
                                                 </button>
                                                 
                                                 <button 
-                                                    className="video-control-button mute-button"
+                                                    className="services-modal-control-button services-modal-mute-button"
                                                     onClick={handleToggleMute}
                                                     aria-label={isMuted ? "تشغيل الصوت" : "كتم الصوت"}
                                                 >
@@ -216,12 +216,12 @@ const Services = ({ content, language }) => {
                                     </>
                                 )
                             ) : (
-                                <div className="service-details">
-                                    <div className="service-icon-large">{iconMap[selectedService.icon]}</div>
-                                    <div className="service-full-description">
+                                <div className="services-modal-details">
+                                    <div className="services-modal-icon-large">{iconMap[selectedService.icon]}</div>
+                                    <div className="services-modal-full-description">
                                         <p>{selectedService.description}</p>
                                         {selectedService.fullDescription && (
-                                            <div className="service-additional-details">
+                                            <div className="services-modal-additional-details">
                                                 {selectedService.fullDescription}
                                             </div>
                                         )}

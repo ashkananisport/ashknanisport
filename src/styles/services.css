@@ -101,7 +101,7 @@
 }
 
 /* طبقة النافذة المنبثقة */
-.video-overlay {
+.services-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -118,7 +118,7 @@
 }
 
 /* حاوية النافذة */
-.video-container {
+.services-modal-container {
     position: relative;
     width: 100%;
     max-width: 900px;
@@ -131,10 +131,11 @@
     max-height: 90vh;
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
 /* رأس النافذة */
-.video-header {
+.services-modal-header {
     padding: 20px;
     background-color: var(--primary-color);
     color: white;
@@ -142,19 +143,19 @@
     flex-shrink: 0;
 }
 
-.video-header h3 {
+.services-modal-header h3 {
     margin: 0 0 10px 0;
     font-size: 24px;
 }
 
-.video-header p {
+.services-modal-header p {
     margin: 0;
     font-size: 16px;
     opacity: 0.9;
 }
 
 /* غلاف المحتوى */
-.video-wrapper {
+.services-modal-wrapper {
     position: relative;
     width: 100%;
     flex-grow: 1;
@@ -166,14 +167,14 @@
 }
 
 /* مشغل الفيديو */
-.video-player {
+.services-modal-player {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
 /* طبقة تشغيل الفيديو */
-.video-play-overlay {
+.services-modal-play-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -189,7 +190,7 @@
     transition: background-color 0.3s ease;
 }
 
-.video-play-overlay:hover {
+.services-modal-play-overlay:hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -216,7 +217,7 @@
     margin-left: 5px;
 }
 
-.video-play-overlay p {
+.services-modal-play-overlay p {
     color: white;
     font-size: 18px;
     font-weight: 500;
@@ -224,7 +225,7 @@
 }
 
 /* أدوات التحكم في الفيديو */
-.video-controls {
+.services-modal-controls {
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -236,7 +237,7 @@
     z-index: 3;
 }
 
-.video-control-button {
+.services-modal-control-button {
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     border: none;
@@ -251,21 +252,21 @@
     transition: all 0.3s ease;
 }
 
-.video-control-button:hover {
+.services-modal-control-button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     transform: scale(1.1);
 }
 
-.play-pause-button {
+.services-modal-play-pause-button {
     background-color: rgba(212, 175, 55, 0.9);
 }
 
-.play-pause-button:hover {
+.services-modal-play-pause-button:hover {
     background-color: rgba(212, 175, 55, 1);
 }
 
 /* رسالة خطأ الفيديو */
-.video-error {
+.services-modal-error {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -279,23 +280,23 @@
     box-sizing: border-box;
 }
 
-.error-icon {
+.services-modal-error-icon {
     font-size: 48px;
     margin-bottom: 20px;
 }
 
-.video-error h3 {
+.services-modal-error h3 {
     margin: 0 0 10px 0;
     font-size: 24px;
 }
 
-.video-error p {
+.services-modal-error p {
     margin: 0 0 20px 0;
     font-size: 16px;
     opacity: 0.9;
 }
 
-.retry-button {
+.services-modal-retry-button {
     background-color: rgba(212, 175, 55, 0.9);
     color: white;
     border: none;
@@ -306,13 +307,13 @@
     transition: all 0.3s ease;
 }
 
-.retry-button:hover {
+.services-modal-retry-button:hover {
     background-color: rgba(212, 175, 55, 1);
     transform: scale(1.05);
 }
 
 /* زر الإغلاق */
-.video-close {
+.services-modal-close {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -331,13 +332,13 @@
     transition: all 0.3s ease;
 }
 
-.video-close:hover {
+.services-modal-close:hover {
     background: rgba(0, 0, 0, 0.8);
     transform: rotate(90deg);
 }
 
 /* تفاصيل الخدمة */
-.service-details {
+.services-modal-details {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -352,24 +353,24 @@
     overflow-y: auto;
 }
 
-.service-icon-large {
+.services-modal-icon-large {
     font-size: 5rem;
     color: var(--accent-color);
     margin-bottom: 20px;
 }
 
-.service-full-description {
+.services-modal-full-description {
     max-width: 800px;
     width: 100%;
 }
 
-.service-full-description p {
+.services-modal-full-description p {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 20px;
 }
 
-.service-additional-details {
+.services-modal-additional-details {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 8px;
@@ -396,16 +397,16 @@
         font-size: 1.3rem;
     }
     
-    .video-container {
+    .services-modal-container {
         width: 95%;
         max-height: 95vh;
     }
     
-    .video-header h3 {
+    .services-modal-header h3 {
         font-size: 20px;
     }
     
-    .video-header p {
+    .services-modal-header p {
         font-size: 14px;
     }
     
@@ -418,31 +419,31 @@
         font-size: 28px;
     }
     
-    .video-play-overlay p {
+    .services-modal-play-overlay p {
         font-size: 16px;
     }
     
-    .video-control-button {
+    .services-modal-control-button {
         width: 36px;
         height: 36px;
         font-size: 16px;
     }
     
-    .video-close {
+    .services-modal-close {
         width: 36px;
         height: 36px;
         font-size: 16px;
     }
     
-    .service-icon-large {
+    .services-modal-icon-large {
         font-size: 3.5rem;
     }
     
-    .service-full-description p {
+    .services-modal-full-description p {
         font-size: 1rem;
     }
     
-    .video-overlay {
+    .services-modal-overlay {
         padding: 10px;
     }
 }
