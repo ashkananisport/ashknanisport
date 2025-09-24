@@ -40,7 +40,7 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
       <div className="consultation-booking">
         <div className="container">
           <div className="error-message">
-            <p>بيانات الحجز غير متوفرة حالياً</p>
+            <p>{language === 'ar' ? 'بيانات الحجز غير متوفرة حالياً' : 'Booking data is currently unavailable'}</p>
           </div>
         </div>
       </div>
@@ -63,6 +63,63 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     time: '',
   });
 
+  // النصوص المترجمة حسب اللغة
+  const translations = {
+    ar: {
+      officeTitle: 'مكتب الكابتن أحمد جابر أشكناني',
+      errorName: 'الرجاء إدخال الاسم',
+      errorPhone: 'الرجاء إدخال رقم الهاتف',
+      errorPhoneInvalid: 'رقم الهاتف غير صحيح',
+      errorService: 'الرجاء اختيار نوع الاستشارة',
+      errorDate: 'الرجاء اختيار التاريخ',
+      errorDatePast: 'لا يمكن اختيار تاريخ سابق',
+      errorTime: 'الرجاء اختيار الوقت',
+      whatsappMessage: (name: string, phone: string, serviceTitle: string, servicePrice: number, date: string, time: string) => 
+        `مرحباً، أود حجز استشارة مع الكابتن أحمد جابر أشكناني\n\nالاسم: ${name}\nرقم الهاتف: ${phone}\nنوع الاستشارة: ${serviceTitle}\nالسعر: ${servicePrice} دينار كويتي\nالتاريخ: ${date}\nالوقت: ${time}`,
+      whatsappButton: 'حجز عبر واتساب',
+      mapPlaceholder: 'معلومات الخريطة غير متوفرة',
+      selectService: 'اختر الاستشارة',
+      selectTime: 'اختر الوقت',
+      timeOptions: [
+        { value: '17:00', label: '5:00 م' },
+        { value: '17:30', label: '5:30 م' },
+        { value: '18:00', label: '6:00 م' },
+        { value: '18:30', label: '6:30 م' },
+        { value: '19:00', label: '7:00 م' },
+        { value: '19:30', label: '7:30 م' },
+        { value: '20:00', label: '8:00 م' }
+      ]
+    },
+    en: {
+      officeTitle: 'Captain Ahmed Jaber Ashkanani Office',
+      errorName: 'Please enter your name',
+      errorPhone: 'Please enter your phone number',
+      errorPhoneInvalid: 'Invalid phone number',
+      errorService: 'Please select a consultation type',
+      errorDate: 'Please select a date',
+      errorDatePast: 'Cannot select a past date',
+      errorTime: 'Please select a time',
+      whatsappMessage: (name: string, phone: string, serviceTitle: string, servicePrice: number, date: string, time: string) => 
+        `Hello, I would like to book a consultation with Captain Ahmed Jaber Ashkanani\n\nName: ${name}\nPhone: ${phone}\nConsultation Type: ${serviceTitle}\nPrice: ${servicePrice} KWD\nDate: ${date}\nTime: ${time}`,
+      whatsappButton: 'Book via WhatsApp',
+      mapPlaceholder: 'Map information is unavailable',
+      selectService: 'Select Consultation',
+      selectTime: 'Select Time',
+      timeOptions: [
+        { value: '17:00', label: '5:00 PM' },
+        { value: '17:30', label: '5:30 PM' },
+        { value: '18:00', label: '6:00 PM' },
+        { value: '18:30', label: '6:30 PM' },
+        { value: '19:00', label: '7:00 PM' },
+        { value: '19:30', label: '7:30 PM' },
+        { value: '20:00', label: '8:00 PM' }
+      ]
+    }
+  };
+
+  // الحصول على الترجمات حسب اللغة المحددة
+  const t = translations[language];
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -77,25 +134,25 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     const newErrors = { name: '', phone: '', service: '', date: '', time: '' };
     
     if (!formData.name.trim()) {
-      newErrors.name = 'الرجاء إدخال الاسم';
+      newErrors.name = t.errorName;
       isValid = false;
     }
     
     if (!formData.phone.trim()) {
-      newErrors.phone = 'الرجاء إدخال رقم الهاتف';
+      newErrors.phone = t.errorPhone;
       isValid = false;
     } else if (!/^\d{8,15}$/.test(formData.phone.replace(/\s/g, ''))) {
-      newErrors.phone = 'رقم الهاتف غير صحيح';
+      newErrors.phone = t.errorPhoneInvalid;
       isValid = false;
     }
     
     if (!formData.service) {
-      newErrors.service = 'الرجاء اختيار نوع الاستشارة';
+      newErrors.service = t.errorService;
       isValid = false;
     }
     
     if (!formData.date) {
-      newErrors.date = 'الرجاء اختيار التاريخ';
+      newErrors.date = t.errorDate;
       isValid = false;
     } else {
       const selectedDate = new Date(formData.date);
@@ -103,13 +160,13 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
       today.setHours(0, 0, 0, 0);
       
       if (selectedDate < today) {
-        newErrors.date = 'لا يمكن اختيار تاريخ سابق';
+        newErrors.date = t.errorDatePast;
         isValid = false;
       }
     }
     
     if (!formData.time) {
-      newErrors.time = 'الرجاء اختيار الوقت';
+      newErrors.time = t.errorTime;
       isValid = false;
     }
     
@@ -121,7 +178,14 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     const phoneNumber = "96597131223";
     const selectedService = formData.service ? content.services.find(s => s.id === parseInt(formData.service)) : null;
     
-    const message = `مرحباً، أود حجز استشارة مع الكابتن أحمد جابر أشكناني\n\nالاسم: ${formData.name}\nرقم الهاتف: ${formData.phone}\nنوع الاستشارة: ${selectedService ? selectedService.title : ''}\nالسعر: ${selectedService ? selectedService.price + ' دينار كويتي' : ''}\nالتاريخ: ${formData.date}\nالوقت: ${formData.time}`;
+    const message = t.whatsappMessage(
+      formData.name,
+      formData.phone,
+      selectedService ? selectedService.title : '',
+      selectedService ? selectedService.price : 0,
+      formData.date,
+      formData.time
+    );
     
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
@@ -143,7 +207,7 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
         <div className="consultation-container">
           <div className="consultation-info">
             <div className="office-info">
-              <h3>مكتب الكابتن أحمد جابر أشكناني</h3>
+              <h3>{t.officeTitle}</h3>
               <p>{content.workingDays}</p>
               <p>{content.workingHours}</p>
             </div>
@@ -165,7 +229,7 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
                 ></iframe>
               ) : (
                 <div className="map-placeholder">
-                  <p>معلومات الخريطة غير متوفرة</p>
+                  <p>{t.mapPlaceholder}</p>
                 </div>
               )}
             </div>
@@ -211,10 +275,10 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
                   className={errors.service ? 'error' : ''}
                   required
                 >
-                  <option value="">اختر الاستشارة</option>
+                  <option value="">{t.selectService}</option>
                   {content.services.map(service => (
                     <option key={service.id} value={service.id}>
-                      {service.title} - {service.price} دينار كويتي
+                      {service.title} - {service.price} {language === 'ar' ? 'دينار كويتي' : 'KWD'}
                     </option>
                   ))}
                 </select>
@@ -246,14 +310,12 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
                     className={errors.time ? 'error' : ''}
                     required
                   >
-                    <option value="">اختر الوقت</option>
-                    <option value="17:00">5:00 م</option>
-                    <option value="17:30">5:30 م</option>
-                    <option value="18:00">6:00 م</option>
-                    <option value="18:30">6:30 م</option>
-                    <option value="19:00">7:00 م</option>
-                    <option value="19:30">7:30 م</option>
-                    <option value="20:00">8:00 م</option>
+                    <option value="">{t.selectTime}</option>
+                    {t.timeOptions.map((timeOption, index) => (
+                      <option key={index} value={timeOption.value}>
+                        {timeOption.label}
+                      </option>
+                    ))}
                   </select>
                   {errors.time && <span className="error-message">{errors.time}</span>}
                 </div>
@@ -261,7 +323,7 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
               
               <div className="form-actions">
                 <button type="submit" className="whatsapp-btn">
-                  <i className="fab fa-whatsapp"></i> حجز عبر واتساب
+                  <i className="fab fa-whatsapp"></i> {t.whatsappButton}
                 </button>
               </div>
             </form>
