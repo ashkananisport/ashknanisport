@@ -16,7 +16,6 @@ import FloatingVideo from './components/FloatingVideo';
 import ChatBot from './components/ChatBot';
 import ConsultationBooking from './components/ConsultationBooking'; 
 import WhatsAppButton from './components/WhatsAppButton';
-import AdvertisementImage from './components/AdvertisementImage'; 
 import { Language, AppContent, LanguageContent } from './types';
 import './styles/index.css'; 
 
