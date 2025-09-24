@@ -21,7 +21,7 @@ import './styles/index.css';
 
 // ثوابت للتخزين المؤقت
 const CACHE_KEY = 'ashkanani_data';
-const CACHE_DURATION = 0; // 30 دقيقة
+const CACHE_DURATION = 1; // 30 دقيقة
 
 function App() {
     const [language, setLanguage] = useState<Language>('ar');
