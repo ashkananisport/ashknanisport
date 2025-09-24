@@ -104,41 +104,6 @@ body[dir="rtl"] .footer-section h3::after {
     color: var(--accent-color);
 }
 
-/* شركاء الفوتر */
-.partners-logos {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.partner-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80px;
-    width: 80px;
-    border: 2px solid var(--accent-color);
-    border-radius: 8px;
-    padding: 2px;
-    background-color: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    opacity: 0.8;
-}
-
-.partner-logo:hover {
-    transform: scale(1.05);
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.partner-logo img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-}
-
 /* قسم ترانسفير ماركت منفصل */
 .transfermarket-section {
     flex: 1;
@@ -165,7 +130,7 @@ body[dir="rtl"] .transfermarket-section {
     left: 0;
     width: 40px;
     height: 3px;
-    background-color: (--accent-color); /* لون ترانسفير ماركت */
+    background-color: var(--accent-color);
 }
 
 body[dir="rtl"] .transfermarket-section h3::after {
@@ -192,6 +157,68 @@ body[dir="rtl"] .transfermarket-section h3::after {
 .transfermarket-logo {
     height: 80px;
     width: auto;
+    object-fit: contain;
+}
+
+/* قسم الشركاء - تم تعديله ليكون في الأسفل */
+.footer-partners-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-partners-section h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-partners-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+/* شبكة الشركاء - عرض في صفوف متعددة */
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.partner-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.partner-logo:hover {
+    transform: scale(1.05);
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.partner-logo img {
+    max-height: 100%;
+    max-width: 100%;
     object-fit: contain;
 }
 
@@ -243,14 +270,14 @@ body[dir="rtl"] .transfermarket-section h3::after {
         justify-content: center;
     }
     
-    .partners-logos {
-        justify-content: center;
-        gap: 1.5rem;
+    .partners-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 1rem;
     }
     
     .partner-logo {
-        max-width: 120px;
         height: 60px;
+        width: 60px;
     }
     
     .transfermarket-container {
@@ -271,8 +298,14 @@ body[dir="rtl"] .transfermarket-section h3::after {
         margin-bottom: 0.5rem;
     }
     
-    .partners-logos {
-        gap: 1rem;
+    .partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .partner-logo {
+        height: 50px;
+        width: 50px;
     }
     
     .transfermarket-container {

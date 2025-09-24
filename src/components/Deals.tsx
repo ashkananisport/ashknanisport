@@ -6,8 +6,13 @@ const Deals = ({ content, language }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     // استخدام عناوين ثابتة بناءً على اللغة
-    const titlePart1 = language === 'en' ? 'Contracts &' : 'العقود';
+    const titlePart1 = language === 'en' ? 'Best Contracts &' : 'ابرز العقود';
     const titlePart2 = language === 'en' ? 'Deals' : 'والصفقات';
+    
+    // النص الجديد الذي سيظهر تحت العنوان
+    const subtitleText = language === 'en' 
+        ? 'We have approximately 177 deals since the company\'s establishment in all countries'
+        : 'نمتلك ما يقارب 177 صفقة منذ انشاء الشركة بجميع الدول';
 
     const handleImageClick = (index) => {
         setCurrentImageIndex(index);
@@ -35,6 +40,8 @@ const Deals = ({ content, language }) => {
             <section id="deals" className="section">
                 <div className="container">
                     <h2 className="section-title">{titlePart1} <span>{titlePart2}</span></h2>
+                    {/* إضافة السطر الجديد تحت العنوان */}
+                    <p className="section-subtitle">{subtitleText}</p>
                     <div className="grid-container">
                         {content.list.map((deal, index) => (
                             <div key={index} className="card">

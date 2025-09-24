@@ -118,25 +118,6 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
                         </div>
                     </div>
                     
-                    {/* قسم شركاؤنا */}
-                    <div className="footer-section">
-                        <h3>شركاؤنا</h3>
-                        <div className="partners-logos">
-                            {content.partners.map((partner, index) => (
-                                <a 
-                                    key={index}
-                                    href={partner.url} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="partner-logo"
-                                    title={partner.name}
-                                >
-                                    <img src={partner.logoUrl} alt={partner.name} />
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-
                     {/* قسم ترانسفير ماركت منفصل */}
                     <div className="footer-section transfermarket-section">
                         <h3>TransferMarket</h3>
@@ -155,6 +136,25 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
                                 />
                             </a>
                         </div>
+                    </div>
+                </div>
+                
+                {/* قسم شركاؤنا - تم نقله إلى الأسفل */}
+                <div className="footer-partners-section">
+                    <h3>شركاؤنا</h3>
+                    <div className="partners-grid">
+                        {content.partners.map((partner, index) => (
+                            <a 
+                                key={index}
+                                href={partner.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="partner-logo"
+                                title={partner.name}
+                            >
+                                <img src={partner.logoUrl} alt={partner.name} />
+                            </a>
+                        ))}
                     </div>
                 </div>
                 

@@ -8,18 +8,24 @@ interface PlayerSigningProps {
 const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
   const [activeTab, setActiveTab] = useState<string>('professional');
   const professionalAudioRef = useRef<HTMLAudioElement>(null);
-  const amateurAudioRef = useRef<HTMLAudioElement>(null);
   const individualAudioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentAudio, setCurrentAudio] = useState<string>('');
+  
+  // حالة جديدة لتكبير الصور
+  const [enlargedImage, setEnlargedImage] = useState<{
+    src: string;
+    alt: string;
+    title: string;
+    index: number;
+    total: number;
+  } | null>(null);
 
   // تحديد المرجع المناسب بناءً على التبويب النشط
   const getCurrentAudioRef = () => {
     switch (activeTab) {
       case 'professional':
         return professionalAudioRef;
-      case 'amateur':
-        return amateurAudioRef;
       case 'individual':
         return individualAudioRef;
       default:
@@ -32,12 +38,10 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
     switch (activeTab) {
       case 'professional':
         return content.professional.videoUrl;
-      case 'amateur':
-        return  content.amateur.videoUrl;
       case 'individual':
         return content.individual.videoUrl;
       default:
-        return  content.professional.videoUrl;
+        return content.professional.videoUrl;
     }
   };
 
@@ -46,8 +50,6 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
     switch (activeTab) {
       case 'professional':
         return content.professional.audiotitle;
-      case 'amateur':
-        return content.amateur.audiotitle;
       case 'individual':
         return content.individual.audiotitle;
       default:
@@ -101,6 +103,41 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
     }
   };
 
+  // دالة لفتح الصورة المكبرة
+  const openEnlargedImage = (src: string, alt: string, title: string, index: number, total: number) => {
+    setEnlargedImage({ src, alt, title, index, total });
+  };
+
+  // دالة لإغلاق الصورة المكبرة
+  const closeEnlargedImage = () => {
+    setEnlargedImage(null);
+  };
+
+  // دالة للتنقل بين الصور
+  const navigateImage = (direction: 'prev' | 'next') => {
+    if (!enlargedImage) return;
+    
+    const gallery = activeTab === 'professional' 
+      ? content.professional.gallery.images 
+      : content.individual.gallery.images;
+    
+    let newIndex = direction === 'next' 
+      ? enlargedImage.index + 1 
+      : enlargedImage.index - 1;
+    
+    // التأكد من أن الفهرس ضمن النطاق الصحيح
+    if (newIndex < 0) newIndex = gallery.length - 1;
+    if (newIndex >= gallery.length) newIndex = 0;
+    
+    setEnlargedImage({
+      src: gallery[newIndex],
+      alt: `${activeTab === 'professional' ? content.professional.title : content.individual.title} ${newIndex + 1}`,
+      title: activeTab === 'professional' ? content.professional.title : content.individual.title,
+      index: newIndex,
+      total: gallery.length
+    });
+  };
+
   return (
     <section className="section player-signing" id="player-signing">
       <div className="container">
@@ -115,12 +152,6 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
               onClick={() => setActiveTab('professional')}
             >
               {content.professional.title}
-            </button>
-            <button 
-              className={`tab-btn ${activeTab === 'amateur' ? 'active' : ''}`}
-              onClick={() => setActiveTab('amateur')}
-            >
-              {content.amateur.title}
             </button>
             <button 
               className={`tab-btn ${activeTab === 'individual' ? 'active' : ''}`}
@@ -167,7 +198,7 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                           </div>
                           <audio 
                             ref={professionalAudioRef}
-                            src={ content.professional.videoUrl}
+                            src={content.professional.videoUrl}
                             onPlay={() => {
                               setIsPlaying(true);
                               setCurrentAudio('professional');
@@ -185,71 +216,22 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                 <div className="player-gallery">
                   <div className="gallery-grid">
                     {content.professional.gallery.images.map((image, index) => (
-                      <div key={index} className="gallery-item">
-                        <img src={image} alt={`${content.professional.title} ${index + 1}`} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            {activeTab === 'amateur' && (
-              <div className="tab-pane">
-                <div className="signing-content">
-                  <div className="signing-text">
-                    <h3>{content.amateur.title}</h3>
-                    <p>{content.amateur.description}</p>
-                    <ul>
-                      {content.amateur.steps.map((step, index) => (
-                        <li key={index}>{step}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="signing-media">
-                    <div className="signing-audio">
-                      <h4>{content.audioTitle}</h4>
-                      <div className="audio-container">
-                        <div className="audio-player">
-                          <div className="audio-controls">
-                            <button 
-                              className={`play-pause-btn ${isPlaying && currentAudio === 'amateur' ? 'playing' : ''}`}
-                              onClick={togglePlayPause}
-                              aria-label={isPlaying && currentAudio === 'amateur' ? "إيقاف الصوت" : "تشغيل الصوت"}
-                            >
-                              {isPlaying && currentAudio === 'amateur' ? (
-                                <span className="pause-icon">❚❚</span>
-                              ) : (
-                                <span className="play-icon">▶</span>
-                              )}
-                            </button>
-                            <div className="audio-info">
-                              <div className="audio-title">{getCurrentAudioTitle()}</div>
-                              <div className="audio-subtitle">{content.amateur.title}</div>
-                            </div>
-                          </div>
-                          <audio 
-                            ref={amateurAudioRef}
-                            src={content.amateur.videoUrl}
-                            onPlay={() => {
-                              setIsPlaying(true);
-                              setCurrentAudio('amateur');
-                            }}
-                            onPause={() => setIsPlaying(false)}
-                            onEnded={() => setIsPlaying(false)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* معرض الصور للاعبين الهواة */}
-                <div className="player-gallery">
-                  <div className="gallery-grid">
-                    {content.amateur.gallery.images.map((image, index) => (
-                      <div key={index} className="gallery-item">
-                        <img src={image} alt={`${content.amateur.title} ${index + 1}`} />
+                      <div 
+                        key={index} 
+                        className="gallery-item card-image-container"
+                        onClick={() => openEnlargedImage(
+                          image, 
+                          `${content.professional.title} ${index + 1}`, 
+                          content.professional.title,
+                          index,
+                          content.professional.gallery.images.length
+                        )}
+                      >
+                        <img 
+                          src={image} 
+                          alt={`${content.professional.title} ${index + 1}`} 
+                          className="card-image"
+                        />
                       </div>
                     ))}
                   </div>
@@ -293,7 +275,7 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                           </div>
                           <audio 
                             ref={individualAudioRef}
-                            src={ content.individual.videoUrl}
+                            src={content.individual.videoUrl}
                             onPlay={() => {
                               setIsPlaying(true);
                               setCurrentAudio('individual');
@@ -311,8 +293,22 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
                 <div className="player-gallery">
                   <div className="gallery-grid">
                     {content.individual.gallery.images.map((image, index) => (
-                      <div key={index} className="gallery-item">
-                        <img src={image} alt={`${content.individual.title} ${index + 1}`} />
+                      <div 
+                        key={index} 
+                        className="gallery-item card-image-container"
+                        onClick={() => openEnlargedImage(
+                          image, 
+                          `${content.individual.title} ${index + 1}`, 
+                          content.individual.title,
+                          index,
+                          content.individual.gallery.images.length
+                        )}
+                      >
+                        <img 
+                          src={image} 
+                          alt={`${content.individual.title} ${index + 1}`} 
+                          className="card-image"
+                        />
                       </div>
                     ))}
                   </div>
@@ -322,6 +318,66 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
           </div>
         </div>
       </div>
+
+      {/* تراكب الصورة المكبرة */}
+      {enlargedImage && (
+        <div 
+          className="deals-enlarged-overlay" 
+          onClick={closeEnlargedImage}
+        >
+          <div 
+            className="deals-enlarged-container" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="deals-enlarged-close" 
+              onClick={closeEnlargedImage}
+              aria-label="إغلاق"
+            >
+              ✕
+            </button>
+            
+            <img 
+              src={enlargedImage.src} 
+              alt={enlargedImage.alt} 
+              className="deals-enlarged-image"
+            />
+            
+            <div className="deals-enlarged-info">
+              <h3>{enlargedImage.title}</h3>
+              <p>{enlargedImage.alt}</p>
+            </div>
+            
+            <div className="deals-enlarged-controls">
+              <button 
+                className="deals-enlarged-nav" 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage('prev');
+                }}
+                aria-label="الصورة السابقة"
+              >
+                →
+              </button>
+              
+              <div className="deals-enlarged-counter">
+                {enlargedImage.index + 1} / {enlargedImage.total}
+              </div>
+              
+              <button 
+                className="deals-enlarged-nav" 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage('next');
+                }}
+                aria-label="الصورة التالية"
+              >
+                ←
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

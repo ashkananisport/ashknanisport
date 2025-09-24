@@ -1,0 +1,245 @@
+/* Achievements.css */
+
+.achievements-section {
+    background-color: var(--primary-color);
+    padding: 80px 0;
+    position: relative;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* عرض 3 صور في الصف */
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.achievement-card {
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* حاوية الصورة في البطاقة */
+.card-image-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card-image-container:hover {
+    transform: scale(1.02);
+}
+
+/* الصورة في البطاقة */
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* عرض الصورة بالكامل بدون قص */
+    background-color: #f8f9fa; /* خلفية فاتحة للمناطق الفارغة */
+    transition: transform 0.3s ease;
+}
+
+.card-image:hover {
+    transform: scale(1.05);
+}
+
+/* طبقة التكبير */
+.deals-enlarged-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+/* حاوية الصورة المكبرة */
+.deals-enlarged-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    cursor: default;
+}
+
+/* الصورة المكبرة */
+.deals-enlarged-image {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain; /* عرض الصورة بالكامل بدون قص */
+    background-color: #fff;
+}
+
+/* معلومات الصورة المكبرة */
+.deals-enlarged-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.deals-enlarged-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.deals-enlarged-info p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* زر الإغلاق */
+.deals-enlarged-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.deals-enlarged-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotate(90deg);
+}
+
+/* أدوات التحكم في الصورة المكبرة */
+.deals-enlarged-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+/* أزرار التنقل */
+.deals-enlarged-nav {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.deals-enlarged-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+/* عداد الصور */
+.deals-enlarged-counter {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+/* للشاشات المتوسطة */
+@media (max-width: 992px) {
+    .achievements-grid {
+        grid-template-columns: repeat(3, 1fr); /* الحفاظ على 3 صور في الصف */
+        gap: 1.5rem;
+        max-width: 900px;
+    }
+    
+    .card-image-container {
+        height: 200px;
+    }
+}
+
+/* للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr); /* تغيير إلى صورتين في الصف للشاشات الصغيرة */
+        gap: 1rem;
+        max-width: 600px;
+    }
+    
+    .card-image-container {
+        height: 150px;
+    }
+    
+    .deals-enlarged-container {
+        max-width: 95%;
+        max-height: 95%;
+    }
+    
+    .deals-enlarged-image {
+        max-height: 60vh;
+    }
+    
+    .deals-enlarged-info h3 {
+        font-size: 20px;
+    }
+    
+    .deals-enlarged-info p {
+        font-size: 14px;
+    }
+    
+    .deals-enlarged-nav {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .deals-enlarged-counter {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 576px) {
+    .achievements-grid {
+        grid-template-columns: 1fr; /* صورة واحدة في الصف للشاشات الصغيرة جداً */
+        gap: 1rem;
+        max-width: 300px;
+    }
+    
+    .card-image-container {
+        height: 200px;
+    }
+}

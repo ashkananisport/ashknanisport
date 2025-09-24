@@ -57,7 +57,7 @@ function App() {
             
             // جلب البيانات من الخادم
             console.log('Fetching fresh data');
-            const response = await fetch('https://script.google.com/macros/s/AKfycbyINI51cMulDW7jWPHpMNOriAlGP9lVFz-04B2pJFU9TojJSxXz-2VGkQ0UU799AgeN/exec');
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzJH4yEjichjVOamFkiAwnxTVpSblF54AA-BIe9sAT62Jk-baW0z4GxwnGxfpd5HYj9/exec');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -202,17 +202,6 @@ function App() {
                 width={120}
                 height={160}
             />
-            
-            {/* إضافة صورة الإعلان من جوجل شيت */}
-            {currentContent.advertisements && (
-                <AdvertisementImage 
-                    advertisements={currentContent.advertisements}
-                    position="middle-left"
-                    size="large"
-                    autoPlay={true}
-                    interval={4000}
-                />
-            )}
         </>
     );
 }
