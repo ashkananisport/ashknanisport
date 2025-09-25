@@ -1,29 +1,31 @@
-/* حاوية الصورة في البطاقة */
-.card-image-container {
-    position: relative;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    border-radius: 8px 8px 0 0;
+/* حاوية الزر */
+.deals-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.deals-view-button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.card-image-container:hover {
-    transform: scale(1.02);
+.deals-view-button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* الصورة في البطاقة */
-.card-image {
-    width: 100%;
-    height:auto;
-    object-fit: contain; /* عرض الصورة بالكامل بدون قص */
-    background-color: #f8f9fa; /* خلفية فاتحة للمناطق الفارغة */
-    transition: transform 0.3s ease;
-}
-
-.card-image:hover {
-    transform: scale(1.05);
+.deals-view-button:active {
+    transform: translateY(1px);
 }
 
 /* طبقة التكبير */
@@ -57,7 +59,7 @@
 .deals-enlarged-image {
     width: 100%;
     max-height: 70vh;
-    object-fit: contain; /* عرض الصورة بالكامل بدون قص */
+    object-fit: contain;
     background-color: #fff;
 }
 
@@ -148,10 +150,19 @@
     border-radius: 20px;
 }
 
+/* للشاشات المتوسطة */
+@media (max-width: 992px) {
+    .deals-view-button {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+}
+
 /* للشاشات الصغيرة */
 @media (max-width: 768px) {
-    .card-image-container {
-        height: 150px;
+    .deals-view-button {
+        font-size: 14px;
+        padding: 10px 20px;
     }
     
     .deals-enlarged-container {
@@ -180,8 +191,16 @@
         font-size: 14px;
         padding: 6px 12px;
     }
-    
 }
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 576px) {
+    .deals-view-button {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
 .section-subtitle {
     text-align: center;
     margin-bottom: 30px;

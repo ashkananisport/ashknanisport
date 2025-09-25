@@ -1,244 +1,1146 @@
 {
-    "en": {
-        "header": {
-            "nav": {
-                "about": "About",
-                "services": "Services",
-                "achievements": "Achievements",
-                "deals": "Deals",
-                "gallery": "Gallery",
-                "documents": "Documents",
-                "contact": "Contact"
-            },
-            "lang_toggle": "العربية"
-        },
-        "hero": {
-            "title": "Ashkanani Sport",
-            "tagline": "Leading Athlete Management in Kuwait. We strive to develop sports in all its forms!",
-            "cta1": "Contact Us",
-            "cta2": "Learn More"
-        },
-        "about": {
-            "title_part1": "About",
-            "title_part2": "The Company",
-            "p1": "Ashkanani Sport Company was established in 2019 by the Ministry of Justice and Trade in the State of Kuwait.",
-            "p2": "As the first company to manage the business of athletes including players, coaches, and administrators across all sports, we pioneered professional sports management in the region.",
-            "p3": "Today, Ashkanani Sport is the leading sports marketing and management firm in Kuwait, continually striving for excellence and the advancement of sports.",
-            "founder": {
-                "name": "Captain Ahmed Jaber Ashkanani",
-                "role": "FIFA Accredited Player & Coach Agent",
-                "photo": "/images/myphoto.jpg",
-                "credentials": [
-                    "Former director for Kuwait national youth team & Al-Arabi SC (7 years).",
-                    "Director of the first teams for Kuwaiti national teams.",
-                    "Director of sports at the Kuwaiti School & Higher Education Sports Federation.",
-                    "Certified international lecturer from European Beta and the American Board.",
-                    "Accredited by the Public Authority for Applied Education & FIFA."
-                ]
-            }
-        },
-        "services": {
-            "title_part1": "Our",
-            "title_part2": "Services",
-            "list": [
-                { "icon": "FaFutbol", "title": "Athlete Management", "description": "Comprehensive management for athletes, both on and off the field." },
-                { "icon": "FaBullhorn", "title": "Media & Public Relations", "description": "Enhancing public image and media presence for maximum exposure." },
-                { "icon": "FaHandshake", "title": "Sponsorships & Academies", "description": "Connecting athletes with leading sponsors and academies." },
-                { "icon": "FaAppleAlt", "title": "Nutrition Consultations", "description": "Expert nutritional guidance for peak physical performance." },
-                { "icon": "FaGavel", "title": "Legal & Contract Reading", "description": "Professional legal advice and meticulous contract reviews." },
-                { "icon": "FaGlobe", "title": "Local & International Marketing", "description": "Strategic marketing campaigns to build global athlete brands." },
-                { "icon": "FaBrain", "title": "Mental Motivation", "description": "Coaching to build mental toughness and focus." },
-                { "icon": "FaDumbbell", "title": "Personal Training", "description": "Customized training programs for elite conditioning." }
-            ]
-        },
-        "achievements": {
-            "title_part1": "Awards &",
-            "title_part2": "Achievements",
-            "list": [
-                { "icon": "FaTrophy", "title": "Best Player U18", "description": "Awarded to our client Ahmed Al-Ajmi from Al-Qadisiyah Club." },
-                { "icon": "FaAward", "title": "Best Coach U16", "description": "Honoring Coach Ahmed Abdulrahman Al-Houti for an outstanding season." },
-                { "icon": "FaStar", "title": "Rising Star Award", "description": "Recognizing the exceptional potential of our managed young talents." }
-            ]
-        },
-        "deals": {
-            "title_part1": "Contracts &",
-            "title_part2": "Deals",
-            "list": [
-                { "img": "/images/deal1.jpg", "title": "Omar AlShaya", "description": "Successfully transferred to Al-Nasr Kuwaiti Club." },
-                { "img": "/images/deal2.jpg", "title": "saleh AlMahri", "description": "Successfully transferred to Jeddah Saudi Club." },
-                { "img": "/images/deal3.jpg", "title": "Hani ALSaqr", "description": "Captain Hani Al-Saqr is the coach and technical advisor of the Moroccan Olympique Dcheira club." }
-            ]
-        },
-        "gallery": {
-            "title_part1": "Our",
-            "title_part2": "Gallery",
-            "tabs": {
-                "photos": "Photos",
-                "videos": "Videos"
-            },
-            "photos": [
-                { "title": "Player Deals", "src": "/images/player1.jpg" },
-                { "title": "Player Deals", "src": "/images/player2.jpg" },
-                { "title": "Player Deals", "src": "/images/player3.jpg" },
-                { "title": "Player Deals", "src": "/images/player4.jpg" },
-                { "title": "Player Deals", "src": "/images/player5.jpg" },
-                { "title": "Player Deals", "src": "/images/player6.jpg" }
-            ],
-            "videos": [
-            { "title": "Goin Us", "src": "/videos/video1.mp4" ,"thumbnail": "/images/thumb1.png"},
-            { "title": "What is the benefit of a players agent?", "src": "/videos/video2.mp4" ,"thumbnail": "/images/thumb2.png"}
-
-            ]
-        },
-        "documents": {
-            "title_part1": "Official",
-            "title_part2": "Documents",
-            "list": [
-                { "icon": "FaFilePdf", "title": "Company Portfolio 2025", "fileUrl": "#" },
-                { "icon": "FaFileAlt", "title": "Founder's CV", "fileUrl": "#" }
-            ]
-        },
-        "contact": {
-            "title_part1": "Get In",
-            "title_part2": "Touch",
-            "info": {
-                "address": "Salmiya, Block 5, Kuwait City, Kuwait",
-                "phone": "+965 1234 5678",
-                "email": "info@ashkananisport.com"
-            },
-            "form": {
-                "name": "Your Name",
-                "email": "Your Email",
-                "message": "Your Message",
-                "submit": "Send Message"
-            },
-            "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d222639.4475424368!2d47.83478957242484!3d29.31422201389601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf537a75903c73%3A0x97d3a1bde54a32e1!2sKuwait%20City%2C%20Kuwait!5e0!3m2!1sen!2sus!4v1689366050212!5m2!1sen!2sus"
-        },
-        "footer": {
-            "copyright": "© 2025 Ashkanani Sport Marketing. All Rights Reserved.",
-            "quickLinks": "Quick Links"
-        }
+  "en": {
+    "header": {
+      "nav": {
+        "home": "Home",
+        "about": "About",
+        "services": "Services",
+        "achievements": "Deals & Honors",
+        "gallery": "Gallery",
+        "documents": "Documents",
+        "contact": "Book Consultaion",
+        "playerSigning": "Signing",
+        "agentBenefits": "Why Agent"
+      },
+      "lang_toggle": "العربية"
     },
-    "ar": {
-        "header": {
-            "nav": {
-                "about": "نبذة عنا",
-                "services": "خدماتنا",
-                "achievements": "الإنجازات",
-                "deals": "الصفقات",
-                "gallery": "المعرض",
-                "documents": "المستندات",
-                "contact": "اتصل بنا"
-            },
-            "lang_toggle": "English"
-        },
-        "hero": {
-            "title": "أشكناني سبورت",
-            "tagline": "الشركة الرائدة في إدارة الرياضيين في الكويت. نسعى لتطوير الرياضة بمختلف أشكالها!",
-            "cta1": "اتصل بنا",
-            "cta2": "اعرف المزيد"
-        },
-        "about": {
-            "title_part1": "نبذة عن",
-            "title_part2": "الشركة",
-            "p1": "تم تأسيس شركة أشكناني سبورت في سنة ٢٠١٩م من وزارة العدل والتجارة في دولة الكويت.",
-            "p2": "كأول شركة تقوم بإدارة أعمال الرياضيين من لاعبين ومدربين وإداريين بجميع الرياضات، كنا روادًا في الإدارة الرياضية الاحترافية في المنطقة.",
-            "p3": "اليوم، شركة أشكناني سبورت هي الشركة الرائدة في مجال التسويق والإدارة الرياضية في دولة الكويت، ونسعى دائمًا للأفضل.",
-            "founder": {
-                "name": "كابتن أحمد جابر أشكناني",
-                "role": "وكيل أعمال لاعبين ومدربين معتمد من FIFA",
-                "photo": "/images/myphoto.jpg",
-                "credentials": [
-                    "مدير سابق للمراحل السنية بمنتخب الكويت ونادي العربي الكويتي (7 سنوات).",
-                    "مدير الفرق الأولى للمنتخبات الكويتية.",
-                    "مدير الألعاب الرياضية بالاتحاد الكويتي المدرسي والتعليم العالي.",
-                    "محاضر دولي معتمد من البيتا الأوروبي والبورد الأمريكي.",
-                    "معتمد من الهيئة العامة للتعليم التطبيقي و FIFA."
-                ]
-            }
-        },
-        "services": {
-            "title_part1": "خدمات",
-            "title_part2": "الشركة",
-            "list": [
-                { "icon": "FaFutbol", "title": "إدارة الرياضيين", "description": "إدارة شاملة للرياضيين داخل وخارج الملعب." },
-                { "icon": "FaBullhorn", "title": "الإعلام والعلاقات العامة", "description": "تحسين الصورة العامة والحضور الإعلامي لتحقيق أقصى انتشار." },
-                { "icon": "FaHandshake", "title": "الرعاية والأكاديميات", "description": "ربط الرياضيين بالرعاة والأكاديميات الرائدة." },
-                { "icon": "FaAppleAlt", "title": "استشارات التغذية", "description": "إرشادات غذائية متخصصة لتحقيق أفضل أداء بدني." },
-                { "icon": "FaGavel", "title": "الاستشارات القانونية وقراءة العقود", "description": "استشارات قانونية احترافية ومراجعة دقيقة للعقود." },
-                { "icon": "FaGlobe", "title": "التسويق المحلي والدولي", "description": "حملات تسويقية استراتيجية لبناء علامات تجارية عالمية للرياضيين." },
-                { "icon": "FaBrain", "title": "التحفيز الذهني", "description": "تدريب لبناء الصلابة الذهنية والتركيز." },
-                { "icon": "FaDumbbell", "title": "التدريب الشخصي", "description": "برامج تدريب مخصصة للوصول إلى لياقة بدنية عالية." }
-            ]
-        },
-        "achievements": {
-            "title_part1": "الجوائز",
-            "title_part2": "والإنجازات",
-            "list": [
-                { "icon": "FaTrophy", "title": "أفضل لاعب تحت 18 سنة", "description": "مُنحت لعميلنا أحمد العجمي من نادي القادسية." },
-                { "icon": "FaAward", "title": "أفضل مدرب تحت 16 سنة", "description": "تكريمًا للمدرب أحمد عبدالرحمن الحوطي لموسمه المتميز." },
-                { "icon": "FaStar", "title": "جائزة النجم الصاعد", "description": "تقديرًا للمواهب الشابة الواعدة التي نديرها." }
-            ]
-        },
-        "deals": {
-            "title_part1": "العقود",
-            "title_part2": "والصفقات",
-            "list": [
-                { "img": "/images/deal1.jpg", "title": "عمر الشايع", "description": "عمر الشايع الى نادي النصر الكويتي لمده موسم." },
-                { "img": "/images/deal2.jpg", "title": "صالح عقيل", "description": "صالح عقيل الى نادي جدة السعودي" },
-                { "img": "/images/deal3.jpg", "title": "هاني الصقر", "description": " الكابتن هاني الصقر مدرباً و مستشار فني لنادي اولمبيك الدشيرة المغربي." }
-                           
-            ]
-        },
-        "gallery": {
-            "title_part1": "معرض",
-            "title_part2": "الصور والفيديو",
-            "tabs": {
-                "photos": "الصور",
-                "videos": "الفيديو"
-            },
-            "photos": [
-                { "title": "صفقات اللاعبين", "src": "/images/player1.jpg" },
-                { "title": "صفقات اللاعبين", "src": "/images/player2.jpg" },
-                { "title": "صفقات اللاعبين", "src": "/images/player3.jpg" },
-                { "title": "صفقات اللاعبين", "src": "/images/player4.jpg" },
-                { "title": "صفقات اللاعبين", "src": "/images/player5.jpg" },
-                { "title": "صفقات اللاعبين", "src": "/images/player6.jpg" }
-
-            ],
-            "videos": [
-                 { "title": "سارع بالانضمام", "src": "/videos/video1.mp4" ,"thumbnail": "/images/thumb1.png"},
-                { "title": "ما فائدة وكيل اللاعبين ؟", "src": "/videos/video2.mp4" ,"thumbnail": "/images/thumb2.png"}
-
-            ]
-        },
-        "documents": {
-            "title_part1": "مستندات",
-            "title_part2": "رسمية",
-            "list": [
-                { "icon": "FaFilePdf", "title": "ملف الشركة التعريفي 2025", "fileUrl": "#" },
-                { "icon": "FaFileAlt", "title": "السيرة الذاتية للمؤسس", "fileUrl": "#" }
-            ]
-        },
-        "contact": {
-            "title_part1": "تواصل",
-            "title_part2": "معنا",
-            "info": {
-                "address": "السالمية، قطعة 5، مدينة الكويت، الكويت",
-                "phone": "+96512345678",
-                "email": "info@ashkananisport.com"
-            },
-            "form": {
-                "name": "الاسم الكامل",
-                "email": "البريد الإلكتروني",
-                "message": "رسالتك",
-                "submit": "إرسال الرسالة"
-            },
-            "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d222639.4475424368!2d47.83478957242484!3d29.31422201389601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf537a75903c73%3A0x97d3a1bde54a32e1!2sKuwait%20City%2C%20Kuwait!5e0!3m2!1sen!2sus!4v1689366050212!5m2!1sen!2sus"
-        },
-        "footer": {
-            "copyright": "© 2025 شركة أشكناني للتسويق الرياضي. جميع الحقوق محفوظة.",
-            "quickLinks": "روابط سريعة"
+    "hero": {
+      "title": "Ashkanani Sport",
+      "tagline": "Leading Athlete Management. We strive to develop sports.",
+      "cta1": "Contact Us",
+      "cta2": "Learn More",
+      "sliderImages": [
+        {
+          "url": "images/slider1.png",
+          "alt": "ASM"
         }
+      ]
+    },
+    "about": {
+      "title_part1": "About",
+      "title_part2": "The Company",
+      "p1": "Ashkanani Sport Company was established in 2019 by the Ministry of Justice and Trade in the State of Kuwait.",
+      "p2": "As the first company to manage the business of athletes including players, coaches, and administrators across all sports, we pioneered professional sports management in the region.",
+      "p3": "Today, Ashkanani Sport is the leading sports marketing and management firm in Kuwait, continually striving for excellence and the advancement of sports.",
+      "founder": {
+        "name": "Captain Ahmed Jaber Ashkanani",
+        "role": "FIFA Accredited Player & Coach Agent",
+        "photo": "/images/my-photo.jpg",
+        "credentials": [
+          "Former director for Kuwait national youth team & Al-Arabi SC (7 years).",
+          "Former administrator of the Kuwaiti national team.",
+          "Sports Advisor to the Kuwait School and Higher Education Federation.",
+          "Certified international lecturer from European Beta and the American Board.",
+          "Accredited by the Public Authority for Applied Education & FIFA.",
+          "Lecturer at the General Sports Authority in the field of educational and sports administration"
+        ]
+      }
+    },
+    "agentBenefits": {
+      "title": "Why Choose a",
+      "highlight": "Player Agent?",
+      "description": "We secure the best contracts and terms that match your talent and potential.",
+      "benefits": [
+        {
+          "icon": "FaHandshake",
+          "itemtitle": "Expert Negotiation",
+          "description": "We secure the best contracts and terms that match your talent and potential."
+        },
+        {
+          "icon": "FaShieldAlt",
+          "itemtitle": "Legal Protection",
+          "description": "Comprehensive legal support to protect your rights and interests in all contracts."
+        },
+        {
+          "icon": "FaChartLine",
+          "itemtitle": "Career Planning",
+          "description": "Strategic career development and planning for long-term success."
+        },
+        {
+          "icon": "FaGlobe",
+          "itemtitle": "Global Network",
+          "description": "Access to international clubs, scouts, and opportunities worldwide."
+        },
+        {
+          "icon": "FaMoneyBillWave",
+          "itemtitle": "Financial Management",
+          "description": "Expert financial advice and management for your earnings and investments."
+        },
+        {
+          "icon": "FaUserFriends",
+          "itemtitle": "Personal Support",
+          "description": "Dedicated support and guidance throughout your career journey."
+        }
+      ]
+    },
+    "services": {
+      "list": [
+        {
+          "icon": "FaFutbol",
+          "title": "Athlete Management",
+          "description": "Comprehensive management for athletes, both on and off the field.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaBullhorn",
+          "title": "Media & Public Relations",
+          "description": "Enhancing public image and media presence for maximum exposure.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaHandshake",
+          "title": "Sponsorships & Academies",
+          "description": "Connecting athletes with leading sponsors and academies.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaAppleAlt",
+          "title": "Nutrition Consultations",
+          "description": "Expert nutritional guidance for peak physical performance.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaGavel",
+          "title": "Legal & Contract Reading",
+          "description": "Professional legal advice and meticulous contract reviews.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaGlobe",
+          "title": "Local & International Marketing",
+          "description": "Strategic marketing campaigns to build global athlete brands.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaBrain",
+          "title": "Mental Motivation",
+          "description": "Coaching to build mental toughness and focus.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaDumbbell",
+          "title": "Personal Training",
+          "description": "Customized training programs for elite conditioning.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaCamera",
+          "title": " coming soon ",
+          "description": "Live, individual and group photography requests service for teams in all games",
+          "videoUrl": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725977/service1_ikmxlj.mov"
+        }
+      ]
+    },
+    "achievements": {
+      "list": [
+        {
+          "imageUrl": "/images/prize1.jpg"
+        },
+        {
+          "imageUrl": "/images/prize2.jpg"
+        },
+        {
+          "imageUrl": "/images/prize3.jpg"
+        }
+      ]
+    },
+    "deals": {
+      "list": [
+        {
+          "img": "/images/deal1.jpg",
+          "title": "Omar AlShaya",
+          "description": "Successfully transferred to Al-Nasr Kuwaiti Club."
+        },
+        {
+          "img": "/images/deal2.jpg",
+          "title": "saleh AlMahri",
+          "description": "Successfully transferred to Jeddah Saudi Club."
+        },
+        {
+          "img": "/images/deal3.jpg",
+          "title": "Hani ALSaqr",
+          "description": "Captain Hani Al-Saqr is the coach and technical advisor of the Moroccan Olympique Dcheira club."
+        },
+        {
+          "img": "/images/deal4.jpg",
+          "title": "Athbi Shihab",
+          "description": "Athoibi Shehab, one of our remarkable signings; he started with Al-Yarmouk, then moved to Al-Salmiya, followed by Al-Qadsia, and is a player for the Kuwait national team."
+        },
+        {
+          "img": "/images/deal5.jpg",
+          "title": "yosef majed",
+          "description": "Yousef Majed, one of our standout signings, transferred from Al-Qadsia to Al-Arabi, and is a player for the Kuwait national team."
+        },
+        {
+          "img": "/images/deal6.jpg",
+          "title": "Abdulwahab Alawadhi",
+          "description": "Abdulwahab Al-Awadhi, one of our remarkable signings, transferred from Al-Yarmouk to Al-Arabi, and is a player for the Kuwait national team."
+        },
+        {
+          "img": "/images/deal7.jpg",
+          "title": "Ali Al-Doukhi",
+          "description": "Ali Al-Doukhi, one of our standout signings, transferred from Al-Kazma to Al-Shabab, was the top scorer of the First Division League, and also played for Kuwait’s Al-Fahaheel in the Premier League."
+        },
+        {
+          "img": "/images/deal8.jpg",
+          "title": "Saad Al-Athab and Saud Al-Janai",
+          "description": "Saad Al-Athab and Saud Al-Janai, among our most distinguished signings."
+        },
+        {
+          "img": "/images/deal9.png",
+          "title": "Fahad Al-Azmi & Yousef Al-Fujaie",
+          "description": "Our players Fahad Al-Azmi, transferred from Al-Salmiya to Al-Arabi, and Yousef Al-Fujaie, joining Al-Arabi from Kazma."
+        }
+      ]
+    },
+    "gallery": {
+      "tabs": {
+        "photos": "Photos",
+        "videos": "Videos"
+      },
+      "photos": [
+        {
+          "title": "",
+          "src": "/images/photo1.jpeg"
+        },
+        {
+          "title": "",
+          "src": "/images/photo2.jpeg"
+        },
+        {
+          "title": "",
+          "src": "/images/photo3.png"
+        },
+        {
+          "title": "",
+          "src": "/images/photo4.jpeg"
+        },
+        {
+          "title": "",
+          "src": "/images/photo5.jpeg"
+        },
+        {
+          "title": "",
+          "src": "/images/photo6.jpg"
+        }
+      ],
+      "videos": [
+        {
+          "title": "Goin Us",
+          "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725812/video2_eft2ud.mp4",
+          "thumbnail": "/images/thumb1.png"
+        },
+        {
+          "title": "What is the benefit of a players agent?",
+          "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725815/video1_sfbwyt.mp4",
+          "thumbnail": "/images/thumb2.png"
+        },
+        {
+          "title": "Goin Us",
+          "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725822/video3_stwse9.mp4",
+          "thumbnail": "/images/thumb3.png"
+        },
+        {
+          "title": "Goin Us",
+          "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758727444/video4_1_xvxlzh.mp4",
+          "thumbnail": "/images/thumb4.png"
+        }
+      ]
+    },
+    "playerSigning": {
+      "title": "Player",
+      "highlight": "Signing Process",
+      "videoTitle": "Player Signing Guide",
+      "professional": {
+        "title": "Professional and amature Player & Coach",
+        "description": "Our professional and amature player & coach signing process ensures that talented athletes get the best contracts and opportunities to advance their careers.",
+        "steps": [
+          "Initial talent assessment and evaluation",
+          "Contract negotiation with clubs",
+          "Legal review and contract finalization",
+          "Official signing ceremony and media coverage",
+          "Post-signing support and career management"
+        ],
+        "icon": "/images/professional-icon.png",
+        "audiotitle": "Listen to Details",
+        "videoUrl": "videos/audio1.mp3",
+        "gallery": {
+          "title": "Amateur Players",
+          "images": [
+            "/images/professional1.jpg",
+            "/images/professional2.jpg",
+            "/images/professional3.jpg",
+            "/images/professional4.jpg",
+            "/images/professional5.jpg",
+            "/images/professional6.jpg"
+          ]
+        }
+      },
+      "amateur": {
+        "title": "Amateur Player & Coach Signing",
+        "description": "We help amateur players & coaches transition to professional levels by connecting them with the right opportunities and providing necessary guidance.",
+        "steps": [
+          "Player potential evaluation",
+          "Training and development recommendations",
+          "Connecting with academies and development programs",
+          "Trial arrangements with clubs",
+          "Contract facilitation for first professional contract"
+        ],
+        "icon": "/images/amateur-icon.png",
+        "audiotitle": "Listen to Details",
+        "videoUrl": "videos/audio2.mp3",
+        "gallery": {
+          "title": "",
+          "images": []
+        }
+      },
+      "individual": {
+        "title": "Individual Sports Players",
+        "description": "For athletes in individual sports, we provide specialized management services tailored to their unique needs and career paths.",
+        "steps": [
+          "Career planning and goal setting",
+          "Sponsorship acquisition and management",
+          "Tournament scheduling and participation",
+          "Brand development and promotion",
+          "Financial planning and contract management"
+        ],
+        "icon": "/images/individual-icon.png",
+        "audiotitle": "Listen to Details",
+        "videoUrl": "videos/audio3.mp3",
+        "gallery": {
+          "title": "Individual Sports Athletes",
+          "images": [
+            "/images/individual1.jpg",
+            "/images/individual2.jpg",
+            "/images/individual3.jpg"
+          ]
+        }
+      },
+      "cta": {
+        "title": "Ready to Join Us?",
+        "description": "If you agree to the terms and wish to join our team of professional athletes, get in touch with us now!",
+        "whatsappNumber": 96597131223,
+        "whatsappText": "Contact via WhatsApp",
+        "contactText": "Contact Form"
+      }
+    },
+    "transferMarket": {
+      "title": "Find Us on",
+      "highlight": "TransferMarket",
+      "description": "Visit our official TransferMarket profile to stay updated with our latest player transfers, market values, and industry insights.",
+      "logoUrl": "/images/transfer.png",
+      "profileUrl": "https://www.transfermarkt.us/ashkanani-sport-marketing/beraterfirma/berater/13189",
+      "buttonText": "Visit Our Profile"
+    },
+    "documents": {
+      "list": [
+        {
+          "icon": "FaFilePdf",
+          "title": "Company Portfolio 2025",
+          "fileUrl": "#"
+        },
+        {
+          "icon": "FaFileAlt",
+          "title": "Founder's CV",
+          "fileUrl": "#"
+        }
+      ]
+    },
+    "contact": {
+      "title_part1": "Get In",
+      "title_part2": "Touch",
+      "info": {
+        "address": "7WW9+FC, Ardiya, Kuwait",
+        "phone": 96597131223,
+        "email": "info@ashkananisport.com"
+      },
+      "form": {
+        "name": "Your Name",
+        "email": "Your Email",
+        "message": "Your Message",
+        "submit": "Send Message"
+      },
+      "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3479.528461938946!2d47.91852850000001!3d29.2961703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf91ffebb1dda5%3A0x2b30b824da3bcbc4!2z2YXZg9iq2Kgg2YPYp9io2KrZhiDYo9it2YXYryDYo9i02YPZhtin2YbZig!5e0!3m2!1sen!2seg!4v1758130217501!5m2!1sen!2seg"
+    },
+    "consultationBooking": {
+      "title": "Book Your Sports Consultation",
+      "description": "Book your one-hour sports consultation with Captain Ahmed Jaber Ashkanani",
+      "workingHours": "Available hours: 5-8 PM",
+      "workingDays": "Saturday - Sunday - Tuesday",
+      "services": [
+        {
+          "id": 1,
+          "title": "Technical consultation for players or coaches",
+          "price": 20,
+          "description": "Specialized technical consultation for players and coaches to improve performance"
+        },
+        {
+          "id": 2,
+          "title": "Future suggestions for players or coaches",
+          "price": 15,
+          "description": "Guidance and advice for the professional future of players and coaches"
+        },
+        {
+          "id": 3,
+          "title": "Psychological consultation for athletes",
+          "price": 10,
+          "description": "Specialized psychological support for athletes to overcome mental challenges"
+        },
+        {
+          "id": 4,
+          "title": "Consultation on opening a sports academy",
+          "price": 30,
+          "description": "Advice and guidance for creating a successful sports academy"
+        },
+        {
+          "id": 5,
+          "title": "Consultation on player agents and sports marketing",
+          "price": 30,
+          "description": "Learn everything related to player agencies and sports marketing"
+        },
+        {
+          "id": 6,
+          "title": "Administrative culture for sports administrators",
+          "price": 30,
+          "description": "Developing administrative skills for workers in the sports field"
+        },
+        {
+          "id": 7,
+          "title": "Consultation for business cooperation",
+          "price": 20,
+          "description": "Consultations on cooperation opportunities and partnerships in the sports field"
+        }
+      ],
+      "form": {
+        "name": "Full Name",
+        "phone": "Phone Number",
+        "service": "Consultation Type",
+        "date": "Date",
+        "time": "Time",
+        "submit": "send request"
+      },
+      "contact": {
+        "address": "7WW9+FC, Ardiya, Kuwait",
+        "phone": 96597131223,
+        "email": "info@ashkananisport.com",
+        "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3479.528461938946!2d47.91852850000001!3d29.2961703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf91ffebb1dda5%3A0x2b30b824da3bcbc4!2z2YXZg9iq2Kgg2YPYp9io2KrZhiDYo9it2YXYryDYo9i02YPZhtin2YbZig!5e0!3m2!1sen!2seg!4v1758130217501!5m2!1sen!2seg"
+      }
+    },
+    "advertisements": [
+      {
+        "id": 1,
+        "imageUrl": "images/ad1.jpg",
+        "linkUrl": "",
+        "altText": "",
+        "position": "middle-left",
+        "size": "large"
+      },
+      {
+        "id": 2,
+        "imageUrl": "images/ad2.jpeg",
+        "linkUrl": "",
+        "altText": "",
+        "position": "middle-left",
+        "size": "large"
+      },
+      {
+        "id": 3,
+        "imageUrl": "images/ad3.jpeg",
+        "linkUrl": "",
+        "altText": "",
+        "position": "middle-left",
+        "size": "large"
+      }
+    ],
+    "footer": {
+      "copyright": "© 2025 Ashkanani Sport Marketing. All Rights Reserved.",
+      "quickLinks": "Quick Links",
+      "socialMedia": [
+        {
+          "platform": "Twitter",
+          "icon": "FaTwitter",
+          "url": "https://twitter.com/ashkananisport"
+        },
+        {
+          "platform": "Instagram",
+          "icon": "FaInstagram",
+          "url": "https://www.instagram.com/ashkanani.sport/"
+        },
+        {
+          "platform": "LinkedIn",
+          "icon": "FaLinkedin",
+          "url": "https://linkedin.com/company/ashkananisport"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Spark Football Academy",
+          "logoUrl": "/images/partner1.jpg",
+          "url": ""
+        },
+        {
+          "name": "Rise Football Academy",
+          "logoUrl": "/images/partner2.jpg",
+          "url": ""
+        },
+        {
+          "name": "ACESPORTS FOOTBALL ACADEMY",
+          "logoUrl": "/images/partner3.jpg",
+          "url": ""
+        },
+        {
+          "name": "Star One Academy",
+          "logoUrl": "/images/partner4.jpg",
+          "url": ""
+        },
+        {
+          "name": "q8boots",
+          "logoUrl": "/images/partner5.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner6.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner7.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner8.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner9.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner10.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner11.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner12.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner13.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner14.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner15.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner16.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner17.jpg",
+          "url": ""
+        }
+      ]
     }
+  },
+  "ar": {
+    "header": {
+      "nav": {
+        "home": "الرئيسية",
+        "about": "نبذة عنا",
+        "services": "خدماتنا",
+        "achievements": "الصفقات والتكريمات",
+        "gallery": "المعرض",
+        "documents": "المستندات",
+        "contact": "احجز استشارتك",
+        "playerSigning": "توقيع اللاعبين",
+        "agentBenefits": "لماذا وكيل لاعبين"
+      },
+      "lang_toggle": "English"
+    },
+    "hero": {
+      "title": "أشكناني سبورت",
+      "tagline": "الشركة الرائدة في إدارة الرياضيين . نسعى لتطوير الرياضة.",
+      "cta1": "اتصل بنا",
+      "cta2": "اعرف المزيد",
+      "sliderImages": [
+        {
+          "url": "images/slider1.png",
+          "alt": "ASM"
+        }
+      ]
+    },
+    "about": {
+      "title_part1": "نبذة عن",
+      "title_part2": "الشركة",
+      "p1": "تم تأسيس شركة أشكناني سبورت في سنة ٢٠١٩م من وزارة العدل والتجارة في دولة الكويت.",
+      "p2": "كأول شركة تقوم بإدارة أعمال الرياضيين من لاعبين ومدربين وإداريين بجميع الرياضات، كنا روادًا في الإدارة الرياضية الاحترافية في المنطقة.",
+      "p3": "اليوم، شركة أشكناني سبورت هي الشركة الرائدة في مجال التسويق والإدارة الرياضية في دولة الكويت، ونسعى دائمًا للأفضل.",
+      "founder": {
+        "name": "كابتن أحمد جابر أشكناني",
+        "role": "وكيل أعمال لاعبين ومدربين معتمد من FIFA",
+        "photo": "/images/my-photo.jpg",
+        "credentials": [
+          "مدير سابق للمراحل السنية بمنتخب الكويت ونادي العربي الكويتي (7 سنوات).",
+          "اداري سابق بالمنتخبات الكويتية.",
+          "مستشار الألعاب الرياضية بالاتحاد الكويتي المدرسي والتعليم العالي.",
+          "محاضر دولي معتمد من البيتا الأوروبي والبورد الأمريكي.",
+          "معتمد من الهيئة العامة للتعليم التطبيقي و FIFA.",
+          "محاضر فى الهيئة العامة للرياضة فى مجال الادارة التربوية والرياضية"
+        ]
+      }
+    },
+    "agentBenefits": {
+      "title": "لماذا تختار",
+      "highlight": "وكيل لاعبين؟",
+      "description": "نؤمن أفضل العقود والشروط التي تتوافق مع موهبتك وإمكانياتك.",
+      "benefits": [
+        {
+          "icon": "FaHandshake",
+          "itemtitle": "تفاوض احترافي",
+          "description": "نؤمن أفضل العقود والشروط التي تتوافق مع موهبتك وإمكانياتك."
+        },
+        {
+          "icon": "FaShieldAlt",
+          "itemtitle": "الحماية القانونية",
+          "description": "دعم قانوني شامل لحماية حقوقك ومصالحك في جميع العقود."
+        },
+        {
+          "icon": "FaChartLine",
+          "itemtitle": "تخطيط المسيرة",
+          "description": "تطوير وتخطيط استراتيجي للمسيرة المهنية لضمان النجاح طويل الأمد."
+        },
+        {
+          "icon": "FaGlobe",
+          "itemtitle": "شبكة عالمية",
+          "description": "الوصول إلى الأندية الدولية والكشافين والفرص حول العالم."
+        },
+        {
+          "icon": "FaMoneyBillWave",
+          "itemtitle": "الإدارة المالية",
+          "description": "استشارات مالية وإدارة احترافية لأرباحك واستثماراتك."
+        },
+        {
+          "icon": "FaUserFriends",
+          "itemtitle": "دعم شخصي",
+          "description": "دعم وإرشاد مخصص طوال رحلتك المهنية."
+        }
+      ]
+    },
+    "services": {
+      "list": [
+        {
+          "icon": "FaFutbol",
+          "title": "إدارة الرياضيين",
+          "description": "إدارة شاملة للرياضيين داخل وخارج الملعب.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaBullhorn",
+          "title": "الإعلام والعلاقات العامة",
+          "description": "تحسين الصورة العامة والحضور الإعلامي لتحقيق أقصى انتشار.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaHandshake",
+          "title": "الرعاية والأكاديميات",
+          "description": "ربط الرياضيين بالرعاة والأكاديميات الرائدة.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaAppleAlt",
+          "title": "استشارات التغذية",
+          "description": "إرشادات غذائية متخصصة لتحقيق أفضل أداء بدني.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaGavel",
+          "title": "الاستشارات القانونية وقراءة العقود",
+          "description": "استشارات قانونية احترافية ومراجعة دقيقة للعقود.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaGlobe",
+          "title": "التسويق المحلي والدولي",
+          "description": "حملات تسويقية استراتيجية لبناء علامات تجارية عالمية للرياضيين.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaBrain",
+          "title": "التحفيز الذهني",
+          "description": "تدريب لبناء الصلابة الذهنية والتركيز.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaDumbbell",
+          "title": "التدريب الشخصي",
+          "description": "برامج تدريب مخصصة للوصول إلى لياقة بدنية عالية.",
+          "videoUrl": ""
+        },
+        {
+          "icon": "FaCamera",
+          "title": " coming soon ",
+          "description": "خدمه طلبات التصوير المباشر و الفردي و الجماعيه للفرق بجميع الالعاب",
+          "videoUrl": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725977/service1_ikmxlj.mov"
+        }
+      ]
+    },
+    "achievements": {
+      "list": [
+        {
+          "imageUrl": "/images/prize1.jpg"
+        },
+        {
+          "imageUrl": "/images/prize2.jpg"
+        },
+        {
+          "imageUrl": "/images/prize3.jpg"
+        }
+      ]
+    },
+    "deals": {
+      "list": [
+        {
+          "img": "/images/deal1.jpg",
+          "title": "عمر الشايع",
+          "description": "عمر الشايع الى نادي النصر الكويتي لمده موسم."
+        },
+        {
+          "img": "/images/deal2.jpg",
+          "title": "صالح عقيل",
+          "description": "صالح عقيل الى نادي جدة السعودي"
+        },
+        {
+          "img": "/images/deal3.jpg",
+          "title": "هاني الصقر",
+          "description": "الكابتن هاني الصقر مدرباً و مستشار فني لنادي اولمبيك الدشيرة المغربي."
+        },
+        {
+          "img": "/images/deal4.jpg",
+          "title": "عذبي شهاب",
+          "description": "عذبي شهاب، نجم من صفقاتنا المميزة؛ بدأ من اليرموك إلى السالمية ثم القادسية، وهو لاعب في المنتخب الكويتي الأول."
+        },
+        {
+          "img": "/images/deal5.jpg",
+          "title": "يوسف ماجد",
+          "description": "يوسف ماجد، من أبرز صفقاتنا المميزة، انتقل من القادسية إلى العربي، وهو لاعب في المنتخب الكويتي الأول."
+        },
+        {
+          "img": "/images/deal6.jpg",
+          "title": "عبد الوهاب العوضي",
+          "description": "عبدالوهاب العوضي، من أبرز صفقاتنا المميزة، انتقل من اليرموك إلى النادي العربي، وهو لاعب في المنتخب الكويتي الأول."
+        },
+        {
+          "img": "/images/deal7.jpg",
+          "title": "علي الدوخي",
+          "description": "علي الدوخي، من أبرز صفقاتنا، انتقل من كاظمة إلى الشباب، وتوج بلقب هداف دوري الدرجة الأولى، كما لعب لنادي فحيحيل الكويتي في الدوري الممتاز."
+        },
+        {
+          "img": "/images/deal8.jpg",
+          "title": "سعد العذاب وسعود الجناعي",
+          "description": "سعد العذاب وسعود الجناعي، من أميز صفقاتنا المميزة."
+        },
+        {
+          "img": "/images/deal9.png",
+          "title": "فهد العازمي و يوسف الفجي",
+          "description": "لاعبانا فهد العازمي المنتقل من نادي السالمية إلى العربي، و يوسف الفجي القادم من كاظمة إلى النادي العربي."
+        }
+      ]
+    },
+    "gallery": {
+      "tabs": {
+        "photos": "الصور",
+        "videos": "الفيديو"
+      },
+      "photos": [
+        {
+          "title": "",
+          "src": "/images/photo1.jpeg"
+        },
+        {
+          "title": "",
+          "src": "/images/photo2.jpeg"
+        },
+        {
+          "title": "",
+          "src": "/images/photo3.png"
+        },
+        {
+          "title": "",
+          "src": "/images/photo4.jpeg"
+        },
+        {
+          "title": "",
+          "src": "/images/photo5.jpeg"
+        },
+        {
+          "title": "",
+          "src": "/images/photo6.jpg"
+        }
+      ],
+      "videos": [
+        {
+          "title": "سارع بالانضمام",
+          "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725812/video2_eft2ud.mp4",
+          "thumbnail": "/images/thumb1.png"
+        },
+        {
+          "title": "ما فائدة وكيل اللاعبين ؟",
+          "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725815/video1_sfbwyt.mp4",
+          "thumbnail": "/images/thumb2.png"
+        },
+        {
+          "title": "سارع بالانضمام",
+          "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725822/video3_stwse9.mp4",
+          "thumbnail": "/images/thumb3.png"
+        },
+        {
+          "title": "سارع بالانضمام",
+          "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758727444/video4_1_xvxlzh.mp4",
+          "thumbnail": "/images/thumb4.png"
+        }
+      ]
+    },
+    "playerSigning": {
+      "title": "عملية",
+      "highlight": "توقيع اللاعبين",
+      "videoTitle": "دليل توقيع اللاعبين",
+      "professional": {
+        "title": " اللاعب والمدرب المحترف او الهاوي",
+        "description": "عملية توقيع اللاعبين والمدربين المحترفين والهواة لدينا تضمن حصول اللاعبين الموهوبين على أفضل العقود والفرص لتطوير مسيرتهم المهنية.",
+        "steps": [
+          "التقييم المبدئي للموهبة والقدرات",
+          "التفاوض على العقود مع الأندية",
+          "المراجعة القانونية وإبرام العقد",
+          "حفلة التوقيع الرسمية والتغطية الإعلامية",
+          "الدعم بعد التوقيع وإدارة المسيرة المهنية"
+        ],
+        "icon": "/images/professional-icon.png",
+        "audiotitle": "استمع للتفاصيل",
+        "videoUrl": "videos/audio1.mp3",
+        "gallery": {
+          "title": "لاعبون ومدربون محترفون",
+          "images": [
+            "/images/professional1.jpg",
+            "/images/professional2.jpg",
+            "/images/professional3.jpg",
+            "/images/professional4.jpg",
+            "/images/professional5.jpg",
+            "/images/professional6.jpg"
+          ]
+        }
+      },
+      "amateur": {
+        "title": "توقيع اللاعب والمدرب الهاوي",
+        "description": "نساعد اللاعبين و المدربين الهواة في الانتقال إلى المستويات الاحترافية من خلال ربطهم بالفرص المناسبة وتقديم الإرشادات اللازمة.",
+        "steps": [
+          "تقييم إمكانيات اللاعب",
+          "توصيات التدريب والتطوير",
+          "الربط بالأكاديميات وبرامج التطوير",
+          "ترتيب التجارب مع الأندية",
+          "تسهيل توقيع أول عقد احترافي"
+        ],
+        "icon": "/images/amateur-icon.png",
+        "audiotitle": "استمع للتفاصيل",
+        "videoUrl": "videos/audio2.mp3",
+        "gallery": {
+          "title": "",
+          "images": []
+        }
+      },
+      "individual": {
+        "title": "لاعبو الألعاب الفردية",
+        "description": "للرياضيين في الألعاب الفردية، نقدم خدمات إدارة متخصصة مصممة خصيصًا لاحتياجاتهم الفريدة ومساراتهم المهنية.",
+        "steps": [
+          "تخطيط المسيرة المهنية وتحديد الأهداف",
+          "الحصول على الرعايات وإدارتها",
+          "جدولة البطولات والمشاركة",
+          "تطوير العلامة التجارية والترويج",
+          "التخطيط المالي وإدارة العقود"
+        ],
+        "icon": "/images/individual-icon.png",
+        "audiotitle": "استمع للتفاصيل",
+        "videoUrl": "videos/audio3.mp3",
+        "gallery": {
+          "title": "رياضيون في الألعاب الفردية",
+          "images": [
+            "/images/individual1.jpg",
+            "/images/individual2.jpg",
+            "/images/individual3.jpg"
+          ]
+        }
+      },
+      "cta": {
+        "title": "هل أنت مستعد للانضمام إلينا؟",
+        "description": "إذا كنت موافقًا على الشروط وتود الانضمام إلى فريقنا من الرياضيين المحترفين، تواصل معنا الآن!",
+        "whatsappNumber": 96597131223,
+        "whatsappText": "تواصل عبر واتساب",
+        "contactText": "نموذج التواصل"
+      }
+    },
+    "transferMarket": {
+      "title": "جدنا على",
+      "highlight": "ترانسفير ماركت",
+      "description": "زر ملفنا الرسمي على ترانسفير ماركت لمتابعة أحدث انتقالات لاعبينا وقيمتهم السوقية وأخبار السوق.",
+      "logoUrl": "/images/transfer.png",
+      "profileUrl": "https://www.transfermarkt.us/ashkanani-sport-marketing/beraterfirma/berater/13189",
+      "buttonText": "زر ملفنا الرسمي"
+    },
+    "documents": {
+      "list": [
+        {
+          "icon": "FaFilePdf",
+          "title": "ملف الشركة التعريفي 2025",
+          "fileUrl": "#"
+        },
+        {
+          "icon": "FaFileAlt",
+          "title": "السيرة الذاتية للمؤسس",
+          "fileUrl": "#"
+        }
+      ]
+    },
+    "contact": {
+      "title_part1": "تواصل",
+      "title_part2": "معنا",
+      "info": {
+        "address": "العارضية , الكويت",
+        "phone": 96597131223,
+        "email": "info@ashkananisport.com"
+      },
+      "form": {
+        "name": "الاسم الكامل",
+        "email": "البريد الإلكتروني",
+        "message": "رسالتك",
+        "submit": "إرسال الرسالة"
+      },
+      "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3479.528461938946!2d47.91852850000001!3d29.2961703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf91ffebb1dda5%3A0x2b30b824da3bcbc4!2z2YXZg9iq2Kgg2YPYp9io2KrZhiDYo9it2YXYryDYo9i02YPZhtin2YbZig!5e0!3m2!1sen!2seg!4v1758130217501!5m2!1sen!2seg"
+    },
+    "consultationBooking": {
+      "title": "احجز استشارتك الرياضية",
+      "description": "احجز استشارتك الرياضية لمدة ساعة مع الكابتن أحمد جابر أشكناني",
+      "workingHours": "٥-٨ الساعات المتوفره",
+      "workingDays": "من سبت - الاحد - الثلاثاء",
+      "services": [
+        {
+          "id": 1,
+          "title": "استشاره فنية للاعبين او المدربين",
+          "price": 20,
+          "description": "استشارة فنية متخصصة للاعبين والمدربين لتحسين الأداء"
+        },
+        {
+          "id": 2,
+          "title": "اقتراحات مستقبلية للاعب او المدرب",
+          "price": 15,
+          "description": "توجيهات ونصائح للمستقبل المهني للاعبين والمدربين"
+        },
+        {
+          "id": 3,
+          "title": "استشاره للأمور نفسيه للشخص الرياضي",
+          "price": 10,
+          "description": "دعم نفسي متخصص للرياضيين للتغلب على التحديات النفسية"
+        },
+        {
+          "id": 4,
+          "title": "استشاره كيفيه أفتتاح أكادمية رياضية",
+          "price": 30,
+          "description": "نصائح وتوجيهات لإنشاء أكاديمية رياضية ناجحة"
+        },
+        {
+          "id": 5,
+          "title": "استشاره عن وكلاء اللاعبين و التسويق الرياضي",
+          "price": 30,
+          "description": "معرفة كل ما يتعلق بوكالات اللاعبين والتسويق الرياضي"
+        },
+        {
+          "id": 6,
+          "title": "الثقافه الإداريه للإداري الرياضي",
+          "price": 30,
+          "description": "تطوير المهارات الإدارية للعاملين في المجال الرياضي"
+        },
+        {
+          "id": 7,
+          "title": "استشاره للتعاون عمل",
+          "price": 20,
+          "description": "استشارات حول فرص التعاون والشراكات في المجال الرياضي"
+        }
+      ],
+      "form": {
+        "name": "الاسم الكامل",
+        "phone": "رقم الهاتف",
+        "service": "نوع الاستشارة",
+        "date": "التاريخ",
+        "time": "الوقت",
+        "submit": "إرسال الطلب"
+      },
+      "contact": {
+        "address": "العارضية , الكويت",
+        "phone": 96597131223,
+        "email": "info@ashkananisport.com",
+        "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3479.528461938946!2d47.91852850000001!3d29.2961703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf91ffebb1dda5%3A0x2b30b824da3bcbc4!2z2YXZg9iq2Kgg2YPYp9io2KrZhiDYo9it2YXYryDYo9i02YPZhtin2YbZig!5e0!3m2!1sen!2seg!4v1758130217501!5m2!1sen!2seg"
+      }
+    },
+    "advertisements": [
+      {
+        "id": 1,
+        "imageUrl": "images/ad1.jpg",
+        "linkUrl": "",
+        "altText": "",
+        "position": "middle-left",
+        "size": "large"
+      },
+      {
+        "id": 2,
+        "imageUrl": "images/ad2.jpeg",
+        "linkUrl": "",
+        "altText": "",
+        "position": "middle-left",
+        "size": "large"
+      },
+      {
+        "id": 3,
+        "imageUrl": "images/ad3.jpeg",
+        "linkUrl": "",
+        "altText": "",
+        "position": "middle-left",
+        "size": "large"
+      }
+    ],
+    "footer": {
+      "copyright": "© 2025 شركة أشكناني للتسويق الرياضي. جميع الحقوق محفوظة.",
+      "quickLinks": "روابط سريعة",
+      "socialMedia": [
+        {
+          "platform": "Twitter",
+          "icon": "FaTwitter",
+          "url": "https://twitter.com/ashkananisport"
+        },
+        {
+          "platform": "Instagram",
+          "icon": "FaInstagram",
+          "url": "https://www.instagram.com/ashkanani.sport/"
+        },
+        {
+          "platform": "LinkedIn",
+          "icon": "FaLinkedin",
+          "url": "https://linkedin.com/company/ashkananisport"
+        }
+      ],
+      "partners": [
+        {
+          "name": "أكاديمية سبارك لكرة القدم",
+          "logoUrl": "/images/partner1.jpg",
+          "url": ""
+        },
+        {
+          "name": "اكاديمية رايز لكرة القدم",
+          "logoUrl": "/images/partner2.jpg",
+          "url": ""
+        },
+        {
+          "name": "اكاديمية ACE لكرة القدم",
+          "logoUrl": "/images/partner3.jpg",
+          "url": ""
+        },
+        {
+          "name": "اكاديمية ستار 1",
+          "logoUrl": "/images/partner4.jpg",
+          "url": ""
+        },
+        {
+          "name": "q8boots",
+          "logoUrl": "/images/partner5.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner6.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner7.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner8.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner9.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner10.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner11.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner12.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner13.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner14.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner15.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner16.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner17.jpg",
+          "url": ""
+        }
+      ]
+    }
+  }
 }

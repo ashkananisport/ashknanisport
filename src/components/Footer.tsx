@@ -57,7 +57,6 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
         { href: '#agent-benefits', text: content.nav.agentBenefits },
         { href: '#services', text: content.nav.services },
         { href: '#achievements', text: content.nav.achievements },
-        { href: '#deals', text: content.nav.deals },
         { href: '#gallery', text: content.nav.gallery },
         { href: '#player-signing', text: content.nav.playerSigning },
         { href: '#documents', text: content.nav.documents },

@@ -20,6 +20,16 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
     index: number;
     total: number;
   } | null>(null);
+  
+useEffect(() => {
+  const handler = (e: any) => {
+    if (e.detail.sectionId === 'player-signing') {
+      setActiveTab(e.detail.tab);
+    }
+  };
+  window.addEventListener('switchTab', handler);
+  return () => window.removeEventListener('switchTab', handler);
+}, []);
 
   // تحديد المرجع المناسب بناءً على التبويب النشط
   const getCurrentAudioRef = () => {
@@ -137,7 +147,7 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
       total: gallery.length
     });
   };
-
+  
   return (
     <section className="section player-signing" id="player-signing">
       <div className="container">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Achievements = ({ content, language }) => {
-    const [isEnlarged, setIsEnlarged] = useState(false);
+    const [isEnlarged, setIsEnlarged] =useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     // جملة واحدة ثابتة بناءً على اللغة
@@ -10,8 +10,8 @@ const Achievements = ({ content, language }) => {
         ? "Ashkanani Sports Company honors the outstanding talents of young age groups for coaches and players"
         : "شركة أشكناني سبورت تقوم بتكريم أبرز مواهب المراحل السنية للمدربين واللاعبين";
 
-    const handleImageClick = (index) => {
-        setCurrentImageIndex(index);
+    const handleButtonClick = () => {
+        setCurrentImageIndex(0);
         setIsEnlarged(true);
         // منع التمرير عند فتح التكبير
         document.body.style.overflow = 'hidden';
@@ -36,22 +36,18 @@ const Achievements = ({ content, language }) => {
             <section id="achievements" className="section achievements-section">
                 <div className="container">
                     <h2 className="section-title">
-                        {language === 'en' ? 'Awards & Achievements' : 'الجوائز والإنجازات'}
+                        {language === 'en' ? 'Awards & Achievements' : 'الجوائز والتكريمات'}
                     </h2>
                     <p className="section-subtitle">{description}</p>
-                    <div className="achievements-grid">
-                        {content.list.slice(0, 3).map((achievement, index) => (
-                            <div key={index} className="achievement-card">
-                                <div className="card-image-container">
-                                    <img 
-                                        src={achievement.imageUrl} 
-                                        alt={`Achievement ${index + 1}`} 
-                                        onClick={() => handleImageClick(index)}
-                                        className="card-image"
-                                    />
-                                </div>
-                            </div>
-                        ))}
+                    
+                    {/* زر بدلاً من الصور */}
+                    <div className="achievements-button-container">
+                        <button 
+                            className="achievements-view-button"
+                            onClick={handleButtonClick}
+                        >
+                            {language === 'en' ? 'View Honors' : 'شاهد التكريمات'}
+                        </button>
                     </div>
                 </div>
             </section>
@@ -63,7 +59,7 @@ const Achievements = ({ content, language }) => {
                         <button 
                             className="deals-enlarged-close"
                             onClick={handleCloseEnlarged}
-                            aria-label="إغلاق"
+                            aria-label={language === 'en' ? "Close" : "إغلاق"}
                         >
                             <FaTimes />
                         </button>
@@ -87,9 +83,8 @@ const Achievements = ({ content, language }) => {
                                 <button 
                                     className="deals-enlarged-nav deals-enlarged-prev"
                                     onClick={handlePrevImage}
-                                    aria-label="السابق"
+                                    aria-label={language === 'en' ? "Previous" : "السابق"}
                                 >
-                                    
                                     <FaChevronRight />
                                 </button>
                                 
@@ -100,7 +95,7 @@ const Achievements = ({ content, language }) => {
                                 <button 
                                     className="deals-enlarged-nav deals-enlarged-next"
                                     onClick={handleNextImage}
-                                    aria-label="التالي"
+                                    aria-label={language === 'en' ? "Next" : "التالي"}
                                 >
                                     <FaChevronLeft />
                                 </button>

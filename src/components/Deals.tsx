@@ -14,8 +14,8 @@ const Deals = ({ content, language }) => {
         ? 'We have approximately 177 deals since the company\'s establishment in all countries'
         : 'نمتلك ما يقارب 177 صفقة منذ انشاء الشركة بجميع الدول';
 
-    const handleImageClick = (index) => {
-        setCurrentImageIndex(index);
+    const handleButtonClick = () => {
+        setCurrentImageIndex(0);
         setIsEnlarged(true);
         // منع التمرير عند فتح التكبير
         document.body.style.overflow = 'hidden';
@@ -42,21 +42,15 @@ const Deals = ({ content, language }) => {
                     <h2 className="section-title">{titlePart1} <span>{titlePart2}</span></h2>
                     {/* إضافة السطر الجديد تحت العنوان */}
                     <p className="section-subtitle">{subtitleText}</p>
-                    <div className="grid-container">
-                        {content.list.map((deal, index) => (
-                            <div key={index} className="card">
-                                <div className="card-image-container">
-                                    <img 
-                                        src={deal.img} 
-                                        alt={deal.title} 
-                                        onClick={() => handleImageClick(index)}
-                                        className="card-image"
-                                    />
-                                </div>
-                                <h3>{deal.title}</h3>
-                                <p>{deal.description}</p>
-                            </div>
-                        ))}
+                    
+                    {/* زر بدلاً من الصور */}
+                    <div className="deals-button-container">
+                        <button 
+                            className="deals-view-button"
+                            onClick={handleButtonClick}
+                        >
+                            {language === 'en' ? 'View Best Deals' : 'شاهد ابرز الصفقات'}
+                        </button>
                     </div>
                 </div>
             </section>
@@ -68,7 +62,7 @@ const Deals = ({ content, language }) => {
                         <button 
                             className="deals-enlarged-close"
                             onClick={handleCloseEnlarged}
-                            aria-label="إغلاق"
+                            aria-label={language === 'en' ? "Close" : "إغلاق"}
                         >
                             <FaTimes />
                         </button>
@@ -86,10 +80,10 @@ const Deals = ({ content, language }) => {
                         
                         {content.list.length > 1 && (
                             <div className="deals-enlarged-controls">
-                                 <button 
+                                <button 
                                     className="deals-enlarged-nav deals-enlarged-next"
                                     onClick={handleNextImage}
-                                    aria-label="التالي"
+                                    aria-label={language === 'en' ? "Next" : "التالي"}
                                 >
                                     <FaChevronRight />
                                 </button>
@@ -97,14 +91,13 @@ const Deals = ({ content, language }) => {
                                 <div className="deals-enlarged-counter">
                                     {currentImageIndex + 1} / {content.list.length}
                                 </div>
-                                  <button 
+                                <button 
                                     className="deals-enlarged-nav deals-enlarged-prev"
                                     onClick={handlePrevImage}
-                                    aria-label="السابق"
+                                    aria-label={language === 'en' ? "Previous" : "السابق"}
                                 >
                                     <FaChevronLeft />
                                 </button>
-                               
                             </div>
                         )}
                     </div>

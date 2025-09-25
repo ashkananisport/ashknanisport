@@ -19,90 +19,32 @@ import WhatsAppButton from './components/WhatsAppButton';
 import { Language, AppContent, LanguageContent } from './types';
 import './styles/index.css'; 
 
-// ثوابت للتخزين المؤقت
-const CACHE_KEY = 'ashkanani_data';
-const CACHE_DURATION = 1; // 30 دقيقة
-
 function App() {
     const [language, setLanguage] = useState<Language>('ar');
     const [content, setContent] = useState<AppContent | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    // دالة للتحقق من صلاحية التخزين المؤقت
-    const isCacheValid = useCallback((cachedData: any) => {
-        return cachedData && cachedData.timestamp && 
-               (Date.now() - cachedData.timestamp < CACHE_DURATION);
-    }, []);
-
-    // دالة لجلب البيانات مع التخزين المؤقت
+    // دالة لجلب البيانات من الملف المحلي
     const fetchData = useCallback(async () => {
         setLoading(true);
         
         try {
-            // التحقق من وجود بيانات في التخزين المؤقت
-            const cachedData = localStorage.getItem(CACHE_KEY);
-            
-            if (cachedData) {
-                const parsedData = JSON.parse(cachedData);
-                
-                if (isCacheValid(parsedData)) {
-                    console.log('Using cached data');
-                    setContent(parsedData.data);
-                    setLoading(false);
-                    return;
-                }
-            }
-            
-            // جلب البيانات من الخادم
-            console.log('Fetching fresh data');
-            const response = await fetch('https://script.google.com/macros/s/AKfycbzJH4yEjichjVOamFkiAwnxTVpSblF54AA-BIe9sAT62Jk-baW0z4GxwnGxfpd5HYj9/exec');
+            console.log('Fetching data from local file');
+            const response = await fetch('/company.json');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
             const data: AppContent = await response.json();
-            
-            // تخزين البيانات في localStorage
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-                data,
-                timestamp: Date.now()
-            }));
-            
             setContent(data);
         } catch (err) {
             console.error("Failed to load company data:", err);
             setError(err instanceof Error ? err.message : 'Unknown error');
-            
-            // محاولة استخدام البيانات المخزنة حتى لو منتهية الصلاحية
-            const cachedData = localStorage.getItem(CACHE_KEY);
-            if (cachedData) {
-                const parsedData = JSON.parse(cachedData);
-                setContent(parsedData.data);
-                setError(null);
-            }
         } finally {
             setLoading(false);
         }
-    }, [isCacheValid]);
-
-    // تحديث البيانات في الخلفية كل 5 دقائق
-    useEffect(() => {
-        const interval = setInterval(() => {
-            fetch('https://script.google.com/macros/s/AKfycbwBOglUo6_OoahLXIKQXu2YTnQB-Qn4jjufHepLfl7mu1e-XjPy66JCarKsNXezOGDK/exec')
-                .then(response => response.json())
-                .then(data => {
-                    localStorage.setItem(CACHE_KEY, JSON.stringify({
-                        data,
-                        timestamp: Date.now()
-                    }));
-                    console.log('Background data refresh completed');
-                })
-                .catch(err => console.log('Background refresh failed:', err));
-        }, 5 * 60 * 1000); // كل 5 دقائق
-        
-        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
@@ -165,14 +107,23 @@ function App() {
                 language={language}
                 toggleLanguage={toggleLanguage}
             />
-           <main>
+            <main>
                 <Hero content={currentContent.hero} />
                 <About content={currentContent.about} />
                 <AgentBenefits content={currentContent.agentBenefits} />
                 <Services content={currentContent.services} language={language} /> 
-                <Achievements content={currentContent.achievements} language={language} />
-                <Deals content={currentContent.deals} language={language} />
-                <Gallery content={currentContent.gallery}  language={language}/>
+                
+                {/* حاوية الأقسام الجانبية (الإنجازات والعقود فقط) */}
+                <div className="sections-grid-container">
+                    <div className="sections-grid">
+                        <Deals content={currentContent.deals} language={language} />
+                        <Achievements content={currentContent.achievements} language={language} />
+                    </div>
+                </div>
+                
+                {/* معرض الصور منفصل تحت الأقسام الجانبية */}
+                <Gallery content={currentContent.gallery} language={language} />
+                
                 <PlayerSigning content={currentContent.playerSigning} />
                 <ConsultationBooking content={currentContent.consultationBooking} language={language} />
             </main>

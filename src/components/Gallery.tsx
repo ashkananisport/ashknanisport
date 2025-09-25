@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect  } from 'react';
 import { FaPlay, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 
 const Gallery = ({ content, language }) => {
@@ -7,6 +7,15 @@ const Gallery = ({ content, language }) => {
 
     const openModal = (type, index) => setModalItem({ isOpen: true, type, index });
     const closeModal = () => setModalItem({ isOpen: false, type: null, index: -1 });
+    useEffect(() => {
+        const handler = (e: any) => {
+            if (e.detail.sectionId === 'gallery') {
+            setActiveTab(e.detail.tab);
+            }
+        };
+        window.addEventListener('switchTab', handler);
+        return () => window.removeEventListener('switchTab', handler);
+        }, []);
 
     const handleNav = (direction) => {
         const items = content[activeTab];
@@ -15,7 +24,7 @@ const Gallery = ({ content, language }) => {
         if (newIndex >= items.length) newIndex = 0;
         setModalItem({ ...modalItem, index: newIndex });
     };
-
+    
     const currentItems = content[activeTab];
     const currentModalData = modalItem.isOpen ? content[modalItem.type][modalItem.index] : null;
 
