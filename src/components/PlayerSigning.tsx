@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PlayerSigningContent } from '../types';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 interface PlayerSigningProps {
   content: PlayerSigningContent;
@@ -367,7 +368,7 @@ useEffect(() => {
                 }}
                 aria-label="الصورة السابقة"
               >
-                →
+                {content.language === 'en' ? <FaChevronLeft /> : <FaChevronRight />}
               </button>
               
               <div className="deals-enlarged-counter">
@@ -382,9 +383,10 @@ useEffect(() => {
                 }}
                 aria-label="الصورة التالية"
               >
-                ←
+                {content.language === 'en' ? <FaChevronRight /> : <FaChevronLeft />}
               </button>
             </div>
+
           </div>
         </div>
       )}

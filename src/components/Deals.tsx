@@ -79,27 +79,29 @@ const Deals = ({ content, language }) => {
                         </div>
                         
                         {content.list.length > 1 && (
-                            <div className="deals-enlarged-controls">
-                                <button 
-                                    className="deals-enlarged-nav deals-enlarged-next"
-                                    onClick={handleNextImage}
-                                    aria-label={language === 'en' ? "Next" : "التالي"}
-                                >
-                                    <FaChevronRight />
-                                </button>
-                                
-                                <div className="deals-enlarged-counter">
-                                    {currentImageIndex + 1} / {content.list.length}
-                                </div>
-                                <button 
-                                    className="deals-enlarged-nav deals-enlarged-prev"
-                                    onClick={handlePrevImage}
-                                    aria-label={language === 'en' ? "Previous" : "السابق"}
-                                >
-                                    <FaChevronLeft />
-                                </button>
+                        <div className="deals-enlarged-controls">
+                            <button 
+                            className="deals-enlarged-nav deals-enlarged-prev"
+                            onClick={handlePrevImage}
+                            aria-label={language === 'en' ? "Previous" : "السابق"}
+                            >
+                            {language === 'en' ? <FaChevronLeft /> : <FaChevronRight />}
+                            </button>
+
+                            <div className="deals-enlarged-counter">
+                            {currentImageIndex + 1} / {content.list.length}
                             </div>
+
+                            <button 
+                            className="deals-enlarged-nav deals-enlarged-next"
+                            onClick={handleNextImage}
+                            aria-label={language === 'en' ? "Next" : "التالي"}
+                            >
+                            {language === 'en' ? <FaChevronRight /> : <FaChevronLeft />}
+                            </button>
+                        </div>
                         )}
+
                     </div>
                 </div>
             )}

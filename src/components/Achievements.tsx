@@ -81,26 +81,27 @@ const Achievements = ({ content, language }) => {
                         {content.list.length > 1 && (
                             <div className="deals-enlarged-controls">
                                 <button 
-                                    className="deals-enlarged-nav deals-enlarged-prev"
-                                    onClick={handlePrevImage}
-                                    aria-label={language === 'en' ? "Previous" : "السابق"}
+                                className="deals-enlarged-nav deals-enlarged-prev"
+                                onClick={handlePrevImage}
+                                aria-label={language === 'en' ? "Previous" : "السابق"}
                                 >
-                                    <FaChevronRight />
+                                {language === 'en' ? <FaChevronLeft /> : <FaChevronRight />}
                                 </button>
                                 
                                 <div className="deals-enlarged-counter">
-                                    {currentImageIndex + 1} / {content.list.length}
+                                {currentImageIndex + 1} / {content.list.length}
                                 </div>
                                 
                                 <button 
-                                    className="deals-enlarged-nav deals-enlarged-next"
-                                    onClick={handleNextImage}
-                                    aria-label={language === 'en' ? "Next" : "التالي"}
+                                className="deals-enlarged-nav deals-enlarged-next"
+                                onClick={handleNextImage}
+                                aria-label={language === 'en' ? "Next" : "التالي"}
                                 >
-                                    <FaChevronLeft />
+                                {language === 'en' ? <FaChevronRight /> : <FaChevronLeft />}
                                 </button>
                             </div>
-                        )}
+                            )}
+
                     </div>
                 </div>
             )}
