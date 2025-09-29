@@ -9,7 +9,7 @@
         "gallery": "Gallery",
         "documents": "Documents",
         "contact": "Book Consultaion",
-        "playerSigning": "Signing",
+        "playerSigning": "Signing Process",
         "agentBenefits": "Why Agent"
       },
       "lang_toggle": "العربية"
@@ -136,7 +136,7 @@
         {
           "icon": "FaCamera",
           "title": " coming soon ",
-          "description": "Live, individual and group photography requests service for teams in all games",
+          "description": "Live, individual, and team photography services for all sports (using advanced AI photography technology).",
           "videoUrl": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725977/service1_ikmxlj.mov"
         }
       ]
@@ -296,14 +296,15 @@
         "audiotitle": "Listen to Details",
         "videoUrl": "videos/audio1.mp3",
         "gallery": {
-          "title": "Amateur Players",
+          "title": "Professional Players & Coaches",
           "images": [
             "/images/professional1.jpg",
             "/images/professional2.jpg",
             "/images/professional3.jpg",
             "/images/professional4.jpg",
             "/images/professional5.jpg",
-            "/images/professional6.jpg"
+            "/images/professional6.jpg",
+            "/images/professional7.jpg"
           ]
         }
       },
@@ -377,6 +378,237 @@
         }
       ]
     },
+    "ashkaniChampionship": {
+      "title": "Ashkani Championship",
+      "highlight": "2024/2025",
+      "description": "Explore the highlights of our prestigious championship events.",
+      "tabs": {
+        "2024": "Championship 2024",
+        "2025": "Championship 2025"
+      },
+      "media": {
+        "2024": [
+          {
+            "type": "video",
+            "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1759000842/champ1_rp5vxs.mp4",
+            "title": "Championship Video",
+            "thumbnail": "/images/champ-thumb1.jpg"
+          },
+          {
+            "type": "image",
+            "src": "images/champ1.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ2.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ3.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ4.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ5.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ6.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ7.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ8.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ9.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ10.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ11.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ12.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ13.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ14.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ15.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ16.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ17.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ19.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          }
+        ],
+        "2025": [
+          {
+            "type": "video",
+            "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1759000873/champ2_i8afqa.mp4",
+            "title": "Championship Video",
+            "thumbnail": "/images/champ-thumb2.jpg"
+          },
+          {
+            "type": "image",
+            "src": "images/champ20251.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20252.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20253.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20254.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20255.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20256.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20257.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20258.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20259.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202510.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202511.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202512.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202513.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202514.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202515.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202516.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          }
+        ]
+      }
+    },
     "contact": {
       "title_part1": "Get In",
       "title_part2": "Touch",
@@ -437,9 +669,9 @@
         },
         {
           "id": 7,
-          "title": "Consultation for business cooperation",
-          "price": 20,
-          "description": "Consultations on cooperation opportunities and partnerships in the sports field"
+          "title": "Booking for signing or attending an official meeting for players and coaches who have joined us.",
+          "price": 0,
+          "description": "A dedicated service for players and coaches who have joined our company, allowing them to book official appointments for contract signing or organizational meetings with our team to ensure a professional start and successful collaboration."
         }
       ],
       "form": {
@@ -501,6 +733,11 @@
           "platform": "LinkedIn",
           "icon": "FaLinkedin",
           "url": "https://linkedin.com/company/ashkananisport"
+        },
+        {
+          "platform": "Youtube",
+          "icon": "FaYoutube",
+          "url": "https://www.youtube.com/@ashkananisport?si=442wNw7MbvuuLG22"
         }
       ],
       "partners": [
@@ -588,6 +825,21 @@
           "name": "",
           "logoUrl": "/images/partner17.jpg",
           "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner18.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner19.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner20.jpg",
+          "url": ""
         }
       ]
     }
@@ -602,8 +854,8 @@
         "gallery": "المعرض",
         "documents": "المستندات",
         "contact": "احجز استشارتك",
-        "playerSigning": "توقيع اللاعبين",
-        "agentBenefits": "لماذا وكيل لاعبين"
+        "playerSigning": "طريقة توقيع اللاعبين",
+        "agentBenefits": ""
       },
       "lang_toggle": "English"
     },
@@ -729,7 +981,7 @@
         {
           "icon": "FaCamera",
           "title": " coming soon ",
-          "description": "خدمه طلبات التصوير المباشر و الفردي و الجماعيه للفرق بجميع الالعاب",
+          "description": "خدمه طلبات التصوير المباشر و الفردي و الجماعيه للفرق بجميع الالعاب (التصوير بخاصية الذكاء الاصطناعي الحديثة)",
           "videoUrl": "https://res.cloudinary.com/dl5duvmve/video/upload/v1758725977/service1_ikmxlj.mov"
         }
       ]
@@ -872,12 +1124,12 @@
       ]
     },
     "playerSigning": {
-      "title": "عملية",
+      "title": "طريقة",
       "highlight": "توقيع اللاعبين",
       "videoTitle": "دليل توقيع اللاعبين",
       "professional": {
         "title": " اللاعب والمدرب المحترف او الهاوي",
-        "description": "عملية توقيع اللاعبين والمدربين المحترفين والهواة لدينا تضمن حصول اللاعبين الموهوبين على أفضل العقود والفرص لتطوير مسيرتهم المهنية.",
+        "description": "طريقة توقيع اللاعبين والمدربين المحترفين والهواة لدينا تضمن حصول اللاعبين الموهوبين على أفضل العقود والفرص لتطوير مسيرتهم المهنية.",
         "steps": [
           "التقييم المبدئي للموهبة والقدرات",
           "التفاوض على العقود مع الأندية",
@@ -896,7 +1148,8 @@
             "/images/professional3.jpg",
             "/images/professional4.jpg",
             "/images/professional5.jpg",
-            "/images/professional6.jpg"
+            "/images/professional6.jpg",
+            "/images/professional7.jpg"
           ]
         }
       },
@@ -970,6 +1223,237 @@
         }
       ]
     },
+    "ashkaniChampionship": {
+      "title": "بطولة اشكناني",
+      "highlight": "2024/2025",
+      "description": "استكشف أبرز لحظات بطولتنا المرموقة.",
+      "tabs": {
+        "2024": "بطولة 2024",
+        "2025": "بطولة 2025"
+      },
+      "media": {
+        "2024": [
+          {
+            "type": "video",
+            "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1759000842/champ1_rp5vxs.mp4",
+            "title": "فيديو البطولة",
+            "thumbnail": "/images/champ-thumb1.jpg"
+          },
+          {
+            "type": "image",
+            "src": "images/champ1.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ2.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ3.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ4.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ5.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ6.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ7.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ8.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ9.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ10.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ11.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ12.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ13.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ14.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ15.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ16.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ17.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ19.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          }
+        ],
+        "2025": [
+          {
+            "type": "video",
+            "src": "https://res.cloudinary.com/dl5duvmve/video/upload/v1759000873/champ2_i8afqa.mp4",
+            "title": "فيديو البطولة",
+            "thumbnail": "/images/champ-thumb2.jpg"
+          },
+          {
+            "type": "image",
+            "src": "images/champ20251.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20252.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20253.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20254.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20255.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20256.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20257.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20258.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ20259.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202510.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202511.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202512.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202513.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202514.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202515.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
+            "src": "images/champ202516.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          }
+        ]
+      }
+    },
     "contact": {
       "title_part1": "تواصل",
       "title_part2": "معنا",
@@ -1012,7 +1496,7 @@
         },
         {
           "id": 4,
-          "title": "استشاره كيفيه أفتتاح أكادمية رياضية",
+          "title": "استشاره كيفيه أفتتاح أكاديمية رياضية",
           "price": 30,
           "description": "نصائح وتوجيهات لإنشاء أكاديمية رياضية ناجحة"
         },
@@ -1030,9 +1514,9 @@
         },
         {
           "id": 7,
-          "title": "استشاره للتعاون عمل",
-          "price": 20,
-          "description": "استشارات حول فرص التعاون والشراكات في المجال الرياضي"
+          "title": "الحجز للتوقيع أو لحضور اجتماع رسمي للاعبين والمدربين المنضمين إلينا",
+          "price": 0,
+          "description": "خدمة مخصّصة للاعبين والمدربين المنضمين إلى شركتنا، تتيح لهم حجز موعد رسمي لتوقيع العقود أو حضور الاجتماعات التنظيمية مع فريقنا، لضمان بداية احترافية وتعاون ناجح."
         }
       ],
       "form": {
@@ -1094,6 +1578,11 @@
           "platform": "LinkedIn",
           "icon": "FaLinkedin",
           "url": "https://linkedin.com/company/ashkananisport"
+        },
+        {
+          "platform": "Youtube",
+          "icon": "FaYoutube",
+          "url": "https://www.youtube.com/@ashkananisport?si=442wNw7MbvuuLG22"
         }
       ],
       "partners": [
@@ -1180,6 +1669,21 @@
         {
           "name": "",
           "logoUrl": "/images/partner17.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner18.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner19.jpg",
+          "url": ""
+        },
+        {
+          "name": "",
+          "logoUrl": "/images/partner20.jpg",
           "url": ""
         }
       ]

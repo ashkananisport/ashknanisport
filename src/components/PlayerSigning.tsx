@@ -6,7 +6,7 @@ interface PlayerSigningProps {
   content: PlayerSigningContent;
 }
 
-const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
+const PlayerSigning: React.FC<PlayerSigningProps> = ({ content,language }) => {
   const [activeTab, setActiveTab] = useState<string>('professional');
   const professionalAudioRef = useRef<HTMLAudioElement>(null);
   const individualAudioRef = useRef<HTMLAudioElement>(null);
@@ -20,17 +20,18 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content }) => {
     title: string;
     index: number;
     total: number;
+    isDefault?: boolean; // إضافة خاصية للتعرف على الصورة الافتراضية
   } | null>(null);
   
-useEffect(() => {
-  const handler = (e: any) => {
-    if (e.detail.sectionId === 'player-signing') {
-      setActiveTab(e.detail.tab);
-    }
-  };
-  window.addEventListener('switchTab', handler);
-  return () => window.removeEventListener('switchTab', handler);
-}, []);
+  useEffect(() => {
+    const handler = (e: any) => {
+      if (e.detail.sectionId === 'player-signing') {
+        setActiveTab(e.detail.tab);
+      }
+    };
+    window.addEventListener('switchTab', handler);
+    return () => window.removeEventListener('switchTab', handler);
+  }, []);
 
   // تحديد المرجع المناسب بناءً على التبويب النشط
   const getCurrentAudioRef = () => {
@@ -115,38 +116,86 @@ useEffect(() => {
   };
 
   // دالة لفتح الصورة المكبرة
-  const openEnlargedImage = (src: string, alt: string, title: string, index: number, total: number) => {
-    setEnlargedImage({ src, alt, title, index, total });
+  const openEnlargedImage = (src: string, alt: string, title: string, index: number, total: number, isDefault = false) => {
+    setEnlargedImage({ src, alt, title, index, total, isDefault });
+    // منع التمرير عند فتح التكبير
+    document.body.style.overflow = 'hidden';
   };
 
   // دالة لإغلاق الصورة المكبرة
   const closeEnlargedImage = () => {
     setEnlargedImage(null);
+    // استعادة التمرير عند الإغلاق
+    document.body.style.overflow = 'auto';
   };
 
-  // دالة للتنقل بين الصور
-  const navigateImage = (direction: 'prev' | 'next') => {
-    if (!enlargedImage) return;
+  // دالة للتنقل بين الصور - معدلة لتطابق Deals
+  const handlePrevImage = () => {
+    if (!enlargedImage || enlargedImage.isDefault) return; // منع التنقل إذا كانت الصورة الافتراضية
     
     const gallery = activeTab === 'professional' 
       ? content.professional.gallery.images 
       : content.individual.gallery.images;
     
-    let newIndex = direction === 'next' 
-      ? enlargedImage.index + 1 
-      : enlargedImage.index - 1;
-    
-    // التأكد من أن الفهرس ضمن النطاق الصحيح
-    if (newIndex < 0) newIndex = gallery.length - 1;
-    if (newIndex >= gallery.length) newIndex = 0;
+    const newIndex = (enlargedImage.index - 1 + gallery.length) % gallery.length;
     
     setEnlargedImage({
       src: gallery[newIndex],
       alt: `${activeTab === 'professional' ? content.professional.title : content.individual.title} ${newIndex + 1}`,
       title: activeTab === 'professional' ? content.professional.title : content.individual.title,
       index: newIndex,
-      total: gallery.length
+      total: gallery.length,
+      isDefault: false
     });
+  };
+
+  const handleNextImage = () => {
+    if (!enlargedImage || enlargedImage.isDefault) return; // منع التنقل إذا كانت الصورة الافتراضية
+    
+    const gallery = activeTab === 'professional' 
+      ? content.professional.gallery.images 
+      : content.individual.gallery.images;
+    
+    const newIndex = (enlargedImage.index + 1) % gallery.length;
+    
+    setEnlargedImage({
+      src: gallery[newIndex],
+      alt: `${activeTab === 'professional' ? content.professional.title : content.individual.title} ${newIndex + 1}`,
+      title: activeTab === 'professional' ? content.professional.title : content.individual.title,
+      index: newIndex,
+      total: gallery.length,
+      isDefault: false
+    });
+  };
+  
+  // دالة لفتح المعرض مباشرة
+  const openGallery = () => {
+    const gallery = activeTab === 'professional' 
+      ? content.professional.gallery.images 
+      : content.individual.gallery.images;
+    
+    if (gallery.length > 0) {
+      openEnlargedImage(
+        gallery[0],
+        `${activeTab === 'professional' ? content.professional.title : content.individual.title} 1`,
+        activeTab === 'professional' ? content.professional.title : content.individual.title,
+        0,
+        gallery.length,
+        false // هذه ليست الصورة الافتراضية
+      );
+    }
+  };
+  
+  // نص الزر حسب اللغة
+  const galleryButtonText = language === 'en' ? "View Top Signings" : "شاهد أبرز التوقيعات";
+  
+  // تحديد أيقونات الأسهم بناءً على اللغة - مثل Deals تماماً
+  const getPrevIcon = () => {
+    return language === 'en' ? <FaChevronLeft /> : <FaChevronRight />;
+  };
+  
+  const getNextIcon = () => {
+    return language === 'en' ? <FaChevronRight /> : <FaChevronLeft />;
   };
   
   return (
@@ -220,31 +269,33 @@ useEffect(() => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                
-                {/* معرض الصور للاعبين المحترفين */}
-                <div className="player-gallery">
-                  <div className="gallery-grid">
-                    {content.professional.gallery.images.map((image, index) => (
-                      <div 
-                        key={index} 
-                        className="gallery-item card-image-container"
-                        onClick={() => openEnlargedImage(
-                          image, 
-                          `${content.professional.title} ${index + 1}`, 
-                          content.professional.title,
-                          index,
-                          content.professional.gallery.images.length
-                        )}
-                      >
-                        <img 
-                          src={image} 
-                          alt={`${content.professional.title} ${index + 1}`} 
-                          className="card-image"
-                        />
-                      </div>
-                    ))}
+                    
+                    {/* الصورة الافتراضية تحت الصوت */}
+                    <div 
+                      className="gallery-trigger-image card-image-container"
+                      onClick={() => openEnlargedImage(
+                        "/images/sign.jpg", // استبدل هذا بمسار الصورة الثابتة
+                        "", 
+                        "",
+                        0,
+                        1,
+                        true // هذه هي الصورة الافتراضية
+                      )}
+                    >
+                      <img 
+                        src="/images/sign.jpg" // استبدل هذا بمسار الصورة الثابتة
+                        alt="" 
+                        className="card-image"
+                      />
+                    </div>
+                    
+                    {/* الزر الجديد تحت الصورة */}
+                    <button 
+                      className="gallery-trigger-btn"
+                      onClick={openGallery}
+                    >
+                      {galleryButtonText}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -297,31 +348,33 @@ useEffect(() => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                
-                {/* معرض الصور للاعبين الفرديين */}
-                <div className="player-gallery">
-                  <div className="gallery-grid">
-                    {content.individual.gallery.images.map((image, index) => (
-                      <div 
-                        key={index} 
-                        className="gallery-item card-image-container"
-                        onClick={() => openEnlargedImage(
-                          image, 
-                          `${content.individual.title} ${index + 1}`, 
-                          content.individual.title,
-                          index,
-                          content.individual.gallery.images.length
-                        )}
-                      >
-                        <img 
-                          src={image} 
-                          alt={`${content.individual.title} ${index + 1}`} 
-                          className="card-image"
-                        />
-                      </div>
-                    ))}
+                    
+                    {/* الصورة الافتراضية تحت الصوت */}
+                    <div 
+                      className="gallery-trigger-image card-image-container"
+                      onClick={() => openEnlargedImage(
+                        "/images/sign.jpg", // استبدل هذا بمسار الصورة الثابتة
+                        "", 
+                        "",
+                        0,
+                        1,
+                        true // هذه هي الصورة الافتراضية
+                      )}
+                    >
+                      <img 
+                        src="/images/sign.jpg" // استبدل هذا بمسار الصورة الثابتة
+                        alt="" 
+                        className="card-image"
+                      />
+                    </div>
+                    
+                    {/* الزر الجديد تحت الصورة */}
+                    <button 
+                      className="gallery-trigger-btn"
+                      onClick={openGallery}
+                    >
+                      {galleryButtonText}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -350,42 +403,40 @@ useEffect(() => {
             
             <img 
               src={enlargedImage.src} 
-              alt={enlargedImage.alt} 
               className="deals-enlarged-image"
             />
             
-            <div className="deals-enlarged-info">
-              <h3>{enlargedImage.title}</h3>
-              <p>{enlargedImage.alt}</p>
-            </div>
             
-            <div className="deals-enlarged-controls">
-              <button 
-                className="deals-enlarged-nav" 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateImage('prev');
-                }}
-                aria-label="الصورة السابقة"
-              >
-                {content.language === 'en' ? <FaChevronLeft /> : <FaChevronRight />}
-              </button>
-              
-              <div className="deals-enlarged-counter">
-                {enlargedImage.index + 1} / {enlargedImage.total}
+            {/* عرض أزرار التنقل فقط إذا لم تكن الصورة الافتراضية */}
+            {!enlargedImage.isDefault && (
+              <div className="deals-enlarged-controls">
+                <button 
+                  className="deals-enlarged-nav deals-enlarged-prev"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrevImage();
+                  }}
+                  aria-label="الصورة السابقة"
+                >
+                  {getPrevIcon()}
+                </button>
+                
+                <div className="deals-enlarged-counter">
+                  {enlargedImage.index + 1} / {enlargedImage.total}
+                </div>
+                
+                <button 
+                  className="deals-enlarged-nav deals-enlarged-next"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNextImage();
+                  }}
+                  aria-label="الصورة التالية"
+                >
+                  {getNextIcon()}
+                </button>
               </div>
-              
-              <button 
-                className="deals-enlarged-nav" 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateImage('next');
-                }}
-                aria-label="الصورة التالية"
-              >
-                {content.language === 'en' ? <FaChevronRight /> : <FaChevronLeft />}
-              </button>
-            </div>
+            )}
 
           </div>
         </div>

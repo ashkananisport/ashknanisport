@@ -17,6 +17,8 @@ import ChatBot from './components/ChatBot';
 import ConsultationBooking from './components/ConsultationBooking'; 
 import WhatsAppButton from './components/WhatsAppButton';
 import { Language, AppContent, LanguageContent } from './types';
+import AshkaniChampionship from './components/AshkaniChampionship';
+
 import './styles/index.css'; 
 
 function App() {
@@ -123,8 +125,11 @@ function App() {
                 
                 {/* معرض الصور منفصل تحت الأقسام الجانبية */}
                 <Gallery content={currentContent.gallery} language={language} />
-                
-                <PlayerSigning content={currentContent.playerSigning} />
+                <AshkaniChampionship 
+                        content={currentContent.ashkaniChampionship} 
+                        language={language} 
+                    />    
+                <PlayerSigning content={currentContent.playerSigning} language={language} />
                 <ConsultationBooking content={currentContent.consultationBooking} language={language} />
             </main>
             <Footer 

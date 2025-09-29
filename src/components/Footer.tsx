@@ -1,7 +1,7 @@
 // src/components/Footer.tsx
 
 import React from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin,FaYoutube } from 'react-icons/fa';
 
 interface FooterProps {
     content: {
@@ -47,7 +47,8 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
         FaFacebook: <FaFacebook />,
         FaTwitter: <FaTwitter />,
         FaInstagram: <FaInstagram />,
-        FaLinkedin: <FaLinkedin />
+        FaLinkedin: <FaLinkedin />,
+        FaYoutube:<FaYoutube/>
     };
 
     // تقسيم الروابط إلى عمودين
