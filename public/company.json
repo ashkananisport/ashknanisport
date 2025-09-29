@@ -498,6 +498,12 @@
           },
           {
             "type": "image",
+            "src": "images/champ18.jpg",
+            "title": "Championship Image",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
             "src": "images/champ19.jpg",
             "title": "Championship Image",
             "thumbnail": ""
@@ -730,9 +736,9 @@
           "url": "https://www.instagram.com/ashkanani.sport/"
         },
         {
-          "platform": "LinkedIn",
-          "icon": "FaLinkedin",
-          "url": "https://linkedin.com/company/ashkananisport"
+          "platform": "Email",
+          "icon": "FaEnvelope",
+          "url": "mailto:info@ashkananisport.com"
         },
         {
           "platform": "Youtube",
@@ -855,7 +861,7 @@
         "documents": "المستندات",
         "contact": "احجز استشارتك",
         "playerSigning": "طريقة توقيع اللاعبين",
-        "agentBenefits": ""
+        "agentBenefits": "فائدة وكيل اللاعبين"
       },
       "lang_toggle": "English"
     },
@@ -1343,6 +1349,12 @@
           },
           {
             "type": "image",
+            "src": "images/champ18.jpg",
+            "title": "صورة البطولة",
+            "thumbnail": ""
+          },
+          {
+            "type": "image",
             "src": "images/champ19.jpg",
             "title": "صورة البطولة",
             "thumbnail": ""
@@ -1575,9 +1587,9 @@
           "url": "https://www.instagram.com/ashkanani.sport/"
         },
         {
-          "platform": "LinkedIn",
-          "icon": "FaLinkedin",
-          "url": "https://linkedin.com/company/ashkananisport"
+          "platform": "Email",
+          "icon": "FaEnvelope",
+          "url": "mailto:info@ashkananisport.com"
         },
         {
           "platform": "Youtube",

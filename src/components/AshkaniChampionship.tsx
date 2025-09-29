@@ -77,7 +77,7 @@ const AshkaniChampionship = ({ content, language }) => {
         <section id="ashkani-championship" className="section">
             <div className="container">
                 <h2 className="section-title">
-                    {content.title} <span>{content.highlight}</span>
+                    {content.title} 
                 </h2>
                 
                 <div className="championship-description">
@@ -162,7 +162,7 @@ const AshkaniChampionship = ({ content, language }) => {
                     
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         {currentModalData.type === 'image' ? (
-                            <img src={currentModalData.src} alt={currentModalData.title} />
+                            <img src={currentModalData.src} />
                         ) : (
                             <div className="modal-video-container">
                                 <video
@@ -194,10 +194,7 @@ const AshkaniChampionship = ({ content, language }) => {
                         {modalItem.index + 1} / {currentMedia.length}
                     </div>
                     
-                    {/* عنوان الوسائط الحالية */}
-                    <div className="modal-title">
-                        {currentModalData.title}
-                    </div>
+                 
                 </div>
             )}
         </section>
