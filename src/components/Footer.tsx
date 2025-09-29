@@ -1,5 +1,7 @@
+// src/components/Footer.tsx
+
 import React from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin,FaYoutube } from 'react-icons/fa';
 
 interface FooterProps {
     content: {
@@ -15,6 +17,14 @@ interface FooterProps {
             logoUrl: string;
             url: string;
         }>;
+        transferMarket: { // إضافة واجهة TransferMarket
+            title: string;
+            highlight: string;
+            description: string;
+            logoUrl: string;
+            profileUrl: string;
+            buttonText: string;
+        };
         nav: {
             home: string;
             about: string;
@@ -37,7 +47,8 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
         FaFacebook: <FaFacebook />,
         FaTwitter: <FaTwitter />,
         FaInstagram: <FaInstagram />,
-        FaLinkedin: <FaLinkedin />
+        FaLinkedin: <FaLinkedin />,
+        FaYoutube:<FaYoutube/>
     };
 
     // تقسيم الروابط إلى عمودين
@@ -47,12 +58,10 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
         { href: '#agent-benefits', text: content.nav.agentBenefits },
         { href: '#services', text: content.nav.services },
         { href: '#achievements', text: content.nav.achievements },
-        { href: '#deals', text: content.nav.deals },
         { href: '#gallery', text: content.nav.gallery },
         { href: '#player-signing', text: content.nav.playerSigning },
-        { href: '#transfer-market', text: content.nav.transferMarket },
         { href: '#documents', text: content.nav.documents },
-        { href: '#contact', text: content.nav.contact }
+        { href: '#consultation-booking', text: content.nav.contact }
     ];
 
     // تقسيم الروابط إلى نصفين
@@ -109,27 +118,45 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
                         </div>
                     </div>
                     
-                    {/* تعديل: نقل قسم الشركاء إلى هنا ليكون في نفس مستوى الأقسام الأخرى */}
-                    <div className="footer-section">
-                        <h3>شركاؤنا</h3>
-                        <div className="partners-logos">
-                            {content.partners.map((partner, index) => (
-                                <a 
-                                    key={index}
-                                    href={partner.url} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="partner-logo"
-                                    title={partner.name}
-                                >
-                                    <img src={partner.logoUrl} alt={partner.name} />
-                                </a>
-                            ))}
+                    {/* قسم ترانسفير ماركت منفصل */}
+                    <div className="footer-section transfermarket-section">
+                        <h3>TransferMarket</h3>
+                        <div className="transfermarket-container">
+                            <a 
+                                href={content.transferMarket.profileUrl} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="transfermarket-logo-link"
+                                title={content.transferMarket.title}
+                            >
+                                <img 
+                                    src={content.transferMarket.logoUrl} 
+                                    alt={content.transferMarket.title} 
+                                    className="transfermarket-logo"
+                                />
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                {/* تم إزالة قسم الشركاء من هنا */}
+                {/* قسم شركاؤنا - تم نقله إلى الأسفل */}
+                <div className="footer-partners-section">
+                    <h3>شركاؤنا</h3>
+                    <div className="partners-grid">
+                        {content.partners.map((partner, index) => (
+                            <a 
+                                key={index}
+                                href={partner.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="partner-logo"
+                                title={partner.name}
+                            >
+                                <img src={partner.logoUrl} alt={partner.name} />
+                            </a>
+                        ))}
+                    </div>
+                </div>
                 
                 <div className="footer-bottom">
                     <p>{content.copyright}</p>
@@ -137,6 +164,6 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
             </div>
         </footer>
     );
-}
+};
 
 export default Footer;

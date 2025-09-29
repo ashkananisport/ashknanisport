@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsCheck2Circle } from 'react-icons/bs';
+
 const About = ({ content }) => (
     <section id="about" className="section">
         <div className="container">

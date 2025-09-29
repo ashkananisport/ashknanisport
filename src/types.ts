@@ -200,5 +200,64 @@ export interface TransferMarketContent {
   profileUrl: string;
   buttonText: string;
 }
+// أضف هذا النوع إلى ملف types.ts
+export interface Advertisement {
+  id: string;
+  imageUrl: string;
+  linkUrl: string;
+  altText: string;
+  position: string;
+  size: string;
+}
+export interface ConsultationService {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+}
 
+export interface ConsultationForm {
+  name: string;
+  phone: string;
+  service: string;
+  date: string;
+  time: string;
+  submit: string;
+}
+
+export interface ConsultationContact {
+  address: string;
+  phone: number;
+  email: string;
+  mapEmbedUrl: string;
+}
+
+export interface ConsultationBookingContent {
+  title: string;
+  description: string;
+  services: ConsultationService[];
+  workingHours: string;
+  workingDays: string;
+  form: ConsultationForm;
+  contact: ConsultationContact;
+}
+
+// عدل نوع LanguageContent ليشمل الإعلانات
+export interface LanguageContent {
+  header: HeaderContent;
+  hero: HeroContent;
+  about: AboutContent;
+  agentBenefits: AgentBenefitsContent;
+  services: ServicesContent;
+  achievements: AchievementsContent;
+  deals: DealsContent;
+  gallery: GalleryContent;
+  playerSigning: PlayerSigningContent;
+  transferMarket: TransferMarketContent;
+  documents: DocumentsContent;
+  contact: ContactContent;
+  consultationBooking: ConsultationBookingContent;
+  advertisements: Advertisement[]; // إضافة هذا السطر
+  footer: FooterContent;
+}
 

@@ -1,0 +1,274 @@
+/* حاوية الصورة الإعلانية */
+.advertisement-image-container {
+  position: fixed;
+  z-index: 997;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  background-color: #000000;
+}
+
+/* تحديد المواقع */
+.advertisement-image-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.advertisement-image-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.advertisement-image-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.advertisement-image-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.advertisement-image-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.advertisement-image-middle-left {
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+/* تحديد الأحجام */
+.advertisement-image-small {
+  width: 120px;
+  height: 120px;
+}
+
+.advertisement-image-medium {
+  width: 180px;
+  height: 180px;
+}
+
+.advertisement-image-large {
+  width: 250px;
+  height: 250px;
+}
+
+/* الصورة الإعلانية */
+.advertisement-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.advertisement-image:hover {
+  transform: scale(1.05);
+}
+
+/* زر الإغلاق */
+.advertisement-image-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 12px;
+  transition: background 0.3s;
+}
+
+.advertisement-image-close:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* مؤشرات الصور */
+.advertisement-image-indicators {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 1;
+}
+
+.advertisement-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.advertisement-indicator.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* طبقة التكبير */
+.advertisement-image-enlarged-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99998; /* زيادة قيمة z-index بشكل كبير */
+  cursor: pointer;
+}
+
+/* حاوية الصورة المكبرة */
+.advertisement-image-enlarged-container {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  cursor: default;
+}
+
+/* الصورة المكبرة */
+.advertisement-image-enlarged {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* زر إغلاق التكبير */
+.advertisement-image-enlarged-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.3s;
+}
+
+.advertisement-image-enlarged-close:hover {
+  transform: rotate(90deg);
+}
+
+/* أدوات التحكم في الصورة المكبرة */
+.advertisement-image-enlarged-controls {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* أزرار التنقل */
+.advertisement-image-enlarged-nav {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.advertisement-image-enlarged-nav:hover {
+  background: rgba(6, 6, 6, 0.927);
+  transform: scale(1.1);
+}
+
+/* مؤشرات الصور المكبرة */
+.advertisement-image-enlarged-indicators {
+  display: flex;
+  gap: 8px;
+}
+
+/* رابط الصورة المكبرة */
+.advertisement-image-enlarged-link {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #25d366;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.advertisement-image-enlarged-link:hover {
+  background: #128C7E;
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .advertisement-image-small {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .advertisement-image-medium {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .advertisement-image-large {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .advertisement-image-top-right,
+  .advertisement-image-top-left {
+    top: 10px;
+  }
+  
+  .advertisement-image-bottom-right,
+  .advertisement-image-bottom-left {
+    bottom: 10px;
+  }
+  
+  .advertisement-image-middle-left {
+    left: 10px;
+  }
+  
+  .advertisement-image-enlarged-nav {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .advertisement-image-enlarged-link {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

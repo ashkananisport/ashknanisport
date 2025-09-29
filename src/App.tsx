@@ -1,5 +1,3 @@
-// src/App.tsx
-
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -16,11 +14,12 @@ import TransferMarket from './components/TransferMarket';
 import AgentBenefits from './components/AgentBenefits'; 
 import FloatingVideo from './components/FloatingVideo'; 
 import ChatBot from './components/ChatBot';
+import ConsultationBooking from './components/ConsultationBooking'; 
+import WhatsAppButton from './components/WhatsAppButton';
 import { Language, AppContent, LanguageContent } from './types';
+import AshkaniChampionship from './components/AshkaniChampionship';
 
-// ثوابت للتخزين المؤقت
-const CACHE_KEY = 'ashkanani_data';
-const CACHE_DURATION = 0; // 30 دقيقة
+import './styles/index.css'; 
 
 function App() {
     const [language, setLanguage] = useState<Language>('ar');
@@ -28,80 +27,26 @@ function App() {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    // دالة للتحقق من صلاحية التخزين المؤقت
-    const isCacheValid = useCallback((cachedData: any) => {
-        return cachedData && cachedData.timestamp && 
-               (Date.now() - cachedData.timestamp < CACHE_DURATION);
-    }, []);
-
-    // دالة لجلب البيانات مع التخزين المؤقت
+    // دالة لجلب البيانات من الملف المحلي
     const fetchData = useCallback(async () => {
         setLoading(true);
         
         try {
-            // التحقق من وجود بيانات في التخزين المؤقت
-            const cachedData = localStorage.getItem(CACHE_KEY);
-            
-            if (cachedData) {
-                const parsedData = JSON.parse(cachedData);
-                
-                if (isCacheValid(parsedData)) {
-                    console.log('Using cached data');
-                    setContent(parsedData.data);
-                    setLoading(false);
-                    return;
-                }
-            }
-            
-            // جلب البيانات من الخادم
-            console.log('Fetching fresh data');
-            const response = await fetch('https://script.google.com/macros/s/AKfycbw8ueAcnBds4qLUK1WBMOGJ73foaaac-mJAlit246rkHYeYGt03FJay70OAy6SISbxk/exec');
+            console.log('Fetching data from local file');
+            const response = await fetch('/company.json');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
             const data: AppContent = await response.json();
-            
-            // تخزين البيانات في localStorage
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-                data,
-                timestamp: Date.now()
-            }));
-            
             setContent(data);
         } catch (err) {
             console.error("Failed to load company data:", err);
             setError(err instanceof Error ? err.message : 'Unknown error');
-            
-            // محاولة استخدام البيانات المخزنة حتى لو منتهية الصلاحية
-            const cachedData = localStorage.getItem(CACHE_KEY);
-            if (cachedData) {
-                const parsedData = JSON.parse(cachedData);
-                setContent(parsedData.data);
-                setError(null);
-            }
         } finally {
             setLoading(false);
         }
-    }, [isCacheValid]);
-
-    // تحديث البيانات في الخلفية كل 5 دقائق
-    useEffect(() => {
-        const interval = setInterval(() => {
-            fetch('https://script.google.com/macros/s/AKfycby0Vq4L82jvuP9DsVjH0fJdvQxqOyf9_AmM8s9I7Wx2yaaBAwUNyj1E9a1b9OVw0pI/exec')
-                .then(response => response.json())
-                .then(data => {
-                    localStorage.setItem(CACHE_KEY, JSON.stringify({
-                        data,
-                        timestamp: Date.now()
-                    }));
-                    console.log('Background data refresh completed');
-                })
-                .catch(err => console.log('Background refresh failed:', err));
-        }, 5 * 60 * 1000); // كل 5 دقائق
-        
-        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
@@ -164,32 +109,54 @@ function App() {
                 language={language}
                 toggleLanguage={toggleLanguage}
             />
-           <main>
+            <main>
                 <Hero content={currentContent.hero} />
                 <About content={currentContent.about} />
                 <AgentBenefits content={currentContent.agentBenefits} />
                 <Services content={currentContent.services} language={language} /> 
-                <Achievements content={currentContent.achievements} language={language} />
-                <Deals content={currentContent.deals} language={language} />
-                <Gallery content={currentContent.gallery}  language={language}/>
-                <PlayerSigning content={currentContent.playerSigning} />
-                <TransferMarket content={currentContent.transferMarket} />
-                <Documents content={currentContent.documents} />
-                <Contact content={currentContent.contact} />
+                
+                {/* حاوية الأقسام الجانبية (الإنجازات والعقود فقط) */}
+                <div className="sections-grid-container">
+                    <div className="sections-grid">
+                        <Deals content={currentContent.deals} language={language} />
+                        <Achievements content={currentContent.achievements} language={language} />
+                    </div>
+                </div>
+                
+                {/* معرض الصور منفصل تحت الأقسام الجانبية */}
+                <Gallery content={currentContent.gallery} language={language} />
+                <AshkaniChampionship 
+                        content={currentContent.ashkaniChampionship} 
+                        language={language} 
+                    />    
+                <PlayerSigning content={currentContent.playerSigning} language={language} />
+                <ConsultationBooking content={currentContent.consultationBooking} language={language} />
             </main>
-            <Footer content={{...currentContent.footer, nav: currentContent.header.nav}} />
+            <Footer 
+                content={{
+                    ...currentContent.footer, 
+                    nav: currentContent.header.nav,
+                    transferMarket: currentContent.transferMarket 
+                }} 
+            />
+            
+            {/* إضافة زر الواتساب الثابت */}
+            <WhatsAppButton 
+                phoneNumber="96597131223"
+                defaultMessage="مرحباً، أود حجز استشارة مع الكابتن أحمد جابر أشكناني"
+                iconSize={36}
+                iconColor="#FFFFFF"
+            />
             
             <FloatingVideo 
-                videoUrl="videos/video2.mp4" 
+                videoUrl="https://res.cloudinary.com/dl5duvmve/video/upload/v1758725812/video2_eft2ud.mp4" 
                 thumbnailUrl="images/thumb2.png"
                 autoPlay={true}
-                muted={false}
+                muted={true}
                 controls={false}
                 width={120}
                 height={160}
             />
-            
-            <ChatBot />
         </>
     );
 }

@@ -18,11 +18,13 @@ const FloatingVideo: React.FC<FloatingVideoProps> = ({
     autoPlay = true,
     muted = false,
     controls = false,
-    width = 160,  // تقليل العرض الافتراضي
-    height = 120  // تقليل الارتفاع الافتراضي
+    width = 160,
+    height = 120
 }) => {
     const [isVisible, setIsVisible] = useState(true);
     const [isPlaying, setIsPlaying] = useState(autoPlay);
+    const [isMuted, setIsMuted] = useState(true); // دائماً يبدأ كتم الصوت
+    const [hasInteracted, setHasInteracted] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -46,8 +48,71 @@ const FloatingVideo: React.FC<FloatingVideoProps> = ({
         }
     }, [isPlaying]);
 
+    useEffect(() => {
+        // دالة التعامل مع التفاعل الأول
+        const handleFirstInteraction = async () => {
+            if (!hasInteracted && videoRef.current) {
+                setHasInteracted(true);
+                
+                // احفظ حالة التشغيل الحالية
+                const wasPlaying = !videoRef.current.paused;
+                
+                // فك الكتم أولاً
+                videoRef.current.muted = false;
+                setIsMuted(false);
+                
+                // إذا كان الفيديو شاغلاً، استمر في التشغيل مع الصوت
+                if (wasPlaying) {
+                    try {
+                        await videoRef.current.play();
+                        setIsPlaying(true);
+                    } catch (error) {
+                        console.error("Failed to play with sound:", error);
+                        // إذا فشل التشغيل، حاول مرة أخرى بعد فترة قصيرة
+                        setTimeout(() => {
+                            if (videoRef.current) {
+                                videoRef.current.play()
+                                    .then(() => setIsPlaying(true))
+                                    .catch(e => console.error("Retry failed:", e));
+                            }
+                        }, 100);
+                    }
+                }
+                
+                // إزالة مستمعي الأحداث بعد التفاعل الأول
+                document.removeEventListener('click', handleFirstInteraction);
+                document.removeEventListener('scroll', handleFirstInteraction);
+                document.removeEventListener('touchstart', handleFirstInteraction);
+                document.removeEventListener('keydown', handleFirstInteraction);
+            }
+        };
+
+        // إضافة مستمعي الأحداث للصفحة بأكملها
+        document.addEventListener('click', handleFirstInteraction);
+        document.addEventListener('scroll', handleFirstInteraction);
+        document.addEventListener('touchstart', handleFirstInteraction);
+        document.addEventListener('keydown', handleFirstInteraction);
+
+        return () => {
+            // تنظيف مستمعي الأحداث
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('scroll', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+            document.removeEventListener('keydown', handleFirstInteraction);
+        };
+    }, [hasInteracted]);
+
     const togglePlay = () => {
-        setIsPlaying(!isPlaying);
+        if (videoRef.current) {
+            if (videoRef.current.paused) {
+                videoRef.current.play()
+                    .then(() => setIsPlaying(true))
+                    .catch(error => console.error("Play failed:", error));
+            } else {
+                videoRef.current.pause();
+                setIsPlaying(false);
+            }
+        }
     };
 
     const closeVideo = () => {
@@ -65,7 +130,7 @@ const FloatingVideo: React.FC<FloatingVideoProps> = ({
                     poster={thumbnailUrl}
                     width={width}
                     height={height}
-                    muted={muted}
+                    muted={isMuted}
                     controls={controls}
                     loop
                     playsInline
@@ -79,6 +144,12 @@ const FloatingVideo: React.FC<FloatingVideoProps> = ({
                         ✕
                     </button>
                 </div>
+                {!hasInteracted && (
+                    <div className="sound-indicator">
+                        <span>🔇</span>
+                        <p>انقر أو مرر لتفعيل الصوت</p>
+                    </div>
+                )}
             </div>
         </div>
     );

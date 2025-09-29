@@ -1,0 +1,212 @@
+/* حاوية الزر */
+.deals-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.deals-view-button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.deals-view-button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.deals-view-button:active {
+    transform: translateY(1px);
+}
+
+/* طبقة التكبير */
+.deals-enlarged-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+/* حاوية الصورة المكبرة */
+.deals-enlarged-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    cursor: default;
+}
+
+/* الصورة المكبرة */
+.deals-enlarged-image {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    background-color: #fff;
+}
+
+/* معلومات الصورة المكبرة */
+.deals-enlarged-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.deals-enlarged-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.deals-enlarged-info p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* زر الإغلاق */
+.deals-enlarged-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.deals-enlarged-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotate(90deg);
+}
+
+/* أدوات التحكم في الصورة المكبرة */
+.deals-enlarged-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+/* أزرار التنقل */
+.deals-enlarged-nav {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.deals-enlarged-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+/* عداد الصور */
+.deals-enlarged-counter {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+/* للشاشات المتوسطة */
+@media (max-width: 992px) {
+    .deals-view-button {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+}
+
+/* للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .deals-view-button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+    
+    .deals-enlarged-container {
+        max-width: 95%;
+        max-height: 95%;
+    }
+    
+    .deals-enlarged-image {
+        max-height: 60vh;
+    }
+    
+    .deals-enlarged-info h3 {
+        font-size: 20px;
+    }
+    
+    .deals-enlarged-info p {
+        font-size: 14px;
+    }
+    
+    .deals-enlarged-nav {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .deals-enlarged-counter {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 576px) {
+    .deals-view-button {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}

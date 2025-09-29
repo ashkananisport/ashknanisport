@@ -1,0 +1,449 @@
+/* Services, Achievements, Deals Grids */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--primary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    position: relative;
+    cursor: pointer;
+}
+
+.section.visible .card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for cards */
+.section.visible .card:nth-child(1) { transition-delay: 0.1s; }
+.section.visible .card:nth-child(2) { transition-delay: 0.2s; }
+.section.visible .card:nth-child(3) { transition-delay: 0.3s; }
+.section.visible .card:nth-child(4) { transition-delay: 0.4s; }
+.section.visible .card:nth-child(5) { transition-delay: 0.5s; }
+.section.visible .card:nth-child(6) { transition-delay: 0.6s; }
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+    border-color: var(--accent-color);
+}
+
+.card-has-video {
+    cursor: pointer;
+}
+
+.card-has-video:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .card-icon {
+    transform: scale(1.1) rotate(-8deg);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* مؤشر الفيديو */
+.video-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(212, 175, 55, 0.9);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    animation: pulse 2s infinite;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+/* طبقة النافذة المنبثقة */
+.services-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    cursor: pointer;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* حاوية النافذة */
+.services-modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    cursor: default;
+    z-index: 1000000;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+/* رأس النافذة */
+.services-modal-header {
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.services-modal-header h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.services-modal-header p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* غلاف المحتوى */
+.services-modal-wrapper {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    background-color: #000;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* مشغل الفيديو */
+.services-modal-player {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* طبقة تشغيل الفيديو */
+.services-modal-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+}
+
+.services-modal-play-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.play-button {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(212, 175, 55, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+    background-color: rgba(212, 175, 55, 1);
+}
+
+.play-button svg {
+    font-size: 36px;
+    color: white;
+    margin-left: 5px;
+}
+
+.services-modal-play-overlay p {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* أدوات التحكم في الفيديو */
+.services-modal-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    z-index: 3;
+}
+
+.services-modal-control-button {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.services-modal-control-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.services-modal-play-pause-button {
+    background-color: rgba(212, 175, 55, 0.9);
+}
+
+.services-modal-play-pause-button:hover {
+    background-color: rgba(212, 175, 55, 1);
+}
+
+/* رسالة خطأ الفيديو */
+.services-modal-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.services-modal-error-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.services-modal-error h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.services-modal-error p {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.services-modal-retry-button {
+    background-color: rgba(212, 175, 55, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.services-modal-retry-button:hover {
+    background-color: rgba(212, 175, 55, 1);
+    transform: scale(1.05);
+}
+
+/* زر الإغلاق */
+.services-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 4;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.services-modal-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotate(90deg);
+}
+
+/* تفاصيل الخدمة */
+.services-modal-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: var(--primary-color);
+    overflow-y: auto;
+}
+
+.services-modal-icon-large {
+    font-size: 5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.services-modal-full-description {
+    max-width: 800px;
+    width: 100%;
+}
+
+.services-modal-full-description p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.services-modal-additional-details {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .card-icon {
+        font-size: 2.5rem;
+    }
+    
+    .card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .services-modal-container {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .services-modal-header h3 {
+        font-size: 20px;
+    }
+    
+    .services-modal-header p {
+        font-size: 14px;
+    }
+    
+    .play-button {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .play-button svg {
+        font-size: 28px;
+    }
+    
+    .services-modal-play-overlay p {
+        font-size: 16px;
+    }
+    
+    .services-modal-control-button {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .services-modal-close {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .services-modal-icon-large {
+        font-size: 3.5rem;
+    }
+    
+    .services-modal-full-description p {
+        font-size: 1rem;
+    }
+    
+    .services-modal-overlay {
+        padding: 10px;
+    }
+}

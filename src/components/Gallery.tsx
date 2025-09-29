@@ -1,20 +1,49 @@
-import React, { useState } from 'react';
-import { FaPlay, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { FaPlay, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 
 const Gallery = ({ content, language }) => {
     const [activeTab, setActiveTab] = useState('photos');
     const [modalItem, setModalItem] = useState({ isOpen: false, type: null, index: -1 });
+useEffect(() => {
+  document.documentElement.setAttribute('dir', language === 'ar' ? 'rtl' : 'ltr');
+}, [language]);
 
-    const openModal = (type, index) => setModalItem({ isOpen: true, type, index });
-    const closeModal = () => setModalItem({ isOpen: false, type: null, index: -1 });
-
-    const handleNav = (direction) => {
-        const items = content[activeTab];
-        let newIndex = modalItem.index + direction;
-        if (newIndex < 0) newIndex = items.length - 1;
-        if (newIndex >= items.length) newIndex = 0;
-        setModalItem({ ...modalItem, index: newIndex });
+    const openModal = (type, index) => {
+        setModalItem({ isOpen: true, type, index });
+        // منع التمرير عند فتح المودال
+        document.body.style.overflow = 'hidden';
     };
+    
+    const closeModal = () => {
+        setModalItem({ isOpen: false, type: null, index: -1 });
+        // استعادة التمرير عند الإغلاق
+        document.body.style.overflow = 'auto';
+    };
+
+    useEffect(() => {
+        const handler = (e: any) => {
+            if (e.detail.sectionId === 'gallery') {
+                setActiveTab(e.detail.tab);
+            }
+        };
+        window.addEventListener('switchTab', handler);
+        return () => window.removeEventListener('switchTab', handler);
+    }, []);
+
+    // تعديل دالة التنقل لتكون متسقة مع اتجاه اللغة
+    const handlePrev = () => {
+    const items = content[modalItem.type];
+    if (!items || items.length <= 1) return;
+    const newIndex = (modalItem.index - 1 + items.length) % items.length;
+    setModalItem({ ...modalItem, index: newIndex });
+};
+
+const handleNext = () => {
+    const items = content[modalItem.type];
+    if (!items || items.length <= 1) return;
+    const newIndex = (modalItem.index + 1) % items.length;
+    setModalItem({ ...modalItem, index: newIndex });
+};
 
     const currentItems = content[activeTab];
     const currentModalData = modalItem.isOpen ? content[modalItem.type][modalItem.index] : null;
@@ -22,6 +51,26 @@ const Gallery = ({ content, language }) => {
     // استخدام عناوين ثابتة بناءً على اللغة
     const titlePart1 = language === 'en' ? 'Our' : 'معرض';
     const titlePart2 = language === 'en' ? 'Gallery' : 'الصور والفيديو';
+
+    // نصوص الأزرار بناءً على اللغة
+    const viewPhotosText = language === 'en' ? 'View Best Photos' : 'شاهد أبرز الصور';
+    const viewVideosText = language === 'en' ? 'View Best Videos' : 'شاهد أبرز الفيديوهات';
+
+    // دالة لفتح المعرض مباشرة
+    const openGalleryDirectly = (type) => {
+        if (content[type] && content[type].length > 0) {
+            openModal(type, 0);
+        }
+    };
+
+    // تحديد أيقونات الأسهم بناءً على اللغة
+    const getPrevIcon = () => {
+        return language === 'en' ? <FaChevronLeft /> : <FaChevronRight />;
+    };
+    
+    const getNextIcon = () => {
+        return language === 'en' ? <FaChevronRight /> : <FaChevronLeft />;
+    };
 
     return (
         <section id="gallery" className="section">
@@ -43,7 +92,51 @@ const Gallery = ({ content, language }) => {
                     </button>
                 </div>
 
-                <div className="gallery-grid">
+                {/* المحتوى الخاص بكل تبويب */}
+                <div className="tab-content">
+                    {activeTab === 'photos' && (
+                        <div className="tab-pane">
+                            <div className="gallery-description">
+                                <p>{language === 'en' ? 
+                                    'Browse our collection of memorable moments and achievements.' : 
+                                    'تصفح مجموعتنا من اللحظات والإنجازات المميزة.'}</p>
+                                
+                                {/* زر عرض الصور */}
+                                <div className="gallery-action-container">
+                                    <button 
+                                        className="gallery-action-btn"
+                                        onClick={() => openGalleryDirectly('photos')}
+                                    >
+                                        {viewPhotosText}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    
+                    {activeTab === 'videos' && (
+                        <div className="tab-pane">
+                            <div className="gallery-description">
+                                <p>{language === 'en' ? 
+                                    'Watch our collection of highlight videos and interviews.' : 
+                                    'شاهد مجموعتنا من مقاطع الفيديو المميزة والمقابلات.'}</p>
+                                
+                                {/* زر عرض الفيديوهات */}
+                                <div className="gallery-action-container">
+                                    <button 
+                                        className="gallery-action-btn"
+                                        onClick={() => openGalleryDirectly('videos')}
+                                    >
+                                        {viewVideosText}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* شبكة المعرض (مخفية الآن) */}
+                <div className="gallery-grid" style={{ display: 'none' }}>
                     {activeTab === 'photos' && content.photos.map((item, index) => (
                         <div key={index} className="gallery-item" onClick={() => openModal('photos', index)}>
                             <img src={item.src} alt={item.title} />
@@ -52,7 +145,6 @@ const Gallery = ({ content, language }) => {
                     ))}
                     {activeTab === 'videos' && content.videos.map((item, index) => (
                         <div key={index} className="gallery-item" onClick={() => openModal('videos', index)}>
-                            {/* لو عندك صورة thumbnail للفيديو، استخدميها */}
                             {item.thumbnail && <img src={item.thumbnail} alt={item.title} />}
                             <div className="gallery-overlay">
                                 <span className="play-icon"><FaPlay /></span>
@@ -63,42 +155,56 @@ const Gallery = ({ content, language }) => {
                 </div>
             </div>
 
+            {/* المودال المكبر */}
             {modalItem.isOpen && currentModalData && (
                 <div className="modal-backdrop" onClick={closeModal}>
-                    <button className="modal-close" onClick={closeModal}>&times;</button>
-                    <button className="modal-nav prev" onClick={(e) => {e.stopPropagation(); handleNav(-1)}}><FaChevronLeft /></button>
+                    <button className="modal-close-btn" onClick={closeModal}>
+                        <FaTimes />
+                    </button>
+                    
+                    <button 
+                        className="modal-nav modal-nav-prev" 
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handlePrev();
+                        }}
+                    >
+                        {getPrevIcon()}
+                    </button>
+                    
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         {modalItem.type === 'photos' ? (
                             <img src={currentModalData.src} alt={currentModalData.title} />
                         ) : (
-                            <div
-                                className="modal-video-container"
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    width: '100%',
-                                    height: '80vh',  // ارتفاع المودال
-                                    padding: '20px', // مسافة حول الفيديو
-                                    boxSizing: 'border-box',
-                                }}
-                            >
+                            <div className="modal-video-container">
                                 <video
+                                    key={`video-${modalItem.index}`} // مفتاح فريد لإعادة تحميل الفيديو عند التغيير
                                     controls
                                     autoPlay
-                                    style={{
-                                        maxWidth: '100%',
-                                        maxHeight: '100%',
-                                        display: 'block',
-                                    }}
                                 >
                                     <source src={currentModalData.src} type="video/mp4" />
-                                    متصفحك لا يدعم عرض الفيديو
+                                    {language === 'en' ? 
+                                        'Your browser does not support the video tag.' : 
+                                        'متصفحك لا يدعم عرض الفيديو'}
                                 </video>
                             </div>
                         )}
                     </div>
-                    <button className="modal-nav next" onClick={(e) => {e.stopPropagation(); handleNav(1)}}><FaChevronRight /></button>
+                    
+                    <button 
+                        className="modal-nav modal-nav-next" 
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleNext();
+                        }
+                    }>
+                        {getNextIcon()}
+                    </button>
+                    
+                    {/* عداد الصور/الفيديوهات */}
+                    <div className="modal-counter">
+                        {modalItem.index + 1} / {content[modalItem.type].length}
+                    </div>
                 </div>
             )}
         </section>
