@@ -10,7 +10,8 @@
         "documents": "Documents",
         "contact": "Book Consultaion",
         "playerSigning": "Signing Process",
-        "agentBenefits": "Why Agent"
+        "agentBenefits": "Why Agent",
+        "AshknaniChampionship": "Ashknani Championship"
       },
       "lang_toggle": "العربية"
     },
@@ -379,7 +380,7 @@
       ]
     },
     "ashkaniChampionship": {
-      "title": "Ashkani Championship",
+      "title": "Ashknani Championship",
       "highlight": "2024/2025",
       "description": "Explore the highlights of our prestigious championship events.",
       "tabs": {
@@ -738,7 +739,7 @@
         {
           "platform": "Email",
           "icon": "FaEnvelope",
-          "url": "mailto:info@ashkananisport.com"
+          "url": "mailto:Ashkananisport@gmail.com"
         },
         {
           "platform": "Youtube",
@@ -861,7 +862,8 @@
         "documents": "المستندات",
         "contact": "احجز استشارتك",
         "playerSigning": "طريقة توقيع اللاعبين",
-        "agentBenefits": "فائدة وكيل اللاعبين"
+        "agentBenefits": "فائدة وكيل اللاعبين",
+        "AshknaniChampionship": "بطولة أشكناني"
       },
       "lang_toggle": "English"
     },
@@ -1589,7 +1591,7 @@
         {
           "platform": "Email",
           "icon": "FaEnvelope",
-          "url": "mailto:info@ashkananisport.com"
+          "url": "mailto:Ashkananisport@gmail.com"
         },
         {
           "platform": "Youtube",

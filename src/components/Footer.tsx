@@ -37,6 +37,8 @@ interface FooterProps {
             playerSigning: string;
             agentBenefits: string;
             transferMarket: string;
+            AshkaniChampionship:string;
+
         };
     };
 }
@@ -60,7 +62,7 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
         { href: '#achievements', text: content.nav.achievements },
         { href: '#gallery', text: content.nav.gallery },
         { href: '#player-signing', text: content.nav.playerSigning },
-        { href: '#documents', text: content.nav.documents },
+        { href: '#ashkani-championship', text: content.nav.AshknaniChampionship },
         { href: '#consultation-booking', text: content.nav.contact }
     ];
 

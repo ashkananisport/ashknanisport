@@ -13,6 +13,7 @@ interface HeaderProps {
             home: string;
             agentBenefits: string;
             playerSigning: string;
+            AshkaniChampionship:string;
         };
         lang_toggle: string;
     };
@@ -184,11 +185,15 @@ const Header: React.FC<HeaderProps> = ({ content, language, toggleLanguage }) =>
                                     }}>{language === 'en' ? 'Individual Players' : 'لاعبو الألعاب الفردية'}</a></li>
                                 </ul>
                             </li>
-                            
+                            <li><a href="#ashkani-championship" onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection('ashkani-championship');
+                            }}>{content.nav.AshkaniChampionship}</a></li>
                             <li><a href="#consultation-booking" onClick={(e) => {
                                 e.preventDefault();
                                 scrollToSection('consultation-booking');
                             }}>{content.nav.contact}</a></li>
+
                         </ul>
                         
                         <button onClick={() => { toggleLanguage(); closeMenu(); }} className="lang-switcher">
