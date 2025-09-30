@@ -13,7 +13,7 @@ interface HeaderProps {
             home: string;
             agentBenefits: string;
             playerSigning: string;
-            AshkaniChampionship:string;
+            AshknaniChampionship:string;
         };
         lang_toggle: string;
     };
@@ -188,7 +188,7 @@ const Header: React.FC<HeaderProps> = ({ content, language, toggleLanguage }) =>
                             <li><a href="#ashkani-championship" onClick={(e) => {
                                 e.preventDefault();
                                 scrollToSection('ashkani-championship');
-                            }}>{content.nav.AshkaniChampionship}</a></li>
+                            }}>{content.nav.AshknaniChampionship}</a></li>
                             <li><a href="#consultation-booking" onClick={(e) => {
                                 e.preventDefault();
                                 scrollToSection('consultation-booking');

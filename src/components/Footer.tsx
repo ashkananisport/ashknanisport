@@ -37,7 +37,7 @@ interface FooterProps {
             playerSigning: string;
             agentBenefits: string;
             transferMarket: string;
-            AshkaniChampionship:string;
+            AshknaniChampionship:string;
 
         };
     };
