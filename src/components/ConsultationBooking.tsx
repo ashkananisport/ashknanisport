@@ -81,13 +81,13 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
       selectService: 'اختر الاستشارة',
       selectTime: 'اختر الوقت',
       timeOptions: [
-        { value: '17:00', label: '5:00 م' },
-        { value: '17:30', label: '5:30 م' },
-        { value: '18:00', label: '6:00 م' },
-        { value: '18:30', label: '6:30 م' },
-        { value: '19:00', label: '7:00 م' },
-        { value: '19:30', label: '7:30 م' },
-        { value: '20:00', label: '8:00 م' }
+        { value: '10:00 صباحاً', label: '10:00 صباحاً' },
+        { value: '11:00 صباحاً', label: '11:00 صباحاً' },
+        { value: '12:00 ظهراً', label: '12:00 ظهراً' },
+        { value: '5:00 مساءً', label: '5:00 مساءً' },
+        { value: '6:00 مساءً', label: '6:00 مساءً' },
+        { value: '7:00 مساءً', label: '7:00 مساءً' },
+        { value: '8:00 مساءً', label: '8:00 مساءً' }
       ]
     },
     en: {
@@ -106,13 +106,13 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
       selectService: 'Select Consultation',
       selectTime: 'Select Time',
       timeOptions: [
-        { value: '17:00', label: '5:00 PM' },
-        { value: '17:30', label: '5:30 PM' },
-        { value: '18:00', label: '6:00 PM' },
-        { value: '18:30', label: '6:30 PM' },
-        { value: '19:00', label: '7:00 PM' },
-        { value: '19:30', label: '7:30 PM' },
-        { value: '20:00', label: '8:00 PM' }
+        { value: '10:00 AM', label: '10:00 AM' },
+        { value: '11:00 AM', label: '11:00 AM' },
+        { value: '12:00 PM', label: '12:00 PM' },
+        { value: '5:00 PM', label: '5:00 PM' },
+        { value: '6:00 PM', label: '6:00 PM' },
+        { value: '7:00 PM', label: '7:00 PM' },
+        { value: '8:00 PM', label: '8:00 PM' }
       ]
     }
   };
@@ -278,8 +278,12 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
                   <option value="">{t.selectService}</option>
                   {content.services.map(service => (
                     <option key={service.id} value={service.id}>
-                      {service.title} - {service.price} {language === 'ar' ? 'دينار كويتي' : 'KWD'}
-                    </option>
+                      {service.title} - { 
+                          !isNaN(service.price) 
+                            ? `${service.price} ${language === 'ar' ? 'دينار كويتي' : 'KWD'}` 
+                            : service.price
+                        }
+                      </option>
                   ))}
                 </select>
                 {errors.service && <span className="error-message">{errors.service}</span>}
