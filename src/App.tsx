@@ -148,15 +148,6 @@ function App() {
                 iconColor="#FFFFFF"
             />
             
-            <FloatingVideo 
-                videoUrl="https://res.cloudinary.com/dl5duvmve/video/upload/v1758725812/video2_eft2ud.mp4" 
-                thumbnailUrl="images/thumb2.png"
-                autoPlay={true}
-                muted={true}
-                controls={false}
-                width={120}
-                height={160}
-            />
             <Analytics />
         </>
     );
