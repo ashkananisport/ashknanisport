@@ -157,6 +157,7 @@ function App() {
                 width={120}
                 height={160}
             />
+            <Analytics />
         </>
     );
 }
