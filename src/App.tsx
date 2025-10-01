@@ -18,7 +18,7 @@ import ConsultationBooking from './components/ConsultationBooking';
 import WhatsAppButton from './components/WhatsAppButton';
 import { Language, AppContent, LanguageContent } from './types';
 import AshkaniChampionship from './components/AshkaniChampionship';
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import './styles/index.css'; 
 
 function App() {
