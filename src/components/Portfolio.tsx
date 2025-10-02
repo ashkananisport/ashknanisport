@@ -13,7 +13,7 @@ const Portfolio = ({ content }) => {
                 <div className="portfolio-grid">
                     {content.items.map((item, index) => (
                         <div key={index} className="portfolio-item" onClick={() => openModal(item.img)}>
-                            <img src={item.img} alt={item.title} />
+                            <img src={item.img} alt={item.title} loading="lazy"/>
                             <div className="portfolio-overlay">
                                 <h3>{item.title}</h3>
                             </div>
@@ -26,7 +26,7 @@ const Portfolio = ({ content }) => {
                 <div className="modal-backdrop" onClick={closeModal}>
                     <button className="modal-close" onClick={closeModal}>&times;</button>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <img src={modalImage} alt="Portfolio showcase" />
+                        <img src={modalImage} alt="Portfolio showcase" loading="lazy"/>
                     </div>
                 </div>
             )}

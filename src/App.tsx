@@ -20,6 +20,7 @@ import { Language, AppContent, LanguageContent } from './types';
 import AshkaniChampionship from './components/AshkaniChampionship';
 import { Analytics } from "@vercel/analytics/react"
 import './styles/index.css'; 
+import { Helmet } from "react-helmet";
 
 function App() {
     const [language, setLanguage] = useState<Language>('ar');
@@ -104,6 +105,13 @@ function App() {
 
     return (
         <>
+            <Helmet>
+            <title>شركة أشكناني سبورت - إدارة وتسويق الرياضيين بالعالم</title>
+            <meta name="description" content="شركة أشكناني سبورت الكويتية لإدارة وتسويق الرياضيين، متخصصة في اللاعبين والمدربين والإداريين بجميع الرياضات منذ 2019." />
+            <meta name="keywords" content="أشكناني سبورت, إدارة الرياضيين, التسويق الرياضي, الكويت, إدارة اللاعبين, sports management, athlete management, sports marketing, Kuwait" />
+            <html lang={language} dir={language === 'ar' ? 'rtl' : 'ltr'} />
+        </Helmet>
+
             <Header
                 content={currentContent.header}
                 language={language}

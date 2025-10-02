@@ -75,7 +75,7 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
         <footer className="footer">
             <div className="container">
                 <div className="footer-logo">
-                    <img src="/images/logo.png" alt="Ashkanani Sport Marketing Logo" />
+                    <img src="/images/logo.png" alt="Ashkanani Sport Marketing Logo" loading="lazy"/>
                 </div>
                 
                 <div className="footer-content">
@@ -135,6 +135,7 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
                                     src={content.transferMarket.logoUrl} 
                                     alt={content.transferMarket.title} 
                                     className="transfermarket-logo"
+                                    loading="lazy"
                                 />
                             </a>
                         </div>
@@ -154,7 +155,7 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
                                 className="partner-logo"
                                 title={partner.name}
                             >
-                                <img src={partner.logoUrl} alt={partner.name} />
+                                <img src={partner.logoUrl} alt={partner.name} loading="lazy"/>
                             </a>
                         ))}
                     </div>

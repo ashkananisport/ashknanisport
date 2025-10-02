@@ -286,6 +286,7 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content,language }) => {
                         src="/images/sign.jpg" // استبدل هذا بمسار الصورة الثابتة
                         alt="" 
                         className="card-image"
+                        loading="lazy"
                       />
                     </div>
                     
@@ -365,6 +366,7 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content,language }) => {
                         src="/images/sign.jpg" // استبدل هذا بمسار الصورة الثابتة
                         alt="" 
                         className="card-image"
+                        loading="lazy"
                       />
                     </div>
                     
@@ -404,6 +406,7 @@ const PlayerSigning: React.FC<PlayerSigningProps> = ({ content,language }) => {
             <img 
               src={enlargedImage.src} 
               className="deals-enlarged-image"
+              loading="lazy"
             />
             
             

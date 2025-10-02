@@ -11,6 +11,7 @@ const Team = ({ content }) => (
                       src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" 
                       alt={content.name} 
                       className="team-photo"
+                      loading="lazy"
                     />
                     <div className="team-info">
                         <h3>{content.name}</h3>

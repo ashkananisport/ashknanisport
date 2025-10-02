@@ -71,6 +71,7 @@ const Deals = ({ content, language }) => {
                             src={content.list[currentImageIndex].img} 
                             alt={content.list[currentImageIndex].title}
                             className="deals-enlarged-image"
+                            loading="lazy"
                         />
                         
                         <div className="deals-enlarged-info">

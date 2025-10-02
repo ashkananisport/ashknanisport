@@ -162,7 +162,7 @@ const AshkaniChampionship = ({ content, language }) => {
                     
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         {currentModalData.type === 'image' ? (
-                            <img src={currentModalData.src} />
+                            <img src={currentModalData.src} loading="lazy"/>
                         ) : (
                             <div className="modal-video-container">
                                 <video

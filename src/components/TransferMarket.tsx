@@ -45,6 +45,7 @@ const TransferMarket: React.FC<TransferMarketProps> = ({ content }) => {
                     display: imageLoaded ? 'block' : 'none',
                     backgroundColor: 'transparent'
                   }}
+                  loading="lazy"
                 />
                 {!imageLoaded && (
                   <div className="image-placeholder">

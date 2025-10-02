@@ -16,6 +16,7 @@ const About = ({ content }) => (
                       src={content.founder.photo}
                       alt={content.founder.name} 
                       className="founder-photo"
+                      loading="lazy"
                     />
                     <h3>{content.founder.name}</h3>
                     <p className="role">{content.founder.role}</p>

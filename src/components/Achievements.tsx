@@ -68,6 +68,7 @@ const Achievements = ({ content, language }) => {
                             src={content.list[currentImageIndex].imageUrl} 
                             alt={`Achievement ${currentImageIndex + 1}`}
                             className="deals-enlarged-image"
+                            loading="lazy"
                         />
                         
                         <div className="deals-enlarged-info">

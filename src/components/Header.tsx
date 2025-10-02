@@ -83,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ content, language, toggleLanguage }) =>
                         e.preventDefault();
                         scrollToSection('hero');
                     }}>
-                         <img src="/images/logo.png" alt="Ashkanani Sport Marketing Logo" />
+                         <img src="/images/logo.png" alt="Ashkanani Sport Marketing Logo" loading="lazy"/>
                     </a>
                     
                     <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>

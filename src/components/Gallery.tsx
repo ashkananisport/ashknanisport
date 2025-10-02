@@ -139,13 +139,13 @@ const handleNext = () => {
                 <div className="gallery-grid" style={{ display: 'none' }}>
                     {activeTab === 'photos' && content.photos.map((item, index) => (
                         <div key={index} className="gallery-item" onClick={() => openModal('photos', index)}>
-                            <img src={item.src} alt={item.title} />
+                            <img src={item.src} alt={item.title} loading="lazy"/>
                             <div className="gallery-overlay"><h3>{item.title}</h3></div>
                         </div>
                     ))}
                     {activeTab === 'videos' && content.videos.map((item, index) => (
                         <div key={index} className="gallery-item" onClick={() => openModal('videos', index)}>
-                            {item.thumbnail && <img src={item.thumbnail} alt={item.title} />}
+                            {item.thumbnail && <img src={item.thumbnail} alt={item.title} loading="lazy"/>}
                             <div className="gallery-overlay">
                                 <span className="play-icon"><FaPlay /></span>
                                 <h3>{item.title}</h3>
@@ -174,7 +174,7 @@ const handleNext = () => {
                     
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         {modalItem.type === 'photos' ? (
-                            <img src={currentModalData.src} alt={currentModalData.title} />
+                            <img src={currentModalData.src} alt={currentModalData.title} loading="lazy"/>
                         ) : (
                             <div className="modal-video-container">
                                 <video

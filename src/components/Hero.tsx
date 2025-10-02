@@ -41,7 +41,7 @@ const Hero = ({ content }) => {
             {/* محتوى الـ Hero */}
             <div className="hero-content">
                 <h1 className="hero-logo">
-                    <img src="/images/logo.png" alt="Ashkanani Sport Marketing Logo" />
+                    <img src="/images/logo.png" alt="Ashkanani Sport Marketing Logo" loading="lazy"/>
                 </h1>
                 <p className="hero-tagline">{content.tagline}</p>
             </div>
