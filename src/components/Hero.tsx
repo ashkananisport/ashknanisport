@@ -25,7 +25,7 @@ const Hero = ({ content }) => {
                         style={{
                             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${image.url}')`,
                             backgroundSize: 'cover',
-                            backgroundPosition: 'center',
+                            backgroundPosition: 'top center',
                             opacity: index === currentSlide ? 1 : 0,
                             transition: 'opacity 1s ease-in-out',
                             position: 'absolute',
