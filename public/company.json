@@ -300,7 +300,7 @@
           "title": "Professional Players & Coaches",
           "images": [
             "/images/professional1.jpg",
-            "/images/professional2.jpg",
+            "/images/professional2.jpeg",
             "/images/professional3.jpg",
             "/images/professional4.jpg",
             "/images/professional5.jpg",
@@ -345,7 +345,10 @@
           "images": [
             "/images/individual1.jpg",
             "/images/individual2.jpg",
-            "/images/individual3.jpg"
+            "/images/individual3.jpg",
+            "/images/individual4.jpg",
+            "/images/individual5.jpg",
+            "/images/individual6.jpg"
           ]
         }
       },
@@ -1152,7 +1155,7 @@
           "title": "لاعبون ومدربون محترفون",
           "images": [
             "/images/professional1.jpg",
-            "/images/professional2.jpg",
+            "/images/professional2.jpeg",
             "/images/professional3.jpg",
             "/images/professional4.jpg",
             "/images/professional5.jpg",
@@ -1197,7 +1200,10 @@
           "images": [
             "/images/individual1.jpg",
             "/images/individual2.jpg",
-            "/images/individual3.jpg"
+            "/images/individual3.jpg",
+            "/images/individual4.jpg",
+            "/images/individual5.jpg",
+            "/images/individual6.jpg"
           ]
         }
       },
