@@ -227,8 +227,8 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
         method: 'POST',
         body: JSON.stringify({
           title: `موعد استشارة - ${formData.name}`,
-          start: startDateTime.toISOString(),
-          end: endDateTime.toISOString(),
+          start: toKuwaitLocalISOString(startDateTime),
+          end: toKuwaitLocalISOString(endDateTime),
         }),
       });
 
@@ -258,6 +258,16 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     if (!isPM && h === 12) h = 0;
     return `${String(h).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
   }
+function toKuwaitLocalISOString(date: Date) {
+  // نأخذ الوقت المحلي ونشكّله بصيغة YYYY-MM-DDTHH:mm:ss
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+}
 
   return (
     <section className="section consultation-booking" id="consultation-booking">
