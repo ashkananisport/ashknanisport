@@ -268,6 +268,36 @@ function toKuwaitLocalISOString(date: Date) {
   const seconds = String(date.getSeconds()).padStart(2, '0');
   return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 }
+  // ✅ السماح فقط باختيار سبت إلى أربعاء
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const selectedDate = new Date(value);
+    const day = selectedDate.getDay(); 
+    // getDay(): الأحد=0، الإثنين=1، ... السبت=6
+
+    // الأيام المسموح بها: السبت(6)، الأحد(0)، الإثنين(1)، الثلاثاء(2)، الأربعاء(3)
+    const allowedDays = [6, 0, 1, 2, 3];
+
+    if (!allowedDays.includes(day)) {
+      // نرجع القيمة فاضية ونظهر رسالة خطأ
+      setFormData(prev => ({ ...prev, date: '' }));
+      setErrors(prev => ({
+        ...prev,
+        date: language === 'ar'
+          ? 'يمكن الحجز فقط من السبت إلى الأربعاء'
+          : 'Bookings are allowed only from Saturday to Wednesday'
+      }));
+    } else {
+      // لو اليوم مسموح، نحفظه ونمسح أي أخطاء
+      setFormData(prev => ({ ...prev, date: value }));
+      setErrors(prev => ({ ...prev, date: '' }));
+    }
+
+    // إعادة تعيين حالة الحجز
+    if (bookingStatus.type !== 'idle') {
+      setBookingStatus({ type: 'idle', message: '' });
+    }
+  };
 
   return (
     <section className="section consultation-booking" id="consultation-booking">
@@ -380,7 +410,7 @@ function toKuwaitLocalISOString(date: Date) {
                     id="date"
                     name="date"
                     value={formData.date}
-                    onChange={handleChange}
+                    onChange={handleDateChange}
                     className={errors.date ? 'error' : ''}
                     required
                   />
