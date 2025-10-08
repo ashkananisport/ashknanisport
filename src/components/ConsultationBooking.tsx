@@ -63,6 +63,15 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     time: '',
   });
 
+  // إضافة حالة جديدة للرسالة
+  const [bookingStatus, setBookingStatus] = useState<{
+    type: 'idle' | 'checking' | 'error' | 'success';
+    message: string;
+  }>({
+    type: 'idle',
+    message: ''
+  });
+
   // النصوص المترجمة حسب اللغة
   const translations = {
     ar: {
@@ -74,6 +83,9 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
       errorDate: 'الرجاء اختيار التاريخ',
       errorDatePast: 'لا يمكن اختيار تاريخ سابق',
       errorTime: 'الرجاء اختيار الوقت',
+      checkingAvailability: 'جاري التحقق من توفر الموعد...',
+      slotBooked: 'الميعاد محجوز بالفعل، اختر وقت آخر.',
+      bookingSuccess: 'تم فتح واتساب لإتمام الحجز.',
       whatsappMessage: (name: string, phone: string, serviceTitle: string, servicePrice: number, date: string, time: string) => 
         `مرحباً، أود حجز استشارة مع الكابتن أحمد جابر أشكناني\n\nالاسم: ${name}\nرقم الهاتف: ${phone}\nنوع الاستشارة: ${serviceTitle}\nالسعر: ${servicePrice} دينار كويتي\nالتاريخ: ${date}\nالوقت: ${time}`,
       whatsappButton: 'حجز عبر واتساب',
@@ -99,6 +111,9 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
       errorDate: 'Please select a date',
       errorDatePast: 'Cannot select a past date',
       errorTime: 'Please select a time',
+      checkingAvailability: 'Checking appointment availability...',
+      slotBooked: 'This time slot is already booked. Please choose another.',
+      bookingSuccess: 'Opening WhatsApp to complete your booking.',
       whatsappMessage: (name: string, phone: string, serviceTitle: string, servicePrice: number, date: string, time: string) => 
         `Hello, I would like to book a consultation with Captain Ahmed Jaber Ashkanani\n\nName: ${name}\nPhone: ${phone}\nConsultation Type: ${serviceTitle}\nPrice: ${servicePrice} KWD\nDate: ${date}\nTime: ${time}`,
       whatsappButton: 'Book via WhatsApp',
@@ -126,6 +141,11 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     
     if (errors[name as keyof typeof errors]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+
+    // إعادة تعيين حالة الحجز عند تغيير أي حقل
+    if (bookingStatus.type !== 'idle') {
+      setBookingStatus({ type: 'idle', message: '' });
     }
   };
 
@@ -190,13 +210,54 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
 
-  const handleWhatsAppSubmit = (e: React.FormEvent) => {
+  const handleWhatsAppSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (validateForm()) {
-      window.open(createWhatsAppLink(), '_blank');
+
+    if (!validateForm()) return;
+
+    // تعيين حالة التحقق من التوفر
+    setBookingStatus({ type: 'checking', message: t.checkingAvailability });
+
+    const selectedService = content.services.find(s => s.id === parseInt(formData.service));
+    const startDateTime = new Date(`${formData.date}T${convertTo24Hour(formData.time)}`);
+    const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // ساعة واحدة
+
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzLq275gc4b3_9dnQVDe2x6Yxt5G-DjPL-GqYiDRxtQ_XVFmij7R46IB7UnL2VPq6BvBg/exec', {
+        method: 'POST',
+        body: JSON.stringify({
+          title: `موعد استشارة - ${formData.name}`,
+          start: startDateTime.toISOString(),
+          end: endDateTime.toISOString(),
+        }),
+      });
+
+      const data = await response.json();
+      if (data.available) {
+        setBookingStatus({ type: 'success', message: t.bookingSuccess });
+        window.open(createWhatsAppLink(), '_blank');
+      } else {
+        setBookingStatus({ type: 'error', message: t.slotBooked });
+      }
+    } catch (error) {
+      setBookingStatus({ 
+        type: 'error', 
+        message: language === 'ar' 
+          ? 'حدث خطأ أثناء التحقق من التوفر. يرجى المحاولة مرة أخرى.' 
+          : 'An error occurred while checking availability. Please try again.'
+      });
     }
   };
+
+  function convertTo24Hour(timeStr: string) {
+    // مثال: "5:00 مساءً" → "17:00"
+    const isPM = timeStr.includes('مساء') || timeStr.toLowerCase().includes('pm');
+    const [hour, minute] = timeStr.match(/\d+/g)!.map(Number);
+    let h = hour;
+    if (isPM && h < 12) h += 12;
+    if (!isPM && h === 12) h = 0;
+    return `${String(h).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+  }
 
   return (
     <section className="section consultation-booking" id="consultation-booking">
@@ -236,6 +297,18 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
           </div>
           
           <div className="booking-form-container">
+            {/* عرض رسالة الحالة */}
+            {bookingStatus.type !== 'idle' && (
+              <div className={`booking-status ${bookingStatus.type}`}>
+                <div className="status-message">
+                  {bookingStatus.type === 'checking' && (
+                    <div className="loading-spinner"></div>
+                  )}
+                  <p>{bookingStatus.message}</p>
+                </div>
+              </div>
+            )}
+            
             <form onSubmit={handleWhatsAppSubmit} className="booking-form">
               <div className="form-group">
                 <label htmlFor="name">{content.form.name}</label>
@@ -326,7 +399,11 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
               </div>
               
               <div className="form-actions">
-                <button type="submit" className="whatsapp-btn">
+                <button 
+                  type="submit" 
+                  className="whatsapp-btn"
+                  disabled={bookingStatus.type === 'checking'}
+                >
                   <i className="fab fa-whatsapp"></i> {t.whatsappButton}
                 </button>
               </div>
@@ -334,6 +411,54 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
           </div>
         </div>
       </div>
+      
+      <style jsx>{`
+        .booking-status {
+          margin-bottom: 20px;
+          padding: 15px;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+        
+        .booking-status.checking {
+          background-color: #e3f2fd;
+          border-left: 4px solid #2196f3;
+        }
+        
+        .booking-status.error {
+          background-color: #ffebee;
+          border-left: 4px solid #f44336;
+        }
+        
+        .booking-status.success {
+          background-color: #e8f5e9;
+          border-left: 4px solid #4caf50;
+        }
+        
+        .status-message {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        
+        .loading-spinner {
+          width: 20px;
+          height: 20px;
+          border: 2px solid rgba(33, 150, 243, 0.3);
+          border-radius: 50%;
+          border-top-color: #2196f3;
+          animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        
+        .whatsapp-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+      `}</style>
     </section>
   );
 };
