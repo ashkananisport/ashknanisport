@@ -49,13 +49,15 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     );
   }
 
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    service: '',
-    date: new Date(),
-    time: '',
-  });
+  // تعديل الحالة الافتراضية
+const [formData, setFormData] = useState({
+  name: '',
+  phone: '',
+  service: '',
+  date: null as Date | null, // بدلاً من new Date()
+  time: '',
+});
+
 
   const [errors, setErrors] = useState({
     name: '',
@@ -186,18 +188,85 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
   };
 
   // دالة لتعطيل أيام الخميس والجمعة
-  const isDayDisabled = (date: Date) => {
-    const day = date.getDay();
-    // تعطيل الخميس (4) والجمعة (5)
-    return day === 4 || day === 5;
-  };
+const isDayDisabled = (date: Date) => {
+   if (!date) return true;
+  const day = date.getDay();
+
+  // تعطيل الخميس (4) والجمعة (5)
+  if (day === 4 || day === 5) return true;
+
+  // إذا التاريخ اليوم نفسه
+  const today = new Date();
+  if (
+    date.getFullYear() === today.getFullYear() &&
+    date.getMonth() === today.getMonth() &&
+    date.getDate() === today.getDate()
+  ) {
+    // الحصول على خيارات الوقت المتاحة اليوم
+    const remainingTimeOptions = t.timeOptions.filter((opt) => {
+      const match = opt.value.match(/(\d+):(\d+)/);
+      if (!match) return true;
+
+      let hour = parseInt(match[1]);
+      const minute = parseInt(match[2] || '0');
+
+      if (opt.value.includes('مساءً') || opt.value.includes('PM')) {
+        if (hour < 12) hour += 12;
+      } else if (opt.value.includes('صباحاً') || opt.value.includes('AM')) {
+        if (hour === 12) hour = 0;
+      }
+
+      return hour > today.getHours() || (hour === today.getHours() && minute > today.getMinutes());
+    });
+
+    // لو مفيش أي وقت متاح اليوم، نمنع اختيار اليوم
+    if (remainingTimeOptions.length === 0) return true;
+  }
+
+  return false;
+};
 
   // الحصول على خيارات الوقت المناسبة حسب اليوم المختار
   const getTimeOptions = () => {
-    const selectedDay = formData.date.getDay();
-    // السبت = 6
-    return selectedDay === 6 ? t.saturdayTimeOptions : t.timeOptions;
-  };
+    if (!formData.date) return [];
+  const selectedDay = formData.date.getDay();
+  const today = new Date();
+  const isToday =
+    formData.date.getFullYear() === today.getFullYear() &&
+    formData.date.getMonth() === today.getMonth() &&
+    formData.date.getDate() === today.getDate();
+
+  // اختيار قائمة الوقت حسب اليوم
+  const options = selectedDay === 6 ? t.saturdayTimeOptions : t.timeOptions;
+
+  // إذا التاريخ اليوم نفسه، استبعد الأوقات التي مضت
+  if (isToday) {
+    const currentHour = today.getHours();
+    const currentMinute = today.getMinutes();
+
+    return options.filter((opt) => {
+      // تحويل الوقت إلى ساعة ودقيقة 24h
+      const match = opt.value.match(/(\d+):(\d+)/);
+      if (!match) return true;
+      let hour = parseInt(match[1]);
+      const minute = parseInt(match[2] || '0');
+
+      if (opt.value.includes('مساءً') || opt.value.includes('PM')) {
+        if (hour < 12) hour += 12;
+      } else if (opt.value.includes('صباحاً') || opt.value.includes('AM')) {
+        if (hour === 12) hour = 0;
+      }
+
+      // مقارنة مع الوقت الحالي
+      if (hour > currentHour) return true;
+      if (hour === currentHour && minute > currentMinute) return true;
+      return false; // الوقت مضى
+    });
+  }
+
+  return options;
+};
+
 
   const validateForm = () => {
     let isValid = true;
@@ -447,14 +516,14 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
                 <div className="form-group">
                   <label>{content.form.date}</label>
                   <DatePicker
-                    selected={formData.date}
-                    onChange={handleDateChange}
-                    filterDate={(date) => !isDayDisabled(date)}
-                    minDate={new Date()}
-                    className={errors.date ? 'error' : ''}
-                    placeholderText={language === 'ar' ? 'اختر التاريخ' : 'Select date'}
-                    dateFormat={language === 'ar' ? 'dd/MM/yyyy' : 'MM/dd/yyyy'}
-                  />
+                  selected={formData.date}
+                  onChange={handleDateChange}
+                  filterDate={(date) => !isDayDisabled(date)}
+                  minDate={new Date()}
+                  className={errors.date ? 'error' : ''}
+                  placeholderText={language === 'ar' ? 'اختر التاريخ' : 'Select date'}
+                  dateFormat={language === 'ar' ? 'dd/MM/yyyy' : 'MM/dd/yyyy'}
+                />
                   {errors.date && <span className="error-message">{errors.date}</span>}
                 </div>
                 
