@@ -638,8 +638,8 @@
     "consultationBooking": {
       "title": "Book Your Sports Consultation",
       "description": "Book your one-hour sports consultation with Captain Ahmed Jaber Ashkanani",
-      "workingHours": "Available hours are from 10:00 AM : 12:00 PM and from 5:00 PM : 8:00 PM.",
-      "workingDays": "From Sunday to Wednesday.",
+      "workingHours": "Available hours are from 10:00 AM : 12:00 PM and from 5:00 PM : 8:00 PM, saturday from 4 PM : 8 PM",
+      "workingDays": "From Saturday to Wednesday.",
       "services": [
         {
           "id": 1,
@@ -1493,8 +1493,8 @@
     "consultationBooking": {
       "title": "احجز استشارتك الرياضية",
       "description": "احجز استشارتك الرياضية لمدة ساعة مع الكابتن أحمد جابر أشكناني",
-      "workingHours": "الساعات المتوفرة من 10 ص : 12 م  ومن 5م :8 م ",
-      "workingDays": "من الاحد الى الاربعاء",
+      "workingHours": "الساعات المتوفرة من 10 ص : 12 م  ومن 5م :8 م , السبت من 4 م : 8 م",
+      "workingDays": "من السبت الى الاربعاء",
       "services": [
         {
           "id": 1,
