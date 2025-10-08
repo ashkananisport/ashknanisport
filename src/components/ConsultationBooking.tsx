@@ -1,5 +1,7 @@
 // src/components/ConsultationBooking.tsx
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { Language } from '../types';
 
 interface ConsultationBookingProps {
@@ -51,7 +53,7 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     name: '',
     phone: '',
     service: '',
-    date: '',
+    date: new Date(),
     time: '',
   });
 
@@ -100,6 +102,13 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
         { value: '6:00 مساءً', label: '6:00 مساءً' },
         { value: '7:00 مساءً', label: '7:00 مساءً' },
         { value: '8:00 مساءً', label: '8:00 مساءً' }
+      ],
+      saturdayTimeOptions: [
+        { value: '4:00 مساءً', label: '4:00 مساءً' },
+        { value: '5:00 مساءً', label: '5:00 مساءً' },
+        { value: '6:00 مساءً', label: '6:00 مساءً' },
+        { value: '7:00 مساءً', label: '7:00 مساءً' },
+        { value: '8:00 مساءً', label: '8:00 مساءً' }
       ]
     },
     en: {
@@ -128,6 +137,13 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
         { value: '6:00 PM', label: '6:00 PM' },
         { value: '7:00 PM', label: '7:00 PM' },
         { value: '8:00 PM', label: '8:00 PM' }
+      ],
+      saturdayTimeOptions: [
+        { value: '4:00 PM', label: '4:00 PM' },
+        { value: '5:00 PM', label: '5:00 PM' },
+        { value: '6:00 PM', label: '6:00 PM' },
+        { value: '7:00 PM', label: '7:00 PM' },
+        { value: '8:00 PM', label: '8:00 PM' }
       ]
     }
   };
@@ -147,6 +163,40 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     if (bookingStatus.type !== 'idle') {
       setBookingStatus({ type: 'idle', message: '' });
     }
+  };
+
+  // دالة للتعامل مع تغيير التاريخ
+  const handleDateChange = (date: Date | null) => {
+    if (!date) return;
+    
+    setFormData(prev => ({ ...prev, date }));
+    
+    // إعادة تعيين الوقت عند تغيير التاريخ
+    setFormData(prev => ({ ...prev, time: '' }));
+    
+    // مسح أي أخطاء متعلقة بالتاريخ
+    if (errors.date) {
+      setErrors(prev => ({ ...prev, date: '' }));
+    }
+    
+    // إعادة تعيين حالة الحجز
+    if (bookingStatus.type !== 'idle') {
+      setBookingStatus({ type: 'idle', message: '' });
+    }
+  };
+
+  // دالة لتعطيل أيام الخميس والجمعة
+  const isDayDisabled = (date: Date) => {
+    const day = date.getDay();
+    // تعطيل الخميس (4) والجمعة (5)
+    return day === 4 || day === 5;
+  };
+
+  // الحصول على خيارات الوقت المناسبة حسب اليوم المختار
+  const getTimeOptions = () => {
+    const selectedDay = formData.date.getDay();
+    // السبت = 6
+    return selectedDay === 6 ? t.saturdayTimeOptions : t.timeOptions;
   };
 
   const validateForm = () => {
@@ -198,12 +248,21 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     const phoneNumber = "96597131223";
     const selectedService = formData.service ? content.services.find(s => s.id === parseInt(formData.service)) : null;
     
+    // تنسيق التاريخ لعرضه - تعديل هنا لاستخدام التقويم الميلادي
+    const day = formData.date.getDate();
+    const month = formData.date.getMonth() + 1; // الشهر يبدأ من 0
+    const year = formData.date.getFullYear();
+    
+    const formattedDate = language === 'ar' 
+      ? `${day}/${month}/${year}` 
+      : `${month}/${day}/${year}`;
+    
     const message = t.whatsappMessage(
       formData.name,
       formData.phone,
       selectedService ? selectedService.title : '',
       selectedService ? selectedService.price : 0,
-      formData.date,
+      formattedDate,
       formData.time
     );
     
@@ -219,16 +278,31 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     setBookingStatus({ type: 'checking', message: t.checkingAvailability });
 
     const selectedService = content.services.find(s => s.id === parseInt(formData.service));
-    const startDateTime = new Date(`${formData.date}T${convertTo24Hour(formData.time)}`);
+    const startDateTime = new Date(formData.date);
+    const timeParts = formData.time.match(/\d+/g);
+    if (timeParts) {
+      let hours = parseInt(timeParts[0]);
+      const minutes = parseInt(timeParts[1] || '0');
+      
+      // تحويل الوقت إلى 24 ساعة
+      if (formData.time.includes('مساءً') || formData.time.includes('PM')) {
+        if (hours < 12) hours += 12;
+      } else if (formData.time.includes('صباحاً') || formData.time.includes('AM')) {
+        if (hours === 12) hours = 0;
+      }
+      
+      startDateTime.setHours(hours, minutes, 0, 0);
+    }
+    
     const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // ساعة واحدة
-
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzLq275gc4b3_9dnQVDe2x6Yxt5G-DjPL-GqYiDRxtQ_XVFmij7R46IB7UnL2VPq6BvBg/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwGx9O0GgxeU6UdHmxumeKkCK6zTSfTNcES4WRyAht-fIlOuSGA77sFTKEjeo_71cDmrg/exec', {
         method: 'POST',
         body: JSON.stringify({
           title: `موعد استشارة - ${formData.name}`,
           start: toKuwaitLocalISOString(startDateTime),
           end: toKuwaitLocalISOString(endDateTime),
+          timezone: 'Asia/Kuwait', // إضافة التوقيت الصريح
         }),
       });
 
@@ -249,55 +323,22 @@ const ConsultationBooking: React.FC<ConsultationBookingProps> = ({ content, lang
     }
   };
 
-  function convertTo24Hour(timeStr: string) {
-    // مثال: "5:00 مساءً" → "17:00"
-    const isPM = timeStr.includes('مساء') || timeStr.toLowerCase().includes('pm');
-    const [hour, minute] = timeStr.match(/\d+/g)!.map(Number);
-    let h = hour;
-    if (isPM && h < 12) h += 12;
-    if (!isPM && h === 12) h = 0;
-    return `${String(h).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+  // دالة لتحويل التاريخ إلى صيغة ISO مع الحفاظ على توقيت الكويت
+  function toKuwaitLocalISOString(date: Date) {
+    // إنشاء كائن تاريخ جديد بنفس القيم ولكن مع توقيت الكويت
+    const kuwaitDate = new Date(date);
+    
+    // الحصول على المكونات المحلية
+    const year = kuwaitDate.getFullYear();
+    const month = String(kuwaitDate.getMonth() + 1).padStart(2, '0');
+    const day = String(kuwaitDate.getDate()).padStart(2, '0');
+    const hours = String(kuwaitDate.getHours()).padStart(2, '0');
+    const minutes = String(kuwaitDate.getMinutes()).padStart(2, '0');
+    const seconds = String(kuwaitDate.getSeconds()).padStart(2, '0');
+    
+    // إرجاع الصيغة المطلوبة مع تحديد المنطقة الزمنية
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}+03:00`;
   }
-function toKuwaitLocalISOString(date: Date) {
-  // نأخذ الوقت المحلي ونشكّله بصيغة YYYY-MM-DDTHH:mm:ss
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const seconds = String(date.getSeconds()).padStart(2, '0');
-  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-}
-  // ✅ السماح فقط باختيار سبت إلى أربعاء
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    const selectedDate = new Date(value);
-    const day = selectedDate.getDay(); 
-    // getDay(): الأحد=0، الإثنين=1، ... السبت=6
-
-    // الأيام المسموح بها: السبت(6)، الأحد(0)، الإثنين(1)، الثلاثاء(2)، الأربعاء(3)
-    const allowedDays = [6, 0, 1, 2, 3];
-
-    if (!allowedDays.includes(day)) {
-      // نرجع القيمة فاضية ونظهر رسالة خطأ
-      setFormData(prev => ({ ...prev, date: '' }));
-      setErrors(prev => ({
-        ...prev,
-        date: language === 'ar'
-          ? 'يمكن الحجز فقط من السبت إلى الأربعاء'
-          : 'Bookings are allowed only from Saturday to Wednesday'
-      }));
-    } else {
-      // لو اليوم مسموح، نحفظه ونمسح أي أخطاء
-      setFormData(prev => ({ ...prev, date: value }));
-      setErrors(prev => ({ ...prev, date: '' }));
-    }
-
-    // إعادة تعيين حالة الحجز
-    if (bookingStatus.type !== 'idle') {
-      setBookingStatus({ type: 'idle', message: '' });
-    }
-  };
 
   return (
     <section className="section consultation-booking" id="consultation-booking">
@@ -404,15 +445,15 @@ function toKuwaitLocalISOString(date: Date) {
               
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="date">{content.form.date}</label>
-                  <input
-                    type="date"
-                    id="date"
-                    name="date"
-                    value={formData.date}
+                  <label>{content.form.date}</label>
+                  <DatePicker
+                    selected={formData.date}
                     onChange={handleDateChange}
+                    filterDate={(date) => !isDayDisabled(date)}
+                    minDate={new Date()}
                     className={errors.date ? 'error' : ''}
-                    required
+                    placeholderText={language === 'ar' ? 'اختر التاريخ' : 'Select date'}
+                    dateFormat={language === 'ar' ? 'dd/MM/yyyy' : 'MM/dd/yyyy'}
                   />
                   {errors.date && <span className="error-message">{errors.date}</span>}
                 </div>
@@ -428,7 +469,7 @@ function toKuwaitLocalISOString(date: Date) {
                     required
                   >
                     <option value="">{t.selectTime}</option>
-                    {t.timeOptions.map((timeOption, index) => (
+                    {getTimeOptions().map((timeOption, index) => (
                       <option key={index} value={timeOption.value}>
                         {timeOption.label}
                       </option>
@@ -497,6 +538,22 @@ function toKuwaitLocalISOString(date: Date) {
         .whatsapp-btn:disabled {
           opacity: 0.7;
           cursor: not-allowed;
+        }
+        
+        .react-datepicker-wrapper {
+          width: 100%;
+        }
+        
+        .react-datepicker__input-container input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 16px;
+        }
+        
+        .react-datepicker__input-container input.error {
+          border-color: #f44336;
         }
       `}</style>
     </section>
