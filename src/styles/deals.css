@@ -41,6 +41,8 @@
     justify-content: center;
     z-index: 9999;
     cursor: pointer;
+    padding-top: 50px; /* إضافة مساحة أعلى للنافبار */
+
 }
 
 /* حاوية الصورة المكبرة */
@@ -209,4 +211,19 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+.deals-buttons-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.important-deals-button {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.important-deals-button:hover {
+    background-color: #ff5252;
 }

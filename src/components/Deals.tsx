@@ -4,6 +4,7 @@ import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const Deals = ({ content, language }) => {
     const [isEnlarged, setIsEnlarged] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [currentDealType, setCurrentDealType] = useState('deals'); // 'deals' أو 'importantDeals'
 
     // استخدام عناوين ثابتة بناءً على اللغة
     const titlePart1 = language === 'en' ? 'Best Contracts &' : 'ابرز العقود';
@@ -14,25 +15,42 @@ const Deals = ({ content, language }) => {
         ? 'We have approximately 177 deals since the company\'s establishment in all countries'
         : 'نمتلك ما يقارب 177 صفقة منذ انشاء الشركة بجميع الدول';
 
-    const handleButtonClick = () => {
+    // نصوص الأزرار
+    const dealsButtonText = language === 'en' ? 'View Best Deals' : 'شاهد ابرز الصفقات';
+    const importantDealsButtonText = language === 'en' ? 'View European Deals' : 'شاهد ابرز الصفقات الاوروبية';
+
+    const handleDealsButtonClick = () => {
+        setCurrentDealType('deals');
         setCurrentImageIndex(0);
         setIsEnlarged(true);
-        // منع التمرير عند فتح التكبير
+        document.body.style.overflow = 'hidden';
+    };
+
+    const handleImportantDealsButtonClick = () => {
+        setCurrentDealType('importantDeals');
+        setCurrentImageIndex(0);
+        setIsEnlarged(true);
         document.body.style.overflow = 'hidden';
     };
 
     const handleCloseEnlarged = () => {
         setIsEnlarged(false);
-        // استعادة التمرير عند الإغلاق
         document.body.style.overflow = 'auto';
     };
 
     const handlePrevImage = () => {
-        setCurrentImageIndex((prev) => (prev - 1 + content.list.length) % content.list.length);
+        const currentList = currentDealType === 'deals' ? content.deals : content.importantDeals;
+        setCurrentImageIndex((prev) => (prev - 1 + currentList.length) % currentList.length);
     };
 
     const handleNextImage = () => {
-        setCurrentImageIndex((prev) => (prev + 1) % content.list.length);
+        const currentList = currentDealType === 'deals' ? content.deals : content.importantDeals;
+        setCurrentImageIndex((prev) => (prev + 1) % currentList.length);
+    };
+
+    // الحصول على القائمة الحالية بناءً على النوع المحدد
+    const getCurrentList = () => {
+        return currentDealType === 'deals' ? content.deals : content.importantDeals;
     };
 
     return (
@@ -43,13 +61,19 @@ const Deals = ({ content, language }) => {
                     {/* إضافة السطر الجديد تحت العنوان */}
                     <p className="section-subtitle">{subtitleText}</p>
                     
-                    {/* زر بدلاً من الصور */}
-                    <div className="deals-button-container">
+                    {/* حاوية الأزرار */}
+                    <div className="deals-buttons-container">
                         <button 
                             className="deals-view-button"
-                            onClick={handleButtonClick}
+                            onClick={handleDealsButtonClick}
                         >
-                            {language === 'en' ? 'View Best Deals' : 'شاهد ابرز الصفقات'}
+                            {dealsButtonText}
+                        </button>
+                        <button 
+                            className="deals-view-button important-deals-button"
+                            onClick={handleImportantDealsButtonClick}
+                        >
+                            {importantDealsButtonText}
                         </button>
                     </div>
                 </div>
@@ -68,41 +92,40 @@ const Deals = ({ content, language }) => {
                         </button>
                         
                         <img 
-                            src={content.list[currentImageIndex].img} 
-                            alt={content.list[currentImageIndex].title}
+                            src={getCurrentList()[currentImageIndex].img} 
+                            alt={getCurrentList()[currentImageIndex].title}
                             className="deals-enlarged-image"
                             loading="lazy"
                         />
                         
                         <div className="deals-enlarged-info">
-                            <h3>{content.list[currentImageIndex].title}</h3>
-                            <p>{content.list[currentImageIndex].description}</p>
+                            <h3>{getCurrentList()[currentImageIndex].title}</h3>
+                            <p>{getCurrentList()[currentImageIndex].description}</p>
                         </div>
                         
-                        {content.list.length > 1 && (
-                        <div className="deals-enlarged-controls">
-                            <button 
-                            className="deals-enlarged-nav deals-enlarged-prev"
-                            onClick={handlePrevImage}
-                            aria-label={language === 'en' ? "Previous" : "السابق"}
-                            >
-                            {language === 'en' ? <FaChevronLeft /> : <FaChevronRight />}
-                            </button>
+                        {getCurrentList().length > 1 && (
+                            <div className="deals-enlarged-controls">
+                                <button 
+                                    className="deals-enlarged-nav deals-enlarged-prev"
+                                    onClick={handlePrevImage}
+                                    aria-label={language === 'en' ? "Previous" : "السابق"}
+                                >
+                                    {language === 'en' ? <FaChevronLeft /> : <FaChevronRight />}
+                                </button>
 
-                            <div className="deals-enlarged-counter">
-                            {currentImageIndex + 1} / {content.list.length}
+                                <div className="deals-enlarged-counter">
+                                    {currentImageIndex + 1} / {getCurrentList().length}
+                                </div>
+
+                                <button 
+                                    className="deals-enlarged-nav deals-enlarged-next"
+                                    onClick={handleNextImage}
+                                    aria-label={language === 'en' ? "Next" : "التالي"}
+                                >
+                                    {language === 'en' ? <FaChevronRight /> : <FaChevronLeft />}
+                                </button>
                             </div>
-
-                            <button 
-                            className="deals-enlarged-nav deals-enlarged-next"
-                            onClick={handleNextImage}
-                            aria-label={language === 'en' ? "Next" : "التالي"}
-                            >
-                            {language === 'en' ? <FaChevronRight /> : <FaChevronLeft />}
-                            </button>
-                        </div>
                         )}
-
                     </div>
                 </div>
             )}

@@ -177,7 +177,7 @@
       ]
     },
     "deals": {
-      "list": [
+      "deals": [
         {
           "img": "/images/deal1.jpg",
           "title": "Omar AlShaya",
@@ -222,6 +222,38 @@
           "img": "/images/deal9.png",
           "title": "Fahad Al-Azmi & Yousef Al-Fujaie",
           "description": "Our players Fahad Al-Azmi, transferred from Al-Salmiya to Al-Arabi, and Yousef Al-Fujaie, joining Al-Arabi from Kazma."
+        }
+      ],
+      "importantDeals": [
+        {
+          "img": "/images/Ideal1.jpg",
+          "title": "Turki Al-Hamam",
+          "description": "The Saudi professional Turki Al-Hamam during training with the Spanish club Leganés"
+        },
+        {
+          "img": "/images/Ideal2.jpg",
+          "title": "Layan Al-Qamis",
+          "description": "Layan Al-Qamis at Women's Football Club Batumi"
+        },
+        {
+          "img": "/images/Ideal3.jpg",
+          "title": "Omar Al-Filkawi",
+          "description": "Omar Al-Filkawi"
+        },
+        {
+          "img": "/images/Ideal4.jpg",
+          "title": "Abdulaziz Ashkanani",
+          "description": "Abdulaziz Ashkanani, the professional player in the Spanish club Rayo Majadahonda."
+        },
+        {
+          "img": "/images/Ideal5.jpg",
+          "title": "Ibrahim Feyhan Al-Otaibi",
+          "description": "Our distinguished professional, Ibrahim Feyhan Al-Otaibi, in the ranks of the British club."
+        },
+        {
+          "img": "/images/Ideal6.jpg",
+          "title": "Salman Dashti",
+          "description": "Salman Dashti with Mousely Club in Manchester."
         }
       ]
     },
@@ -1032,7 +1064,7 @@
       ]
     },
     "deals": {
-      "list": [
+      "deals": [
         {
           "img": "/images/deal1.jpg",
           "title": "عمر الشايع",
@@ -1077,6 +1109,38 @@
           "img": "/images/deal9.png",
           "title": "فهد العازمي و يوسف الفجي",
           "description": "لاعبانا فهد العازمي المنتقل من نادي السالمية إلى العربي، و يوسف الفجي القادم من كاظمة إلى النادي العربي."
+        }
+      ],
+      "importantDeals": [
+        {
+          "img": "/images/Ideal1.jpg",
+          "title": "تركي آل همام",
+          "description": "المحترف السعودي تركي آل همام في تدريبات نادي لقينيس الأسباني"
+        },
+        {
+          "img": "/images/Ideal2.jpg",
+          "title": "ليان القامس",
+          "description": "ليان القامس في نادي كرة القدم النسائي باتومي"
+        },
+        {
+          "img": "/images/Ideal3.jpg",
+          "title": "عمر الفيلكاوي",
+          "description": "عمر الفيلكاوي"
+        },
+        {
+          "img": "/images/Ideal4.jpg",
+          "title": "عبدالعزيز اشكناني",
+          "description": "عبدالعزيز اشكناني المحترف في صفوف نادي رايو ماخوندا الأسباني"
+        },
+        {
+          "img": "/images/Ideal5.jpg",
+          "title": " ابراهيم فيحان العتيبي",
+          "description": "محترفنا المميز  ابراهيم فيحان العتيبي في صفوف نادي البريطاني "
+        },
+        {
+          "img": "/images/Ideal6.jpg",
+          "title": "سلمان دشتي ",
+          "description": "سلمان دشتي مع نادي موسلي في مدينة مانشستر"
         }
       ]
     },
