@@ -11,7 +11,7 @@ interface ConsultationBookingProps {
     services: Array<{
       id: number;
       title: string;
-      price: number;
+      price: number | string;
       description: string;
     }>;
     workingHours: string;
@@ -90,8 +90,8 @@ const [formData, setFormData] = useState({
       checkingAvailability: 'جاري التحقق من توفر الموعد...',
       slotBooked: 'الميعاد محجوز بالفعل، اختر وقت آخر.',
       bookingSuccess: 'تم فتح واتساب لإتمام الحجز.',
-      whatsappMessage: (name: string, phone: string, serviceTitle: string, servicePrice: number, date: string, time: string) => 
-        `مرحباً، أود حجز استشارة مع الكابتن أحمد جابر أشكناني\n\nالاسم: ${name}\nرقم الهاتف: ${phone}\nنوع الاستشارة: ${serviceTitle}\nالسعر: ${servicePrice} دينار كويتي\nالتاريخ: ${date}\nالوقت: ${time}`,
+      whatsappMessage: (name: string, phone: string, serviceTitle: string, priceText: string, date: string, time: string) => 
+        `مرحباً، أود حجز استشارة مع الكابتن أحمد جابر أشكناني\n\nالاسم: ${name}\nرقم الهاتف: ${phone}\nنوع الاستشارة: ${serviceTitle}\nالسعر: ${priceText}\nالتاريخ: ${date}\nالوقت: ${time}\n\nالعنوان: ${content.contact.address}\nرابط الخريطة: https://maps.app.goo.gl/3Jb79urRoU7VGmi27`,
       whatsappButton: 'حجز عبر واتساب',
       mapPlaceholder: 'معلومات الخريطة غير متوفرة',
       selectService: 'اختر الاستشارة',
@@ -125,8 +125,8 @@ const [formData, setFormData] = useState({
       checkingAvailability: 'Checking appointment availability...',
       slotBooked: 'This time slot is already booked. Please choose another.',
       bookingSuccess: 'Opening WhatsApp to complete your booking.',
-      whatsappMessage: (name: string, phone: string, serviceTitle: string, servicePrice: number, date: string, time: string) => 
-        `Hello, I would like to book a consultation with Captain Ahmed Jaber Ashkanani\n\nName: ${name}\nPhone: ${phone}\nConsultation Type: ${serviceTitle}\nPrice: ${servicePrice} KWD\nDate: ${date}\nTime: ${time}`,
+      whatsappMessage: (name: string, phone: string, serviceTitle: string, priceText: string, date: string, time: string) => 
+        `Hello, I would like to book a consultation with Captain Ahmed Jaber Ashkanani\n\nName: ${name}\nPhone: ${phone}\nConsultation Type: ${serviceTitle}\nPrice: ${priceText}\nDate: ${date}\nTime: ${time}\n\nAddress: ${content.contact.address}\nMap Link: https://maps.app.goo.gl/3Jb79urRoU7VGmi27`,
       whatsappButton: 'Book via WhatsApp',
       mapPlaceholder: 'Map information is unavailable',
       selectService: 'Select Consultation',
@@ -326,11 +326,25 @@ const isDayDisabled = (date: Date) => {
       ? `${day}/${month}/${year}` 
       : `${month}/${day}/${year}`;
     
+    // تعديل طريقة عرض السعر
+    let priceText = '';
+    if (selectedService) {
+      // التحقق إذا كان السعر رقمًا
+      if (typeof selectedService.price === 'number' || (!isNaN(Number(selectedService.price)) && selectedService.price !== '')) {
+        priceText = language === 'ar' 
+          ? `${selectedService.price} دينار كويتي` 
+          : `${selectedService.price} KWD`;
+      } else {
+        // إذا كان السعر نصًا (مثل "بدون رسوم" أو "no fees")
+        priceText = selectedService.price.toString();
+      }
+    }
+    
     const message = t.whatsappMessage(
       formData.name,
       formData.phone,
       selectedService ? selectedService.title : '',
-      selectedService ? selectedService.price : 0,
+      priceText,
       formattedDate,
       formData.time
     );
@@ -502,7 +516,7 @@ const isDayDisabled = (date: Date) => {
                   {content.services.map(service => (
                     <option key={service.id} value={service.id}>
                       {service.title} - { 
-                          !isNaN(service.price) 
+                          typeof service.price === 'number' || (!isNaN(Number(service.price)) && service.price !== '')
                             ? `${service.price} ${language === 'ar' ? 'دينار كويتي' : 'KWD'}` 
                             : service.price
                         }
